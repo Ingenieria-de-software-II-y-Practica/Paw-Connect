@@ -12,7 +12,9 @@ public class Usuario {
      /*
       * Metodos
       */
-     
+     public Usuario(){
+
+     }
       /**
        * Constructor con todos los atributos
        * @param id ID que se usa para identificar al usuario.
@@ -27,7 +29,12 @@ public class Usuario {
          this.numero_contacto = numero_contacto;
          setAcceso(false); //False indica que es un usuario.
      }
- 
+     public void registrarse(){
+
+     }
+     public void login(){
+        
+     }
      /**
       * Getters y Setters
       */
