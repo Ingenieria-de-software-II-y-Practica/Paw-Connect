@@ -38,40 +38,6 @@ public class Opciones {
         this.desparazitado = desparazitado;
     }
     // ---------METODOS---------//
-    /**
-     * Metodo para realizar la consulta a la base de datos sobre las opciones de un Post dado un ID
-     * @param IDPost IDPost : int
-     * @param db db : DB
-     * @return opcionBuscada : Opciones
-     */
-    public Opciones BDOpcionesID(String IDPost, DB db) {
-        Opciones opcionBuscada = (Opciones) db.consulta("SELECT opciones_buscar_id("+IDPost+");")[0];
-        return (opcionBuscada == null)? opcionBuscada : null;
-   }
-   /**
-    * Metodo para agregar Opciones en la Base de datos
-    * @param opciones opciones : Opciones
-    * @param db base de datos : DB
-    * @return String[] : [Status, mensaje]
-    */
-   public  String[] agregarOpciones(Opciones opciones, DB db) {
-       String response[] = new String[2];
-       try {
-           existPost = db.consulta("SELECT buscarPostId("+opciones.getIDpost()+")");
-           if (existPost != null) {
-               respuesta = db.consulta(String.format("CALL agregar_opciones('%d', '%b', '%b', '%b', '%b');", opciones.getIDpost(),opciones.isVacunas(), opciones.isOtrasMascotas(), opciones.isNiños(), opciones.isDesparazitado()));
-               response[0] = "200";
-               response[1]="Guardado exitosamente";
-               return response;
-           } else {
-               throw new Exception();
-           }
-       } catch (Exception e) {
-           response[0] = ""+e.getCode()+"";
-           response[1]=""+e.getMessage()+"";
-           return response;
-       }
-   }
     // ---------GETTERS AND SETTERS---------//
     /**
      * Metodo para devolver el IDPost de las opciones
