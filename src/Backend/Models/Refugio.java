@@ -1,6 +1,7 @@
 package Backend.Models;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 /**
  * Clase refugio hereda de Usuario porque es un tipo de usuario.
  */
@@ -8,15 +9,15 @@ public class Refugio extends Usuario{
     /*
      * Atributos
      */
-    private String direccion, tipo_mascota;
+    private String direccion;
+    ArrayList<String> tipo_mascota;
     private Path foto;
     /*
      * Metodos
      */
-
+    public Refugio(){}
     /**
      * Constructor que amplia el constructor de usuario con los atributos de esta clase.
-     * @param id
      * @param nombre
      * @param contraseña
      * @param numero_contacto
@@ -24,8 +25,8 @@ public class Refugio extends Usuario{
      * @param tipo_mascota
      * @param foto
      */
-    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, String tipo_mascota, Path foto) {
-        super(id, nombre, contraseña, numero_contacto);
+    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, ArrayList<String> tipo_mascota, Path foto) {
+        super(id,nombre, contraseña, numero_contacto);
         setAcceso(true); // True indica que el usuario es un refugio.
         this.direccion = direccion;
         this.tipo_mascota = tipo_mascota;
@@ -40,11 +41,11 @@ public class Refugio extends Usuario{
         this.direccion = direccion;
     }
 
-    public String getTipo_mascota() {
+    public ArrayList<String> getTipo_mascota() {
         return tipo_mascota;
     }
 
-    public void setTipo_mascota(String tipo_mascota) {
+    public void setTipo_mascota(ArrayList<String> tipo_mascota) {
         this.tipo_mascota = tipo_mascota;
     }
 

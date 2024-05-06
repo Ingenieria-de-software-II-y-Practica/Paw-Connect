@@ -12,9 +12,7 @@ public class Usuario {
      /*
       * Metodos
       */
-     public Usuario(){
-
-     }
+     public Usuario(){}
       /**
        * Constructor con todos los atributos
        * @param id ID que se usa para identificar al usuario.
@@ -29,12 +27,19 @@ public class Usuario {
          this.numero_contacto = numero_contacto;
          setAcceso(false); //False indica que es un usuario.
      }
-     public void registrarse(){
+     public void registrarse(String nombre, String contra, String numero){
+        setNombre(nombre);
+        setContraseña(contra);
+        setNumero_contacto(numero);
+     }
+     public boolean login(String nombre, String contra){
+        if(this.nombre.equals(nombre) && contraseña.equals(contra)){
+            return true;
+        }
+        System.out.println("Usuario y/o contraseña incorrecto.");
+        return false;
+     }
 
-     }
-     public void login(){
-        
-     }
      /**
       * Getters y Setters
       */
