@@ -1,5 +1,7 @@
 package Backend.Models;
 
+import Backend.DB.DB;
+
 public class Usuario {
     /*
      * Atributos
@@ -27,10 +29,16 @@ public class Usuario {
          this.numero_contacto = numero_contacto;
          setAcceso(false); //False indica que es un usuario.
      }
-     public void registrarse(String nombre, String contra, String numero){
-        setNombre(nombre);
-        setContraseña(contra);
-        setNumero_contacto(numero);
+     public boolean registrarse(String nombre, String contra, String numero, DB db){
+        if(db.getUsername(nombre) == null){
+            setNombre(nombre);
+            setContraseña(contra);
+            setNumero_contacto(numero);
+            setAcceso(false);
+            return true;
+        }
+        System.out.println("No se pudo registrar el usuario.");
+        return false;
      }
      public boolean login(String nombre, String contra){
         if(this.nombre.equals(nombre) && contraseña.equals(contra)){
