@@ -1,5 +1,7 @@
 package Backend.Models;
 
+import java.nio.file.Path;
+
 import Backend.DB.DB;
 
 public class Usuario {
@@ -10,7 +12,7 @@ public class Usuario {
      private int id;
      private String nombre, contraseña, numero_contacto;
      private boolean acceso; // Dara un nivel de acceso dependiendo si es un usuario comun o un refugio.
- 
+     private Path foto;
      /*
       * Metodos
       */
@@ -22,11 +24,12 @@ public class Usuario {
        * @param contraseña Contraseña del usuario
        * @param numero_contacto Numero telefonico
        */
-     public Usuario(int id, String nombre, String contraseña, String numero_contacto) {
+     public Usuario(int id, String nombre, String contraseña, String numero_contacto, Path foto) {
          this.id = id;
          this.nombre = nombre;
          this.contraseña = contraseña;
          this.numero_contacto = numero_contacto;
+         this.foto = foto;
          setAcceso(false); //False indica que es un usuario.
      }
      public boolean registrarse(String nombre, String contra, String numero, DB db){
@@ -83,4 +86,11 @@ public class Usuario {
      public void setAcceso(boolean acceso) {
          this.acceso = acceso;
      }
+    public Path getFoto() {
+        return foto;
+    }
+    public void setFoto(Path foto) {
+        this.foto = foto;
+    }
+     
 }
