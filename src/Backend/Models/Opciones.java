@@ -7,7 +7,7 @@ public class Opciones {
     private boolean vacunas;
     private boolean niños;
     private boolean otrasMascotas;
-    private boolean desparazitado;
+    private boolean desparacitado;
     // ---------CONSTRUCTORES---------//
     /**
      * Contructor para crear una nueva opcion en un Post
@@ -22,7 +22,7 @@ public class Opciones {
         this.vacunas = vacunas;
         this.niños = niños;
         this.otrasMascotas = otrasMascotas;
-        this.desparazitado = desparazitado;
+        this.desparacitado = desparazitado;
     }
     /**
      * Constructor para buscar los parametros de las opciones
@@ -35,7 +35,7 @@ public class Opciones {
         this.vacunas = vacunas;
         this.niños = niños;
         this.otrasMascotas = otrasMascotas;
-        this.desparazitado = desparazitado;
+        this.desparacitado = desparazitado;
     }
     // ---------METODOS---------//
     // ---------GETTERS AND SETTERS---------//
@@ -99,15 +99,15 @@ public class Opciones {
      * Metodo para devolver si la mascota esta desparazitada o no
      * @return desparazitada : boolean
      */
-    public boolean isDesparazitado() {
-        return desparazitado;
+    public boolean isDesparacitado() {
+        return desparacitado;
     }
     /**
      * Metodo para cambiar si esta desparazitada la mascota o no
      * @param desparazitado desparasitada : boolean
      */
-    public void setDesparazitado(boolean desparazitado) {
-        this.desparazitado = desparazitado;
+    public void setDesparacitado(boolean desparazitado) {
+        this.desparacitado = desparazitado;
     }
     
 }

@@ -13,7 +13,6 @@ public class Refugio extends Usuario{
      */
     private String direccion;
     ArrayList<String> tipo_mascota;
-    private Path foto;
     /*
      * Metodos
      */
@@ -28,11 +27,10 @@ public class Refugio extends Usuario{
      * @param foto
      */
     public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, ArrayList<String> tipo_mascota, Path foto) {
-        super(id,nombre, contraseña, numero_contacto);
+        super(id,nombre, contraseña, numero_contacto,foto);
         setAcceso(true); // True indica que el usuario es un refugio.
         this.direccion = direccion;
         this.tipo_mascota = tipo_mascota;
-        this.foto = foto;
     }
 
     public boolean registrarse(String nombre, String contra, String numero, String direccion, DB db){
@@ -62,14 +60,6 @@ public class Refugio extends Usuario{
 
     public void setTipo_mascota(ArrayList<String> tipo_mascota) {
         this.tipo_mascota = tipo_mascota;
-    }
-
-    public Path getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Path foto) {
-        this.foto = foto;
     }
     
 }
