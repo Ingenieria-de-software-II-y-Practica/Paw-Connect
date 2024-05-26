@@ -11,7 +11,9 @@ public abstract class DB {
 	private static String DBNAME = "paw_connect";
 	private static String URL = "jdbc:mysql://localhost:3306/" + DBNAME;
 	private static Connection con = null;
-
+    /*------------------
+    MÉTODOS DE USUARIO
+    ------------------*/
     public static boolean existeUsuario (String username) {
         ResultSet rs = null;
         try {
@@ -32,7 +34,7 @@ public abstract class DB {
         return false;
     }
 
-    public static Usuario getUsuario(String username) throws UserDoesNotExistException {
+    public static Usuario getUsuario (String username) throws UserDoesNotExistException {
         ResultSet rs = null;
         Usuario user = null;
         try {
@@ -64,10 +66,59 @@ public abstract class DB {
         return user;
     }
 
+    public static void crearUsuario (Usuario user) {
 
+    }
 
-    public static void crearUsuario(Usuario user) {
+    /*------------------
+    MÉTODOS DE REFUGIO
+    ------------------*/
+    public static boolean existeRefugio (String username) {
+        ResultSet rs = null;
+        try {
+            connectToDatabase();
+            String query = "SELECT administrador_id FROM administrador WHERE administrador_nombre = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setString(1, username);
+            rs = stat.executeQuery();
 
+            //rs es True si existe alguna fila, es falso si no existe ninguna.
+            //Si el usuario no existe, será falso.
+            return rs.next();
+
+        } catch (SQLException se) { System.out.println(se + "en getUsuario"); } 
+        finally { try { con.close(); } catch (Exception e) {/*Ignorado*/} }
+        
+        System.out.println("Si ven esto, Cata se mandó alguna cagada en existeUsuario.");
+        return false;
+    }
+
+    //Verifica que no exista ni usuario ni refugio con el nombre de usuario dado.
+    public static boolean existeNombre (String username) {
+        ResultSet rs = null;
+        try {
+            connectToDatabase();
+            String query = "SELECT usuario_id FROM usuario WHERE usuario_nombre = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setString(1, username);
+            rs = stat.executeQuery();
+
+            //rs es True si existe alguna fila, es falso si no existe ninguna.
+            //Si el usuario no existe, será falso.
+            if (rs.next()) return True;
+            
+            query = "SELECT administrador_id FROM administrador WHERE administrador_nombre = ?";
+            stat = con.prepareStatement(query);
+            stat.setString(1, username);
+            rs = stat.executeQuery();
+
+            return rs.next();
+
+        } catch (SQLException se) { System.out.println(se + "en getUsuario"); } 
+        finally { try { con.close(); } catch (Exception e) {/*Ignorado*/} }
+        
+        System.out.println("Si ven esto, Cata se mandó alguna cagada en existeNombre.");
+        return false;
     }
 
     private static void connectToDatabase() {
