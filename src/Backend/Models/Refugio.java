@@ -3,7 +3,6 @@ package Backend.Models;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
-import Backend.DB.DB;
 /**
  * Clase refugio hereda de Usuario porque es un tipo de usuario.
  */
@@ -33,19 +32,23 @@ public class Refugio extends Usuario{
         this.tipo_mascota = tipo_mascota;
     }
 
-    public boolean registrarse(String nombre, String contra, String numero, String direccion, DB db){
-        if(db.getUsername(nombre) == null){
-            setNombre(nombre);
-            setContraseña(contra);
-            setNumero_contacto(numero);
-            setDireccion(direccion);
-            setAcceso(true);
-            return true;
-        }
-        System.out.println("No se pudo registrar el usuario.");
-        return false;
+    /**
+     * Registrarse del refugio el cual contiene mas informacion que el del usuario.
+     * @param nombre
+     * @param contra
+     * @param numero
+     * @param direccion
+     */
+    public void registrarse(String nombre, String contra, String numero, String direccion){
+        setNombre(nombre);
+        setContraseña(contra);
+        setNumero_contacto(numero);
+        setDireccion(direccion);
+        setAcceso(true);
     }
-
+    /*
+     * GETTERS AND SETTERS
+     */
     public String getDireccion() {
         return direccion;
     }

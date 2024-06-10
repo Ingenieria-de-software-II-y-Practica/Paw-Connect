@@ -1,6 +1,7 @@
 package Backend.Models;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 public class Post {
     /*
@@ -29,11 +30,7 @@ public class Post {
         this.tipoMascota = tipoMascota;
         this.foto = foto;
     }
-    // Tengo una idea para este metodo de hacer una clase que sea filtro. Hablar con Tomas
-    public Post filtrar(){
-        Post post = new Post();
-        return post;
-    }
+    
     public void publicar(){
 
     }
