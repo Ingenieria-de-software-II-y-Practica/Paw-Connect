@@ -1,5 +1,6 @@
 package Backend.DB;
 
+import Backend.Models.Post;
 import Backend.Models.Usuario;
 
 public class DB {
@@ -10,5 +11,10 @@ public class DB {
     public Usuario getUsername(String nombre){
         return new Usuario();
     }
+    public void deletePost(int id){
 
+    }
+    public boolean guardarPost(Post post){
+        return true;
+    }
 }
