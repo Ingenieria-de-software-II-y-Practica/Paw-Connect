@@ -1,7 +1,7 @@
 package Backend.Models;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
-import Backend.DB.DB;
 
 public class Post {
     /*
@@ -31,12 +31,14 @@ public class Post {
         this.foto = foto;
     }
     
-    public void editar(String titulo, String desc, String raza, String tamaño, String edad){
-        this.titulo = titulo;
-        this.raza = raza;
-        this.descripcion = desc;
-        this.edad = edad;
-        this.tamaño = tamaño;
+    public void publicar(){
+
+    }
+    public void editar(){
+
+    }
+    public void eliminar(){
+        
     }
     /*
      * Getters and Setters

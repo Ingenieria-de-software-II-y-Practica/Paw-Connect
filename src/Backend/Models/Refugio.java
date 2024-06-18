@@ -2,7 +2,6 @@ package Backend.Models;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import Backend.DB.DB;
 
 /**
  * Clase refugio hereda de Usuario porque es un tipo de usuario.
