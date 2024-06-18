@@ -12,12 +12,11 @@ public class Usuario {
      private int id;
      private String nombre, contraseña, numero_contacto;
      private boolean acceso; // Dara un nivel de acceso dependiendo si es un usuario comun o un refugio.
+     private Path foto;
      /*
       * Metodos
       */
-     public Usuario(){
-
-     }
+     public Usuario(){}
       /**
        * Constructor con todos los atributos
        * @param id ID que se usa para identificar al usuario.
@@ -25,11 +24,12 @@ public class Usuario {
        * @param contraseña Contraseña del usuario
        * @param numero_contacto Numero telefonico
        */
-     public Usuario(int id, String nombre, String contraseña, String numero_contacto) {
+     public Usuario(int id, String nombre, String contraseña, String numero_contacto, Path foto) {
          this.id = id;
          this.nombre = nombre;
          this.contraseña = contraseña;
          this.numero_contacto = numero_contacto;
+         this.foto = foto;
          setAcceso(false); //False indica que es un usuario.
      }
      /**
@@ -38,12 +38,11 @@ public class Usuario {
       * @param contra Contraseña
       * @param numero Numero de telefono
       */
-     public void registrarse(String nombre, String contra, String numero, DB db){
+     public void registrarse(String nombre, String contra, String numero){
         setNombre(nombre);
         setContraseña(contra);
         setNumero_contacto(numero);
         setAcceso(false);
-        db.guardarUsuario(this);
      }
      
      /**
@@ -95,5 +94,11 @@ public class Usuario {
      public void setAcceso(boolean acceso) {
          this.acceso = acceso;
      }
+    public Path getFoto() {
+        return foto;
+    }
+    public void setFoto(Path foto) {
+        this.foto = foto;
+    }
      
 }

@@ -11,9 +11,6 @@ public class DB {
     public Usuario getUsername(String nombre){
         return new Usuario();
     }
-    public void guardarUsuario(Usuario user){
-        
-    }
     public void deletePost(int id){
 
     }

@@ -7,10 +7,9 @@ public class Post {
     /*
      *  Atributos 
      */
-    int id;
-    String titulo, raza, direccion, descripcion, edad, tamaño, tipoMascota;
-    Path foto;
-    Opciones verificacion;
+    private int id;
+    private String titulo, raza, direccion, descripcion, verificacion, edad, tamaño, tipoMascota;
+    private Path foto;
     
     /*
      * Metodos
@@ -18,7 +17,7 @@ public class Post {
     public Post(){
 
     }
-    public Post(int id, String titulo, String raza, String direccion, String descripcion, Opciones verificacion,
+    public Post(int id, String titulo, String raza, String direccion, String descripcion, String verificacion,
             String edad, String tamaño, String tipoMascota, Path foto) {
         this.id = id;
         this.titulo = titulo;
@@ -32,13 +31,12 @@ public class Post {
         this.foto = foto;
     }
     
-    public void editar(String titulo, String desc, String raza, String tamaño, String edad, Opciones opcion){
+    public void editar(String titulo, String desc, String raza, String tamaño, String edad){
         this.titulo = titulo;
         this.raza = raza;
         this.descripcion = desc;
         this.edad = edad;
         this.tamaño = tamaño;
-        verificacion = opcion;
     }
     /*
      * Getters and Setters
@@ -73,10 +71,10 @@ public class Post {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public Opciones getVerificacion() {
+    public String getVerificacion() {
         return verificacion;
     }
-    public void setVerificacion(Opciones verificacion) {
+    public void setVerificacion(String verificacion) {
         this.verificacion = verificacion;
     }
     public String getEdad() {
