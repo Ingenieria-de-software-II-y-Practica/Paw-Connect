@@ -24,10 +24,9 @@ public class Refugio extends Usuario{
      * @param numero_contacto
      * @param direccion
      * @param tipo_mascota
-     * @param foto
      */
-    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, ArrayList<String> tipo_mascota, Path foto) {
-        super(id,nombre, contraseña, numero_contacto,foto);
+    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, ArrayList<String> tipo_mascota) {
+        super(id,nombre, contraseña, numero_contacto);
         setAcceso(true); // True indica que el usuario es un refugio.
         this.direccion = direccion;
         this.tipo_mascota = tipo_mascota;

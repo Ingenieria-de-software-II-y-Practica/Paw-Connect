@@ -3,7 +3,7 @@ import Backend.DB.DB;
 
 public class Opciones {
     // ---------VARIABLES---------//
-    private int IDpost;
+    private int iDPost;
     private boolean vacunas;
     private boolean niños;
     private boolean otrasMascotas;
@@ -11,47 +11,47 @@ public class Opciones {
     // ---------CONSTRUCTORES---------//
     /**
      * Contructor para crear una nueva opcion en un Post
-     * @param iDpost
+     * @param iDPost
      * @param vacunas
      * @param niños
      * @param otrasMascotas
-     * @param desparazitado
+     * @param desparacitado
      */
-    public Opciones(int iDpost, boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparazitado) {
-        IDpost = iDpost;
+    public Opciones(int iDPost, boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado) {
+        this.iDPost = iDPost;
         this.vacunas = vacunas;
         this.niños = niños;
         this.otrasMascotas = otrasMascotas;
-        this.desparacitado = desparazitado;
+        this.desparacitado = desparacitado;
     }
     /**
      * Constructor para buscar los parametros de las opciones
      * @param vacunas
      * @param niños
      * @param otrasMascotas
-     * @param desparazitado
+     * @param desparacitado
      */
-    public Opciones(boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparazitado) {
+    public Opciones(boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado) {
         this.vacunas = vacunas;
         this.niños = niños;
         this.otrasMascotas = otrasMascotas;
-        this.desparacitado = desparazitado;
+        this.desparacitado = desparacitado;
     }
     // ---------METODOS---------//
     // ---------GETTERS AND SETTERS---------//
     /**
-     * Metodo para devolver el IDPost de las opciones
-     * @return IDPost : Int 
+     * Metodo para devolver el iDPost de las opciones
+     * @return iDPost : Int 
      */
-    public int getIDpost() {
-        return IDpost;
+    public int getiDPost() {
+        return iDPost;
     }
     /**
-     * Metodo para cambiar el IDPost
-     * @param iDpost IDPost : int
+     * Metodo para cambiar el iDPost
+     * @param iDPost iDPost : int
      */
-    public void setIDpost(int iDpost) {
-        IDpost = iDpost;
+    public void setiDPost(int iDPost) {
+        this.iDPost = iDPost;
     }
     /**
      * Metodo para devolver si tiene o no vacunas
@@ -104,10 +104,10 @@ public class Opciones {
     }
     /**
      * Metodo para cambiar si esta desparazitada la mascota o no
-     * @param desparazitado desparasitada : boolean
+     * @param desparacitado desparasitada : boolean
      */
-    public void setDesparacitado(boolean desparazitado) {
-        this.desparacitado = desparazitado;
+    public void setDesparacitado(boolean desparacitado) {
+        this.desparacitado = desparacitado;
     }
     
 }
