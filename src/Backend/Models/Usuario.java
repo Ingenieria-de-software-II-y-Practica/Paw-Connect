@@ -32,25 +32,17 @@ public class Usuario {
          this.foto = foto;
          setAcceso(false); //False indica que es un usuario.
      }
-     /**
-      * Registro de un usuario.
-      * @param nombre Nombre de usuario
-      * @param contra Contraseña
-      * @param numero Numero de telefono
-      */
-     public void registrarse(String nombre, String contra, String numero){
-        setNombre(nombre);
-        setContraseña(contra);
-        setNumero_contacto(numero);
-        setAcceso(false);
+     public boolean registrarse(String nombre, String contra, String numero, DB db){
+        if(db.getUsername(nombre) == null){
+            setNombre(nombre);
+            setContraseña(contra);
+            setNumero_contacto(numero);
+            setAcceso(false);
+            return true;
+        }
+        System.out.println("No se pudo registrar el usuario.");
+        return false;
      }
-     
-     /**
-      * Inicio de sesion pide el nombre de usuario y la contraseña.
-      * @param nombre Nombre de Usuario ingresado por el usuario
-      * @param contra Contraseña ingresada por el usuario
-      * @return Confirma si fue exitoso
-      */
      public boolean login(String nombre, String contra){
         if(this.nombre.equals(nombre) && contraseña.equals(contra)){
             return true;
