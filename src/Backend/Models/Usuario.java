@@ -1,5 +1,9 @@
 package Backend.Models;
 
+import java.nio.file.Path;
+
+import Backend.DB.DB;
+
 public class Usuario {
     /*
      * Atributos
@@ -8,7 +12,6 @@ public class Usuario {
      private int id;
      private String nombre, contraseña, numero_contacto;
      private boolean acceso; // Dara un nivel de acceso dependiendo si es un usuario comun o un refugio.
- 
      /*
       * Metodos
       */
@@ -29,12 +32,34 @@ public class Usuario {
          this.numero_contacto = numero_contacto;
          setAcceso(false); //False indica que es un usuario.
      }
-     public void registrarse(){
+     /**
+      * Registro de un usuario.
+      * @param nombre Nombre de usuario
+      * @param contra Contraseña
+      * @param numero Numero de telefono
+      */
+     public void registrarse(String nombre, String contra, String numero, DB db){
+        setNombre(nombre);
+        setContraseña(contra);
+        setNumero_contacto(numero);
+        setAcceso(false);
+        db.guardarUsuario(this);
+     }
+     
+     /**
+      * Inicio de sesion pide el nombre de usuario y la contraseña.
+      * @param nombre Nombre de Usuario ingresado por el usuario
+      * @param contra Contraseña ingresada por el usuario
+      * @return Confirma si fue exitoso
+      */
+     public boolean login(String nombre, String contra){
+        if(this.nombre.equals(nombre) && contraseña.equals(contra)){
+            return true;
+        }
+        System.out.println("Usuario y/o contraseña incorrecto.");
+        return false;
+     }
 
-     }
-     public void login(){
-        
-     }
      /**
       * Getters y Setters
       */
@@ -70,4 +95,5 @@ public class Usuario {
      public void setAcceso(boolean acceso) {
          this.acceso = acceso;
      }
+     
 }

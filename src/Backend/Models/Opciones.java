@@ -1,75 +1,57 @@
 package Backend.Models;
-
 import Backend.DB.DB;
 
 public class Opciones {
     // ---------VARIABLES---------//
-    private int IDpost;
+    private int iDPost;
     private boolean vacunas;
     private boolean niños;
     private boolean otrasMascotas;
-    private boolean desparazitado;
+    private boolean desparacitado;
     // ---------CONSTRUCTORES---------//
     /**
      * Contructor para crear una nueva opcion en un Post
-     * @param iDpost
+     * @param iDPost
      * @param vacunas
      * @param niños
      * @param otrasMascotas
-     * @param desparazitado
+     * @param desparacitado
      */
-    public Opciones(int iDpost, boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparazitado) {
-        IDpost = iDpost;
+    public Opciones(int iDPost, boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado) {
+        this.iDPost = iDPost;
         this.vacunas = vacunas;
         this.niños = niños;
         this.otrasMascotas = otrasMascotas;
-        this.desparazitado = desparazitado;
+        this.desparacitado = desparacitado;
     }
     /**
      * Constructor para buscar los parametros de las opciones
      * @param vacunas
      * @param niños
      * @param otrasMascotas
-     * @param desparazitado
+     * @param desparacitado
      */
-    public Opciones(boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparazitado) {
+    public Opciones(boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado) {
         this.vacunas = vacunas;
         this.niños = niños;
         this.otrasMascotas = otrasMascotas;
-        this.desparazitado = desparazitado;
+        this.desparacitado = desparacitado;
     }
     // ---------METODOS---------//
-    /**
-     * Metodo para realizar la consulta a la base de datos sobre las opciones de un Post dado un ID
-     * @param IDPost IDPost : int
-     * @param db db : DB
-     * @return opcionBuscada : Opciones
-     */
-    // public Opciones BDOpcionesID(int IDPost, DB db) {
-    //      Opciones opcionBuscada = (Opciones) db.consulta("SELECT opciones_buscar_id("+IDPost+");")[0];
-    //      return (opcionBuscada == null)? opcionBuscada : null;
-    // }
-
-    // public  boolean agregarOpciones(int IDPost, DB db) {
-    //     try {
-    //         // respuesta = db.consulta("")
-    //     } catch (Exception e) {
-    //     }
-    // }
     // ---------GETTERS AND SETTERS---------//
     /**
-     * Metodo para devolver el IDPost de las opciones
-     * @return IDPost : Int 
+     * Metodo para devolver el iDPost de las opciones
+     * @return iDPost : Int 
      */
-    public int getIDpost() {
-        return IDpost;
+    public int getiDPost() {
+        return iDPost;
     }
     /**
-     * Metodo para cambiar el IDPost
-     * @param iDpost IDPost : int
+     * Metodo para cambiar el iDPost
+     * @param iDPost iDPost : int
      */
-    public void setIDpost(int iDpost) {
-        IDpost = iDpost;
+    public void setiDPost(int iDPost) {
+        this.iDPost = iDPost;
     }
     /**
      * Metodo para devolver si tiene o no vacunas
@@ -117,15 +99,15 @@ public class Opciones {
      * Metodo para devolver si la mascota esta desparazitada o no
      * @return desparazitada : boolean
      */
-    public boolean isDesparazitado() {
-        return desparazitado;
+    public boolean isDesparacitado() {
+        return desparacitado;
     }
     /**
      * Metodo para cambiar si esta desparazitada la mascota o no
-     * @param desparazitado desparasitada : boolean
+     * @param desparacitado desparasitada : boolean
      */
-    public void setDesparazitado(boolean desparazitado) {
-        this.desparazitado = desparazitado;
+    public void setDesparacitado(boolean desparacitado) {
+        this.desparacitado = desparacitado;
     }
     
 }
