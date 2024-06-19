@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 import Backend.DB.DB;
+import Backend.DB.Exceptions.UserDoesNotExistException;
 /**
  * Clase refugio hereda de Usuario porque es un tipo de usuario.
  */
@@ -33,8 +34,8 @@ public class Refugio extends Usuario{
         this.tipo_mascota = tipo_mascota;
     }
 
-    public boolean registrarse(String nombre, String contra, String numero, String direccion, DB db){
-        if(db.getUsername(nombre) == null){
+    public boolean registrarse(String nombre, String contra, String numero, String direccion, DB db) throws UserDoesNotExistException{
+        if(DB.getUsuario(nombre) == null){
             setNombre(nombre);
             setContraseña(contra);
             setNumero_contacto(numero);

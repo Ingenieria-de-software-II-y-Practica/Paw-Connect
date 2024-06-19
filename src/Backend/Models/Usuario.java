@@ -3,6 +3,7 @@ package Backend.Models;
 import java.nio.file.Path;
 
 import Backend.DB.DB;
+import Backend.DB.Exceptions.UserDoesNotExistException;
 
 public class Usuario {
     /*
@@ -32,8 +33,8 @@ public class Usuario {
          this.foto = foto;
          setAcceso(false); //False indica que es un usuario.
      }
-     public boolean registrarse(String nombre, String contra, String numero, DB db){
-        if(db.getUsername(nombre) == null){
+     public boolean registrarse(String nombre, String contra, String numero, DB db) throws UserDoesNotExistException{
+        if(DB.getUsuario(nombre) == null){
             setNombre(nombre);
             setContraseña(contra);
             setNumero_contacto(numero);
