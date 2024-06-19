@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 
 import Backend.DB.DB;
+import Backend.DB.Exceptions.UserDoesNotExistException;
 /**
  * Clase refugio hereda de Usuario porque es un tipo de usuario.
  */
@@ -26,15 +27,15 @@ public class Refugio extends Usuario{
      * @param tipo_mascota
      * @param foto
      */
-    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, ArrayList<String> tipo_mascota, Path foto) {
+    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, ArrayList<String> tipo_mascota, Path foto) throws UserDoesNotExistException{
         super(id,nombre, contraseña, numero_contacto,foto);
         setAcceso(true); // True indica que el usuario es un refugio.
         this.direccion = direccion;
         this.tipo_mascota = tipo_mascota;
     }
 
-    public boolean registrarse(String nombre, String contra, String numero, String direccion, DB db){
-        if(db.getUsername(nombre) == null){
+    public boolean registrarse(String nombre, String contra, String numero, String direccion, DB db) throws UserDoesNotExistException{
+        if(DB.getUsuario(nombre) == null){
             setNombre(nombre);
             setContraseña(contra);
             setNumero_contacto(numero);
@@ -45,7 +46,9 @@ public class Refugio extends Usuario{
         System.out.println("No se pudo registrar el usuario.");
         return false;
     }
-
+    /*
+     * GETTERS & SETTERS
+     */
     public String getDireccion() {
         return direccion;
     }

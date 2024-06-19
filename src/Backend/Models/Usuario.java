@@ -3,6 +3,7 @@ package Backend.Models;
 import java.nio.file.Path;
 
 import Backend.DB.DB;
+import Backend.DB.Exceptions.UserDoesNotExistException;
 
 public class Usuario {
     /*
@@ -23,40 +24,39 @@ public class Usuario {
        * @param nombre Nombre que usaran para su usuario
        * @param contraseña Contraseña del usuario
        * @param numero_contacto Numero telefonico
+     * @throws UserDoesNotExistException 
        */
-     public Usuario(int id, String nombre, String contraseña, String numero_contacto, Path foto) {
-         this.id = id;
-         this.nombre = nombre;
-         this.contraseña = contraseña;
-         this.numero_contacto = numero_contacto;
-         this.foto = foto;
-         setAcceso(false); //False indica que es un usuario.
+     public Usuario(int id, String nombre, String contraseña, String numero_contacto, Path foto) throws UserDoesNotExistException {
+        this.id = id;
+        this.nombre = nombre;
+        this.contraseña = contraseña;
+        this.numero_contacto = numero_contacto;
+        this.foto = foto;
+        setAcceso(false); //False indica que es un usuario. 
      }
-<<<<<<< HEAD
-     public void login(){
-        
-     }
-=======
-     public boolean registrarse(String nombre, String contra, String numero, DB db){
-        if(db.getUsername(nombre) == null){
-            setNombre(nombre);
-            setContraseña(contra);
-            setNumero_contacto(numero);
+
+     public boolean registrarse(String nombre, String contraseña, String numero_contacto, Path foto) throws UserDoesNotExistException{
+        Usuario user = DB.getUsuario(nombre);
+        if(user == null){
+            this.nombre = nombre;
+            this.contraseña = contraseña;
+            this.numero_contacto = numero_contacto;
+            this.foto = foto;
             setAcceso(false);
-            return true;
+            return true; // Registrado exitosamente
         }
-        System.out.println("No se pudo registrar el usuario.");
-        return false;
+        return false; // No pudo registrarse porque ya existe un usuario con ese nombre de Usuario.
      }
-     public boolean login(String nombre, String contra){
-        if(this.nombre.equals(nombre) && contraseña.equals(contra)){
-            return true;
+     
+     public boolean login(String nombre, String contra) throws UserDoesNotExistException{
+        Usuario user = DB.getUsuario(nombre);
+        if(user != null){
+            return this.nombre.equals(nombre) && contraseña.equals(contra);    
         }
-        System.out.println("Usuario y/o contraseña incorrecto.");
+        
         return false;
      }
 
->>>>>>> b82ca1147e0e8219b38bf0395d9cc6c57c651a9c
      /**
       * Getters y Setters
       */
