@@ -7,7 +7,7 @@ public class Opciones {
     private boolean vacunas;
     private boolean niños;
     private boolean otrasMascotas;
-    private boolean desparazitado;
+    private boolean desparacitado;
     // ---------CONSTRUCTORES---------//
     /**
      * Contructor para crear una nueva opcion en un Post
@@ -22,7 +22,7 @@ public class Opciones {
         this.vacunas = vacunas;
         this.niños = niños;
         this.otrasMascotas = otrasMascotas;
-        this.desparazitado = desparazitado;
+        this.desparacitado = desparazitado;
     }
     /**
      * Constructor para buscar los parametros de las opciones
@@ -35,26 +35,9 @@ public class Opciones {
         this.vacunas = vacunas;
         this.niños = niños;
         this.otrasMascotas = otrasMascotas;
-        this.desparazitado = desparazitado;
+        this.desparacitado = desparazitado;
     }
     // ---------METODOS---------//
-    /**
-     * Metodo para realizar la consulta a la base de datos sobre las opciones de un Post dado un ID
-     * @param IDPost IDPost : int
-     * @param db db : DB
-     * @return opcionBuscada : Opciones
-     */
-    // public Opciones BDOpcionesID(int IDPost, DB db) {
-    //      Opciones opcionBuscada = (Opciones) db.consulta("SELECT opciones_buscar_id("+IDPost+");")[0];
-    //      return (opcionBuscada == null)? opcionBuscada : null;
-    // }
-
-    // public  boolean agregarOpciones(int IDPost, DB db) {
-    //     try {
-    //         // respuesta = db.consulta("")
-    //     } catch (Exception e) {
-    //     }
-    // }
     // ---------GETTERS AND SETTERS---------//
     /**
      * Metodo para devolver el IDPost de las opciones
@@ -116,15 +99,15 @@ public class Opciones {
      * Metodo para devolver si la mascota esta desparazitada o no
      * @return desparazitada : boolean
      */
-    public boolean isDesparazitado() {
-        return desparazitado;
+    public boolean isDesparacitado() {
+        return desparacitado;
     }
     /**
      * Metodo para cambiar si esta desparazitada la mascota o no
      * @param desparazitado desparasitada : boolean
      */
-    public void setDesparazitado(boolean desparazitado) {
-        this.desparazitado = desparazitado;
+    public void setDesparacitado(boolean desparazitado) {
+        this.desparacitado = desparazitado;
     }
     
 }

@@ -1,5 +1,9 @@
 package Backend.Models;
 
+import java.nio.file.Path;
+
+import Backend.DB.DB;
+
 public class Usuario {
     /*
      * Atributos
@@ -8,13 +12,11 @@ public class Usuario {
      private int id;
      private String nombre, contraseña, numero_contacto;
      private boolean acceso; // Dara un nivel de acceso dependiendo si es un usuario comun o un refugio.
- 
+     private Path foto;
      /*
       * Metodos
       */
-     public Usuario(){
-
-     }
+     public Usuario(){}
       /**
        * Constructor con todos los atributos
        * @param id ID que se usa para identificar al usuario.
@@ -22,16 +24,39 @@ public class Usuario {
        * @param contraseña Contraseña del usuario
        * @param numero_contacto Numero telefonico
        */
-     public Usuario(int id, String nombre, String contraseña, String numero_contacto) {
+     public Usuario(int id, String nombre, String contraseña, String numero_contacto, Path foto) {
          this.id = id;
          this.nombre = nombre;
          this.contraseña = contraseña;
          this.numero_contacto = numero_contacto;
+         this.foto = foto;
          setAcceso(false); //False indica que es un usuario.
      }
+<<<<<<< HEAD
      public void login(){
         
      }
+=======
+     public boolean registrarse(String nombre, String contra, String numero, DB db){
+        if(db.getUsername(nombre) == null){
+            setNombre(nombre);
+            setContraseña(contra);
+            setNumero_contacto(numero);
+            setAcceso(false);
+            return true;
+        }
+        System.out.println("No se pudo registrar el usuario.");
+        return false;
+     }
+     public boolean login(String nombre, String contra){
+        if(this.nombre.equals(nombre) && contraseña.equals(contra)){
+            return true;
+        }
+        System.out.println("Usuario y/o contraseña incorrecto.");
+        return false;
+     }
+
+>>>>>>> b82ca1147e0e8219b38bf0395d9cc6c57c651a9c
      /**
       * Getters y Setters
       */
@@ -67,4 +92,11 @@ public class Usuario {
      public void setAcceso(boolean acceso) {
          this.acceso = acceso;
      }
+    public Path getFoto() {
+        return foto;
+    }
+    public void setFoto(Path foto) {
+        this.foto = foto;
+    }
+     
 }
