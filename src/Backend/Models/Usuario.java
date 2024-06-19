@@ -29,9 +29,6 @@ public class Usuario {
          this.numero_contacto = numero_contacto;
          setAcceso(false); //False indica que es un usuario.
      }
-     public void registrarse(){
-
-     }
      public void login(){
         
      }
