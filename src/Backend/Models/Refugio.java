@@ -34,19 +34,22 @@ public class Refugio extends Usuario{
         this.tipo_mascota = tipo_mascota;
     }
 
-    public boolean registrarse(String nombre, String contra, String numero, String direccion, DB db) throws UserDoesNotExistException{
+    public boolean registrarse(String nombre, String contra, String numero, String direccion, ArrayList<String> tipo_mascota, Path foto) throws UserDoesNotExistException{
         if(DB.getUsuario(nombre) == null){
             setNombre(nombre);
             setContraseña(contra);
             setNumero_contacto(numero);
             setDireccion(direccion);
             setAcceso(true);
+            setTipo_mascota(tipo_mascota);
             return true;
         }
         System.out.println("No se pudo registrar el usuario.");
         return false;
     }
-
+    /*
+     * GETTERS & SETTERS
+     */
     public String getDireccion() {
         return direccion;
     }

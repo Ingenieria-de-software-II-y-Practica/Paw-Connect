@@ -1,14 +1,16 @@
 package Backend.Models;
 
 import java.nio.file.Path;
-
+import Backend.DB.DB;
+import Backend.DB.Exceptions.UserDoesNotExistException;
 public class Post {
     /*
      *  Atributos 
      */
-    private int id;
-    private String titulo, raza, direccion, descripcion, verificacion, edad, tamaño, tipoMascota;
-    private Path foto;
+    int id;
+    String titulo, raza, descripcion, verificacion, tamaño, tipoMascota;
+    int edad;
+    Path foto;
     
     /*
      * Metodos
@@ -16,12 +18,11 @@ public class Post {
     public Post(){
 
     }
-    public Post(int id, String titulo, String raza, String direccion, String descripcion, String verificacion,
-            String edad, String tamaño, String tipoMascota, Path foto) {
+    public Post(int id, String titulo, String raza, String descripcion, String verificacion,
+            int edad, String tamaño, String tipoMascota, Path foto) {
         this.id = id;
         this.titulo = titulo;
         this.raza = raza;
-        this.direccion = direccion;
         this.descripcion = descripcion;
         this.verificacion = verificacion;
         this.edad = edad;
@@ -29,19 +30,17 @@ public class Post {
         this.tipoMascota = tipoMascota;
         this.foto = foto;
     }
-    // Tengo una idea para este metodo de hacer una clase que sea filtro. Hablar con Tomas
-    public Post filtrar(){
-        Post post = new Post();
-        return post;
-    }
-    public void publicar(){
-
-    }
-    public void editar(){
-
+    public void editar(String titulo, String descripcion, String raza, String tamaño, String verificacion, int edad, String tipoMascota){
+        this.titulo = titulo;
+        this.raza = raza;
+        this.descripcion = descripcion;
+        this.verificacion = verificacion;
+        this.edad = edad;
+        this.tamaño = tamaño;
+        this.tipoMascota = tipoMascota;
     }
     public void eliminar(){
-        
+        DB.eliminarPost(DB.getPost(id));
     }
     /*
      * Getters and Setters
@@ -64,12 +63,6 @@ public class Post {
     public void setRaza(String raza) {
         this.raza = raza;
     }
-    public String getDireccion() {
-        return direccion;
-    }
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
     public String getDescripcion() {
         return descripcion;
     }
@@ -82,10 +75,10 @@ public class Post {
     public void setVerificacion(String verificacion) {
         this.verificacion = verificacion;
     }
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
     public String getTamaño() {
