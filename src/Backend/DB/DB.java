@@ -61,10 +61,9 @@ public class DB {
                 int id = rs.getInt("usuario_id");
                 String password = rs.getString("usuario_contrasenia");
                 String telephoneNumber = rs.getString("usuario_numero");
-                String email = rs.getString("usuario_email");
                 Path photo = null;
                 //TODO: Ver lo de las fotos
-                user = new Usuario(id, username, password, telephoneNumber, photo, email);
+                user = new Usuario(id, username, password, telephoneNumber, photo);
             }
 
         } catch (SQLException se) { System.out.println(se + "en getUsuario"); } 
@@ -79,16 +78,17 @@ public class DB {
      * Metodo para insertar un usuario en la BD
      * @param user Tipo: Usuario
      * @return confirmacion: true o false
+     * @throws Exception 
      */
-    public static boolean crearUsuario (Usuario user) {
+    public static boolean crearUsuario (Usuario user) throws SQLException {
         ResultSet confirmacion;
         try {
             if (DB.existeUsuario(user.getNombre())) {
-                String query = "INSERT INTO usuario VALUES (NULL,'"+user.getContraseña()+"','"+user.getNombre()+"', '"+user.getMail()+"', '"+user.getFoto()+"', '"+user.getNumero_contacto()+"');";
+                String query = "INSERT INTO usuario VALUES (NULL,'"+user.getContraseña()+"','"+user.getNombre()+"', '"+user.getFoto()+"', '"+user.getNumero_contacto()+"');";
                 PreparedStatement stat = DB.con.prepareStatement(query);
                 confirmacion = stat.executeQuery();
             } else {
-                throw new Exception("El usuario "+user.getNombre()+" ya existe...");
+                throw new SQLException("El usuario "+user.getNombre()+" ya existe...");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -213,9 +213,10 @@ public class DB {
             PreparedStatement query = con.prepareStatement("SELECT * FROM refugio WHERE refugio_id = "+refugio_id+";");
             refugioBD = query.executeQuery();
             if (refugioBD.next()) {
-                ResultSet direccion_result = con.prepareStatement("SELECT * FROM direccion WHERE direccion_id = "+refugioBD.getString("refugio_direccion")+";").executeQuery();
-                String direccion = direccion_result.getString("direccion_calle")+","+direccion_result.getString("direccion_altura")+","+direccion_result.getString("direccion_departamento");
-                refugio = new Refugio(refugioBD.getString("refugio_nombre"), direccion);
+                int id_refugio = Integer.parseInt(refugioBD.getString("refugio_id"));
+                String nombreRefugio = refugioBD.getString("refugio_nombre");
+                String direccion = refugioBD.getString("refugio_direccion_id");
+                refugio = new Refugio(id_refugio,nombreRefugio, direccion);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -227,14 +228,36 @@ public class DB {
             return refugio;
         }
     }
-    public static void name() {
-        
+    /**
+     * Metodo para obtener la direccion de un refugio
+     * @param id_direccion Refugio.getDireccion()
+     * @return String direccion del refugio o null si no se encuentra
+     */
+    public static String getDirrecionRefugio(int id_direccion) {
+        try {
+            ResultSet consulta =con.prepareStatement("SELECT * FROM direccion WHERE direccion_id = "+id_direccion+";").executeQuery();
+            if (consulta.next()) {
+                return consulta.getString("direccion_calle")+","+consulta.getString("direccion_altura")+","+consulta.getString("direccion_departamento");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+        return null;
     }
+    /**
+     * Metodo para elimianar un refugio de la BD
+     * @param refugio_id id del refugio: Refugio.getId()
+     * @return Confirmacion: true o false
+     */
     public static  boolean eliminarRefugio(int refugio_id) {
         try {
-            
-        } catch (Exception e) {
-            // TODO: handle exception
+            PreparedStatement query = con.prepareStatement("DELETE FROM refugio WHERE refugio_id="+refugio_id+";");
+            query.executeQuery();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
         }
     }
     /*------------------
