@@ -3,12 +3,13 @@ import Backend.DB.DB;
 
 public class Opciones {
     // ---------VARIABLES---------//
-    private int iDpost;
-    private boolean vacunas;
-    private boolean niños;
-    private boolean otrasMascotas;
-    private boolean desparacitado;
+    public int iDpost;
+    public boolean vacunas;
+    public boolean niños;
+    public boolean otrasMascotas;
+    public boolean desparacitado;
     // ---------CONSTRUCTORES---------//
+    public Opciones(){}
     /**
      * Contructor para crear una nueva opcion en un Post
      * @param iDpost

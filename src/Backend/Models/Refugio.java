@@ -12,8 +12,7 @@ public class Refugio extends Usuario{
     /*
      * Atributos
      */
-    private String direccion;
-    ArrayList<String> tipo_mascota;
+    public String direccion;
     /*
      * Metodos
      */
@@ -27,24 +26,22 @@ public class Refugio extends Usuario{
      * @param tipo_mascota
      * @param foto
      */
-    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, ArrayList<String> tipo_mascota, Path foto) {
+    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, Path foto) {
         super(id,nombre, contraseña, numero_contacto,foto);
         setAcceso(true); // True indica que el usuario es un refugio.
         this.direccion = direccion;
-        this.tipo_mascota = tipo_mascota;
     }
 
-    public boolean registrarse(String nombre, String contra, String numero, String direccion, ArrayList<String> tipo_mascota, Path foto) throws UserDoesNotExistException{
+    public boolean registrarse(String nombre, String contra, String numero, String direccion, Path foto) throws UserDoesNotExistException{
         if(DB.getUsuario(nombre) == null){
             setNombre(nombre);
             setContraseña(contra);
             setNumero_contacto(numero);
             setDireccion(direccion);
             setAcceso(true);
-            setTipo_mascota(tipo_mascota);
             return true;
         }
-        System.out.println("No se pudo registrar el usuario.");
+        System.out.println("No se pudo registrar.");
         return false;
     }
     /*
@@ -56,14 +53,6 @@ public class Refugio extends Usuario{
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public ArrayList<String> getTipo_mascota() {
-        return tipo_mascota;
-    }
-
-    public void setTipo_mascota(ArrayList<String> tipo_mascota) {
-        this.tipo_mascota = tipo_mascota;
     }
     
 }

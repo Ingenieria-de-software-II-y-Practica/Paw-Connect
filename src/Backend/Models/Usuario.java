@@ -10,10 +10,10 @@ public class Usuario {
      * Atributos
      */
     
-    private int id;
-    private String nombre, contraseña, numero_contacto;
-    private Path foto;
-    private boolean acceso; // Dara un nivel de acceso dependiendo si es un usuario comun o un refugio.
+    public int id;
+    public String nombre, contraseña, numero_contacto;
+    public Path foto;
+    public boolean acceso; // Dara un nivel de acceso dependiendo si es un usuario comun o un refugio.
     /*
      * Metodos
      */
@@ -35,25 +35,32 @@ public class Usuario {
     }
     
     public boolean registrarse(String nombre, String contra, String numero) throws UserDoesNotExistException{
-       if(DB.getUsuario(nombre) == null){
+       boolean ver = DB.existeUsuario(nombre);
+       if(!ver){
            setNombre(nombre);
            setContraseña(contra);
            setNumero_contacto(numero);
            setAcceso(false);
+           DB.crearUsuario(this);
            return true;
        }
-       System.out.println("No se pudo registrar el usuario.");
+       System.out.println("No se pudo registrar.");
        return false;
     }
 
-    public boolean login(String nombre, String contra){
-       if(this.nombre.equals(nombre) && contraseña.equals(contra)){
-           return true;
-       }
+    public Usuario login(String nombre, String contra) throws UserDoesNotExistException{
+        // Revisar si para esto seria mejor solo tener un metodo para buscar entre todos los usuarios y refugios existentes
+        Usuario user = DB.getUsuario(nombre);
+        if(user.nombre.equals(nombre) && user.contraseña.equals(contra)){
+            return user;
+        }
        System.out.println("Usuario y/o contraseña incorrecto.");
-       return false;
+       return null;
     }
-
+    public Usuario vaciar(Usuario usuario){
+        usuario = null;
+        return usuario;
+    }
     /**
      * Getters y Setters
      */
