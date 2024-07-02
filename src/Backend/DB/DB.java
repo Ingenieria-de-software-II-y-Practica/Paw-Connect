@@ -7,10 +7,10 @@ import java.nio.file.Path;
 import java.sql.*;
 
 public class DB {
-    private static String USER = "root";
- 	private static String PASS = "root";
+    private static String USER = "juani";
+ 	private static String PASS = "Juani#2203$";
 	private static String DBNAME = "paw_connect";
-	private static String URL = "jdbc:mysql://localhost:3306/" + DBNAME;
+	private static String URL = "jdbc:mysql:beltrames.ddns.net:6033" + DBNAME;
 	private static Connection con = null;
     public DB() {
         DB.connectToDatabase();
