@@ -10,7 +10,7 @@ public class DB {
     private static String USER = "juani";
  	private static String PASS = "Juani#2203$";
 	private static String DBNAME = "paw_connect";
-	private static String URL = "jdbc:mysql:beltrames.ddns.net:6033" + DBNAME;
+	private static String URL = "jdbc:mysql://beltrames.ddns.net:6033/" + DBNAME;
 	private static Connection con = null;
     public DB() {
         DB.connectToDatabase();
@@ -216,7 +216,7 @@ public class DB {
                 int id_refugio = Integer.parseInt(refugioBD.getString("refugio_id"));
                 String nombreRefugio = refugioBD.getString("refugio_nombre");
                 String direccion = refugioBD.getString("refugio_direccion_id");
-                refugio = new Refugio(id_refugio,nombreRefugio, direccion);
+                //refugio = new Refugio(id_refugio,nombreRefugio, direccion);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -267,14 +267,16 @@ public class DB {
      * Metodo estatico para conectarse a la BD
      */
     private static void connectToDatabase() {
-		try {
+    		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			con = DriverManager.getConnection(URL, USER, PASS);
+			 con = DriverManager.getConnection(URL, USER, PASS);
         } catch (ClassNotFoundException cnfe) {
             System.out.println("No se encontró la clase del Driver para SQL. Si ven esto, es porque tienen que agregar el driver (mysql-connector-j-8.0.32.jar) a las librerías referenciadas del proyecto.");
         } catch (SQLException sqle) {
             System.out.println("Hubo un error conectándose a la base de datos.");
+           
         }
+         
 	}
 
 }
