@@ -53,7 +53,7 @@ public class DB {
         return user;
     }
 
-    public static void resetUsuario (Usuario user) throws UserDoesNotExistException {
+    public static boolean resetUsuario (Usuario user) throws UserDoesNotExistException {
         
         if (!existeUsuario(user.getId()))
             throw new UserDoesNotExistException ("El usuario con el ID '" + user.getId() + "' no existe en la base de datos.");
@@ -77,11 +77,13 @@ public class DB {
                 //TODO: user.setEmail(email);
                 user.setFoto(photo);
                 System.out.println("Se han reestablecido los valores del usuario con el ID '" + user.getId() + ".");
+                return true;
             }
         } catch (SQLException se) { System.out.println(se + "en getUsuario"); }
+        return false;
     }
 
-    public static void SetUsuarioField (Usuario user, UserField FIELD) throws UserDoesNotExistException {
+    public static boolean resetUsuarioField (Usuario user, UserField FIELD) throws UserDoesNotExistException {
         if (!existeUsuario(user.getId()))
             throw new UserDoesNotExistException ("El usuario con el ID '" + user.getId() + "' no existe en la base de datos.");
         
@@ -108,13 +110,16 @@ public class DB {
                     user.setFoto(Paths.get(rs.getString(UserField.PHOTO.field)));
                     break;
                 case ID:
-                    break;
+                    return false;
             }
 
+            return true;
+
         } catch (SQLException se) { System.out.println(se + "en getUsuario"); }
+        return false;
     }
 
-    public static void crearUsuario (Usuario user) throws UsernameIsTakenException {
+    public static boolean crearUsuario (Usuario user) throws UsernameIsTakenException {
         
         //TODO: Verificar que no haya dirección de e-mail repetida si eventualmente se agrega.
 
@@ -142,14 +147,18 @@ public class DB {
             rs.next();
 
             user.setId(rs.getInt(UserField.ID.field));
+            System.out.println("El usuario '" + user.getNombre() + "' ha sido creado correctamente.");
+            return true;
 
         } catch (SQLException se) { System.out.println(se + "en crearUsuario"); } 
+        return false;
     }
 
-    public static void UpdateUsuario (Usuario user, UserField FIELD) throws UserDoesNotExistException, UsernameIsTakenException {
+    public static boolean UpdateUsuario (Usuario user, UserField FIELD) throws UserDoesNotExistException, UsernameIsTakenException {
         
-        if (FIELD == UserField.NAME && existeNombre(user.getNombre())) throw new UsernameIsTakenException ("El nombre de usuario '" + user.getNombre() + "' no se encuentra disponible.");
-        else if (FIELD == UserField.ID) return;
+        if (FIELD == UserField.NAME && existeNombre(user.getNombre())) 
+            throw new UsernameIsTakenException ("El nombre de usuario '" + user.getNombre() + "' no se encuentra disponible.");
+        else if (FIELD == UserField.ID) return false;
 
         try {
             String query = "UPDATE usuario SET " + FIELD.field + " = ? WHERE " + UserField.ID.field + " = ?";
@@ -157,11 +166,13 @@ public class DB {
             stat.setString(1, getFieldUsuario(user, FIELD));
             stat.setInt(2, user.getId());
             stat.executeQuery();
+            return true;
 
         } catch (SQLException se) { System.out.println(se + "en UpdateUsuario"); }
+        return false;
     }
 
-    public static void UpdateUsuarioAll (Usuario user) throws UserDoesNotExistException, UsernameIsTakenException {
+    public static boolean UpdateUsuarioAll (Usuario user) throws UserDoesNotExistException, UsernameIsTakenException {
 
         try {
             String query = "UPDATE usuario SET " + UserField.NAME.field + " = ?, " + UserField.PASS.field + " = ?, " + UserField.EMAIL + " = ?, " + UserField.NUM.field + "= ? WHERE " + UserField.ID.field + " = ?";
@@ -174,15 +185,18 @@ public class DB {
             stat.setString(4, user.getNumero_contacto());
             stat.setInt(5, user.getId());
             stat.executeQuery();
+            System.out.println("El usuario '" + user.getNombre() + "' ha sido actualizado en la base de datos.");
+            return true;
 
         } catch (SQLException se) { System.out.println(se + "en UpdateUsuarioAll"); }
+        return false;
     }
 
-    public static void EliminarUsuario (Usuario user) throws UserDoesNotExistException {
-        EliminarUsuario(user.getNombre());
+    public static boolean EliminarUsuario (Usuario user) throws UserDoesNotExistException {
+        return EliminarUsuario(user.getId());
     }
 
-    public static void EliminarUsuario (String username) throws UserDoesNotExistException {
+    public static boolean EliminarUsuario (String username) throws UserDoesNotExistException {
         if (!existeUsuario(username))
             throw new UserDoesNotExistException ("El usuario '" + username + "' no existe en la base de datos.");
 
@@ -191,11 +205,13 @@ public class DB {
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, username);
             System.out.println("El usuario '" + username + "' fue eliminado.");
+            return true;
 
         } catch (SQLException se) { System.out.println(se + "en EliminarUsuario"); }
+        return false;
     }
 
-    public static void EliminarUsuario (int ID) throws UserDoesNotExistException {
+    public static boolean EliminarUsuario (int ID) throws UserDoesNotExistException {
         if (!existeUsuario(ID)) 
             throw new UserDoesNotExistException ("El usuario con el ID '" + ID + "' no existe en la base de datos.");
 
@@ -204,8 +220,10 @@ public class DB {
             PreparedStatement stat = con.prepareStatement(query);
             stat.setInt(1, ID);
             System.out.println("El usuario con el ID '" + ID + "' fue eliminado.");
+            return true;
 
         } catch (SQLException se) { System.out.println(se + "en EliminarUsuario"); }
+        return false;
     }
 
     private static String getFieldUsuario (Usuario user, UserField FIELD) {
