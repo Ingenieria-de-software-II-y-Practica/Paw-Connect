@@ -39,8 +39,57 @@ public class Post {
         this.tamaño = tamaño;
         this.tipoMascota = tipoMascota;
     }
-    public void eliminar(){
-        DB.eliminarPost(DB.getPost(id));
+    /**
+     * Metodo para eliminar un Post de la BD
+     * @param PostId Id del Post
+     * @return Confirmacion: OK ==> true, Error => mensaje
+     */
+    public String eliminarPost(int PostId){
+        boolean confirmacion = DB.eliminarPost(PostId);
+        if (confirmacion) {
+            return "OK";
+        }else{
+            return "Error: al eliminar";
+        }
+    }
+    /**
+     * Metodo para guardar un Post en la DB
+     * @param post Post que se va a guardar
+     * @return Confirmacion: OK => true, Error => mensaje
+     */
+    public String guardarPost(Post post) {
+        if (!(DB.existePost(post))) {
+            boolean confirmacion = DB.publicarPost(post.getId());
+            return (confirmacion)? "OK" : "Error: al publicar";
+        }else{
+            return "Error: Post ya existe";
+        }
+    }
+    /**
+     * Metodo para editar un Post en la DB
+     * @param post Post a editar
+     * @return Post editar, caso no existir: null
+     */
+    public Post editarPost(Post post) {
+        if (DB.existePost(post.getId())) {
+            Post postUpdate = DB.modificarPost(post);
+            return postUpdate;
+        }else{
+            return null;
+        }
+    }
+    /**
+     * Metodo para filtrar Posts por opciones
+     * @param filtro Opciones para filtrar
+     * @return Array de Posts con el filtro o null si no se encuentra
+     */
+    public Post[] filtrarPosts(Opciones filtro) {
+        Post[] filtro = DB.filtrarPost(filtro);
+        if (filtro != null) {
+            return filtro;
+        }else{
+            return null;
+        }
     }
     /*
      * Getters and Setters
