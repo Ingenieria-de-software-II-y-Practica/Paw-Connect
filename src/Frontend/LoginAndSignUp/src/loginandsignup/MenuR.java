@@ -8,19 +8,24 @@ import java.awt.Color;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileSystemView;
 
+import Backend.Models.Usuario;
+
 /**
  *
  * @author audre
  */
 public class MenuR extends javax.swing.JFrame {
-
+    public Usuario refugio;
     /**
      * Creates new form MenuR
      */
     public MenuR() {
         initComponents();
     }
-
+    public MenuR(Usuario refugio) {
+        this.refugio = refugio;
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
