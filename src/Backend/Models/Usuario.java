@@ -3,6 +3,7 @@ package Backend.Models;
 import java.nio.file.Path;
 
 import Backend.DB.DB;
+import Backend.DB.Exceptions.UserDoesNotExistException;
 
 public class Usuario {
     /*
@@ -12,51 +13,47 @@ public class Usuario {
      private int id;
      private String nombre, contraseña, numero_contacto;
      private boolean acceso; // Dara un nivel de acceso dependiendo si es un usuario comun o un refugio.
+     private Path foto;
      /*
       * Metodos
       */
-     public Usuario(){
-
-     }
+     public Usuario(){}
       /**
        * Constructor con todos los atributos
        * @param id ID que se usa para identificar al usuario.
        * @param nombre Nombre que usaran para su usuario
        * @param contraseña Contraseña del usuario
        * @param numero_contacto Numero telefonico
+     * @throws UserDoesNotExistException 
        */
-     public Usuario(int id, String nombre, String contraseña, String numero_contacto) {
-         this.id = id;
-         this.nombre = nombre;
-         this.contraseña = contraseña;
-         this.numero_contacto = numero_contacto;
-         setAcceso(false); //False indica que es un usuario.
+     public Usuario(int id, String nombre, String contraseña, String numero_contacto, Path foto) throws UserDoesNotExistException {
+        this.id = id;
+        this.nombre = nombre;
+        this.contraseña = contraseña;
+        this.numero_contacto = numero_contacto;
+        this.foto = foto;
+        setAcceso(false); //False indica que es un usuario. 
      }
-     /**
-      * Registro de un usuario.
-      * @param nombre Nombre de usuario
-      * @param contra Contraseña
-      * @param numero Numero de telefono
-      */
-     public void registrarse(String nombre, String contra, String numero, DB db){
-        setNombre(nombre);
-        setContraseña(contra);
-        setNumero_contacto(numero);
-        setAcceso(false);
-        db.guardarUsuario(this);
+
+     public boolean registrarse(String nombre, String contraseña, String numero_contacto, Path foto) throws UserDoesNotExistException{
+        Usuario user = DB.getUsuario(nombre);
+        if(user == null){
+            this.nombre = nombre;
+            this.contraseña = contraseña;
+            this.numero_contacto = numero_contacto;
+            this.foto = foto;
+            setAcceso(false);
+            return true; // Registrado exitosamente
+        }
+        return false; // No pudo registrarse porque ya existe un usuario con ese nombre de Usuario.
      }
      
-     /**
-      * Inicio de sesion pide el nombre de usuario y la contraseña.
-      * @param nombre Nombre de Usuario ingresado por el usuario
-      * @param contra Contraseña ingresada por el usuario
-      * @return Confirma si fue exitoso
-      */
-     public boolean login(String nombre, String contra){
-        if(this.nombre.equals(nombre) && contraseña.equals(contra)){
-            return true;
+     public boolean login(String nombre, String contra) throws UserDoesNotExistException{
+        Usuario user = DB.getUsuario(nombre);
+        if(user != null){
+            return this.nombre.equals(nombre) && contraseña.equals(contra);    
         }
-        System.out.println("Usuario y/o contraseña incorrecto.");
+        
         return false;
      }
 
@@ -95,5 +92,11 @@ public class Usuario {
      public void setAcceso(boolean acceso) {
          this.acceso = acceso;
      }
+    public Path getFoto() {
+        return foto;
+    }
+    public void setFoto(Path foto) {
+        this.foto = foto;
+    }
      
 }
