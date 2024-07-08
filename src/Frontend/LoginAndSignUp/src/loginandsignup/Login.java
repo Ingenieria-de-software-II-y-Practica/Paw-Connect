@@ -4,6 +4,8 @@
  */
 package loginandsignup;
 
+import Backend.Controller.Controller;
+import Backend.Models.Usuario;
 
 public class Login extends javax.swing.JFrame {
 
@@ -218,25 +220,20 @@ public class Login extends javax.swing.JFrame {
         String nombre = Contra.getText();
         String contra = Contra.getText();
         
-        Usuario confirmacion = (controller.loginUsuario(nombre, contra) == "OK")? true : false; 
-        if (confirmacion.getAcceso){
-            MenuUsr MenuFrame = new MenuUsr();
+        Usuario confirmacion = controller.loginUsuario(nombre, contra); 
+        if (confirmacion.isAcceso() == false){
+            MenuUsr MenuFrame = new MenuUsr(confirmacion);
             MenuFrame.setVisible(true);
             MenuFrame.pack();
             MenuFrame.setLocationRelativeTo(null);
             this.dispose();
             
         }else{
-            Refugio confirmacion = (controller.loginRefugio(nombre, contra) == "OK")? true : false; 
-            if (confirmacion.getAcceso){
-                MenuR MenuFrame = new MenuR();
-                MenuFrame.setVisible(true);
-                MenuFrame.pack();
-                MenuFrame.setLocationRelativeTo(null);
-                this.dispose();    
-            }else{
-                System.out.println("No existe ese usurio, prueba registrandote");
-            }
+            MenuR MenuFrame = new MenuR(confirmacion);
+            MenuFrame.setVisible(true);
+            MenuFrame.pack();
+            MenuFrame.setLocationRelativeTo(null);
+            this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
