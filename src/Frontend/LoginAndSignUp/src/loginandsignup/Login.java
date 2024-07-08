@@ -11,7 +11,18 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
     }
-
+    
+    public Login(Usuario usuario){
+        this.usuario = usuario;
+    }
+    
+    public Login(Refugio refugio){
+        this.usuario = usuario;
+    }
+    
+    public Usuario usuario;
+    
+    public Controller controller;
    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -24,15 +35,14 @@ public class Login extends javax.swing.JFrame {
         Left = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        Contra = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        NombreUsr = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setToolTipText("");
@@ -85,25 +95,23 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Email");
+        jLabel2.setText("Nombre");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField1.setDisabledTextColor(new java.awt.Color(255, 204, 204));
-        jTextField1.setPreferredSize(new java.awt.Dimension(65, 25));
-        jTextField1.setSelectionColor(new java.awt.Color(255, 204, 204));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        Contra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Contra.setForeground(new java.awt.Color(51, 51, 51));
+        Contra.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        Contra.setDisabledTextColor(new java.awt.Color(255, 204, 204));
+        Contra.setPreferredSize(new java.awt.Dimension(65, 25));
+        Contra.setSelectionColor(new java.awt.Color(255, 204, 204));
+        Contra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                ContraActionPerformed(evt);
             }
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Contraseña");
-
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(65, 25));
 
         jButton1.setBackground(new java.awt.Color(255, 236, 236));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -128,6 +136,18 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("No tengo un usuario");
 
+        NombreUsr.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        NombreUsr.setForeground(new java.awt.Color(51, 51, 51));
+        NombreUsr.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        NombreUsr.setDisabledTextColor(new java.awt.Color(255, 204, 204));
+        NombreUsr.setPreferredSize(new java.awt.Dimension(65, 25));
+        NombreUsr.setSelectionColor(new java.awt.Color(255, 204, 204));
+        NombreUsr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreUsrActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout LeftLayout = new javax.swing.GroupLayout(Left);
         Left.setLayout(LeftLayout);
         LeftLayout.setHorizontalGroup(
@@ -139,13 +159,12 @@ public class Login extends javax.swing.JFrame {
             .addGroup(LeftLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(NombreUsr, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2)
                     .addComponent(jButton1)
-                    .addGroup(LeftLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(Contra, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -156,13 +175,13 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(31, 31, 31)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(NombreUsr, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(18, 18, 18)
+                .addComponent(Contra, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
@@ -190,12 +209,35 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void ContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraActionPerformed
+        
+    }//GEN-LAST:event_ContraActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        String nombre = Contra.getText();
+        String contra = Contra.getText();
+        
+        Usuario confirmacion = (controller.loginUsuario(nombre, contra) == "OK")? true : false; 
+        if (confirmacion.getAcceso){
+            MenuUsr MenuFrame = new MenuUsr();
+            MenuFrame.setVisible(true);
+            MenuFrame.pack();
+            MenuFrame.setLocationRelativeTo(null);
+            this.dispose();
+            
+        }else{
+            Refugio confirmacion = (controller.loginRefugio(nombre, contra) == "OK")? true : false; 
+            if (confirmacion.getAcceso){
+                MenuR MenuFrame = new MenuR();
+                MenuFrame.setVisible(true);
+                MenuFrame.pack();
+                MenuFrame.setLocationRelativeTo(null);
+                this.dispose();    
+            }else{
+                System.out.println("No existe ese usurio, prueba registrandote");
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -206,13 +248,19 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void NombreUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreUsrActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreUsrActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField Contra;
     private javax.swing.JPanel Left;
+    private javax.swing.JTextField NombreUsr;
     private javax.swing.JPanel Right;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -223,7 +271,5 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
