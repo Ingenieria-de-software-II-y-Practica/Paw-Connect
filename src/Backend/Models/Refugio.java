@@ -32,17 +32,17 @@ public class Refugio extends Usuario{
         this.direccion = direccion;
     }
 
-    public boolean registrarse(String nombre, String contra, String numero, String direccion, Path foto) throws UserDoesNotExistException{
+    public String registrarse(String nombre, String contra, String numero, String direccion, Path foto) throws UserDoesNotExistException{
         if(DB.getUsuario(nombre) == null){
             setNombre(nombre);
             setContraseña(contra);
             setNumero_contacto(numero);
             setDireccion(direccion);
             setAcceso(true);
-            return true;
+            DB.crearRefugio(this);
+            return "OK";
         }
-        System.out.println("No se pudo registrar.");
-        return false;
+        return "Error: Ya existe un usuario con ese nombre de usuario.";
     }
     /*
      * GETTERS & SETTERS

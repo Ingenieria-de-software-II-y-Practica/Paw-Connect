@@ -34,18 +34,16 @@ public class Usuario {
         setAcceso(false); //False indica que es un usuario.
     }
     
-    public boolean registrarse(String nombre, String contra, String numero) throws UserDoesNotExistException{
-       boolean ver = DB.existeUsuario(nombre);
-       if(!ver){
+    public String registrarse(String nombre, String contra, String numero) throws UserDoesNotExistException{
+       if(!DB.existeUsuario(nombre)){
            setNombre(nombre);
            setContraseña(contra);
            setNumero_contacto(numero);
            setAcceso(false);
            DB.crearUsuario(this);
-           return true;
+           return "OK";
        }
-       System.out.println("No se pudo registrar.");
-       return false;
+       return "Error: Ya existe un usuario con ese nombre de usuario";
     }
 
     public Usuario login(String nombre, String contra) throws UserDoesNotExistException{

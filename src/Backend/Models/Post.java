@@ -8,18 +8,28 @@ public class Post {
      *  Atributos 
      */
     int id;
-    String titulo, raza, descripcion, verificacion, tamaño, tipoMascota;
-    int edad;
+    String titulo, raza, descripcion, tamaño, tipoMascota, edad;
+    Opciones verificacion;
     Path foto;
     
     /*
      * Metodos
      */
     public Post(){
-
     }
-    public Post(int id, String titulo, String raza, String descripcion, String verificacion,
-            int edad, String tamaño, String tipoMascota, Path foto) {
+    public Post(String titulo, String raza, String descripcion, Opciones verificacion,
+                String edad, String tamaño, String tipoMascota, Path foto){
+        this.titulo = titulo;
+        this.raza = raza;
+        this.descripcion = descripcion;
+        this.verificacion = verificacion;
+        this.edad = edad;
+        this.tamaño = tamaño;
+        this.tipoMascota = tipoMascota;
+        this.foto = foto;
+    }
+    public Post(int id, String titulo, String raza, String descripcion, Opciones verificacion,
+            String edad, String tamaño, String tipoMascota, Path foto) {
         this.id = id;
         this.titulo = titulo;
         this.raza = raza;
@@ -30,7 +40,7 @@ public class Post {
         this.tipoMascota = tipoMascota;
         this.foto = foto;
     }
-    public void editar(String titulo, String descripcion, String raza, String tamaño, String verificacion, int edad, String tipoMascota){
+    public void asignar(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota){
         this.titulo = titulo;
         this.raza = raza;
         this.descripcion = descripcion;
@@ -57,40 +67,26 @@ public class Post {
      * @param post Post que se va a guardar
      * @return Confirmacion: OK => true, Error => mensaje
      */
-    public String guardarPost(Post post) {
-        if (!(DB.existePost(post))) {
-            boolean confirmacion = DB.publicarPost(post.getId());
-            return (confirmacion)? "OK" : "Error: al publicar";
-        }else{
-            return "Error: Post ya existe";
-        }
+    public String guardarPost(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota) {
+        asignar(titulo, descripcion, raza, tamaño, verificacion, edad, tipoMascota);
+        boolean confirmacion = DB.publicarPost(this);
+        return (confirmacion)? "OK" : "Error: al publicar";
     }
     /**
      * Metodo para editar un Post en la DB
      * @param post Post a editar
      * @return Post editar, caso no existir: null
      */
-    public Post editarPost(Post post) {
-        if (DB.existePost(post.getId())) {
-            Post postUpdate = DB.modificarPost(post);
+    public Post editarPost(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota) {
+        if (DB.existePost(id)) {
+            asignar(titulo, descripcion, raza, tamaño, verificacion, edad, tipoMascota);
+            Post postUpdate = DB.modificarPost(this);
             return postUpdate;
-        }else{
-            return null;
         }
+        
+        return null;
     }
-    /**
-     * Metodo para filtrar Posts por opciones
-     * @param filtro Opciones para filtrar
-     * @return Array de Posts con el filtro o null si no se encuentra
-     */
-    public Post[] filtrarPosts(Opciones filtro) {
-        Post[] filtro = DB.filtrarPost(filtro);
-        if (filtro != null) {
-            return filtro;
-        }else{
-            return null;
-        }
-    }
+
     /*
      * Getters and Setters
      */
@@ -118,16 +114,16 @@ public class Post {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public String getVerificacion() {
+    public Opciones getVerificacion() {
         return verificacion;
     }
-    public void setVerificacion(String verificacion) {
+    public void setVerificacion(Opciones verificacion) {
         this.verificacion = verificacion;
     }
-    public int getEdad() {
+    public String getEdad() {
         return edad;
     }
-    public void setEdad(int edad) {
+    public void setEdad(String edad) {
         this.edad = edad;
     }
     public String getTamaño() {
