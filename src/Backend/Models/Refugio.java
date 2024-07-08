@@ -24,9 +24,8 @@ public class Refugio extends Usuario{
      * @param direccion
      * @param tipo_mascota
      * @param foto
-     * @throws UserDoesNotExistException 
      */
-    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, Path foto) throws UserDoesNotExistException {
+    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, Path foto){
         super(id,nombre, contraseña, numero_contacto,foto);
         setAcceso(true); // True indica que el usuario es un refugio.
         this.direccion = direccion;

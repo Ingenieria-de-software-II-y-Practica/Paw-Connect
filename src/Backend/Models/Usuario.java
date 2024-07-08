@@ -47,10 +47,8 @@ public class Usuario {
     }
 
     public Usuario login(String nombre, String contra) throws UserDoesNotExistException{
-        // Revisar si para esto seria mejor solo tener un metodo para buscar entre todos los usuarios y refugios existentes
-        Usuario user = DB.getUsuario(nombre);
-        if(user.nombre.equals(nombre) && user.contraseña.equals(contra)){
-            return user;
+        if(this.nombre.equals(nombre) && this.contraseña.equals(contra)){
+            return this;
         }
        System.out.println("Usuario y/o contraseña incorrecto.");
        return null;
