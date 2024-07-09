@@ -809,7 +809,7 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_BUSCARMouseMoved
 
     private void BUSCARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BUSCARMouseClicked
-         jTabbedPane1.setSelectedIndex(2);
+         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_BUSCARMouseClicked
 
     private void BUSCARMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BUSCARMouseExited
@@ -817,8 +817,20 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_BUSCARMouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        int r = j.showSaveDialog(null);
+        String Ruta = "";
+        JFileChooser jFileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("JGP & PNG","jpg","png");
+        jFileChooser.setFileFilter(filter);
+        
+        int respuesta = jFileChooser.showOpenDialog(this);
+        
+        if (respuesta == JFileChooser.APPROVE_OPTION){
+            Ruta = jFileChooser.getSelectedFile().getPath();
+            
+            Image mImage = new ImageIcon(Ruta).getImage();
+            ImageIcon mIcono = new ImageIcon(mImage.getScaledInstance(Imagenn.getWidth(), Imagenn.getHeight() , Image.SCALE_SMOOTH));
+            Imagenn.setIcon(mIcono);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -866,24 +878,36 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        int r = j.showSaveDialog(null);
+        String Ruta = "";
+        JFileChooser jFileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("JGP & PNG","jpg","png");
+        jFileChooser.setFileFilter(filter);
+        
+        int respuesta = jFileChooser.showOpenDialog(this);
+        
+        if (respuesta == JFileChooser.APPROVE_OPTION){
+            Ruta = jFileChooser.getSelectedFile().getPath();
+            
+            Image mImage = new ImageIcon(Ruta).getImage();
+            ImageIcon mIcono = new ImageIcon(mImage.getScaledInstance(Imagen.getWidth(), Imagen.getHeight() , Image.SCALE_SMOOTH));
+            Imagen.setIcon(mIcono);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
