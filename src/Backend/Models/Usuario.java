@@ -1,8 +1,10 @@
 package Backend.Models;
 
-import java.nio.file.Path;
-
 import Backend.DB.DB;
+<<<<<<< Updated upstream
+=======
+import java.nio.file.Path;
+>>>>>>> Stashed changes
 
 public class Usuario {
     /*
@@ -23,6 +25,7 @@ public class Usuario {
        * @param nombre Nombre que usaran para su usuario
        * @param contraseña Contraseña del usuario
        * @param numero_contacto Numero telefonico
+<<<<<<< Updated upstream
        */
      public Usuario(int id, String nombre, String contraseña, String numero_contacto, Path foto) {
          this.id = id;
@@ -37,15 +40,43 @@ public class Usuario {
             setNombre(nombre);
             setContraseña(contra);
             setNumero_contacto(numero);
+=======
+     *
+       */
+     public Usuario(int id, String nombre, String contraseña, String numero_contacto, Path foto) {
+        this.id = id;
+        this.nombre = nombre;
+        this.contraseña = contraseña;
+        this.numero_contacto = numero_contacto;
+        this.foto = foto;
+        setAcceso(false); //False indica que es un usuario. 
+     }
+
+     public boolean registrarse(String nombre, String contraseña, String numero_contacto, Path foto) {
+        Usuario user = DB.getUsuario(nombre);
+        if(user == null){
+            this.nombre = nombre;
+            this.contraseña = contraseña;
+            this.numero_contacto = numero_contacto;
+            this.foto = foto;
+>>>>>>> Stashed changes
             setAcceso(false);
             return true;
         }
         System.out.println("No se pudo registrar el usuario.");
         return false;
      }
+<<<<<<< Updated upstream
      public boolean login(String nombre, String contra){
         if(this.nombre.equals(nombre) && contraseña.equals(contra)){
             return true;
+=======
+     
+     public boolean login(String nombre, String contra) {
+        Usuario user = DB.getUsuario(nombre);
+        if(user != null){
+            return this.nombre.equals(nombre) && contraseña.equals(contra);    
+>>>>>>> Stashed changes
         }
         System.out.println("Usuario y/o contraseña incorrecto.");
         return false;

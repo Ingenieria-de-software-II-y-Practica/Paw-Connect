@@ -1,8 +1,7 @@
 package Backend.DB;
 
+import Backend.DB.DB.UserField;
 import java.util.ArrayList;
-
-import Backend.DB.Exceptions.*;
 import Backend.Models.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,22 +31,21 @@ public class DB {
      * @param   username Nombre del usuario del que se quiere recuperar la información.
      * @return           Objeto 'Usuario' con toda la información que se encuentra en la base de datos. Devuelve null si el usuario no existe.
      */
-    public static Usuario getUsuario (String username) throws UserDoesNotExistException {
+    public static Usuario getUsuario (String username) {
         
         Usuario user = null;
         try {
-            ResultSet rs = null;
-            String query = "SELECT * FROM usuario WHERE " + UserField.NAME.field + " = ?";
+            String query = "SELECT * FROM usuario WHERE usuario_nombre = ? INNER JOIN telefono ON usuario.telefono_id = telefono.telefono_id";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, username);
-            rs = stat.executeQuery();
+            ResultSet rs = stat.executeQuery();
             
             if (rs.next()) {
-                int id = rs.getInt(UserField.ID.field);
-                String password = rs.getString(UserField.PASS.field);
-                String telephoneNumber = rs.getString(UserField.NUM.field);
-                String email = rs.getString(UserField.EMAIL.field);
-                Path photo = Paths.get(rs.getString(UserField.PHOTO.field));
+                int id = rs.getInt("usuario.usuario_id");
+                String password = rs.getString("usuario.usuario_contrasenia");
+                String telephoneNumber = rs.getString("telefono.telefono_telefono");
+                String email = rs.getString("usuario.usuario_email");
+                Path photo = Paths.get(rs.getString("usuario.usuario_foto"));
 
                 user = new Usuario(id, username, password, telephoneNumber, photo);
             }
@@ -65,15 +63,15 @@ public class DB {
      */
     public static boolean resetUsuario (Usuario user) {
         try {
-            String query = "SELECT * FROM usuario WHERE " + UserField.ID.field + " = ?";
+            String query = "SELECT * FROM usuario WHERE usuario_nombre = ? INNER JOIN telefono ON usuario.telefono_id = telefono.telefono_id";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setInt(1, user.getId());
             ResultSet rs = stat.executeQuery();
 
             if (rs.next()) {
-                String username = rs.getString(UserField.NAME.field);
-                String password = rs.getString(UserField.PASS.field);
-                String telephoneNumber = rs.getString(UserField.NUM.field);
+                String username = rs.getString("usuario.usuario_nombre");
+                String password = rs.getString("usuaro.usuario_contrasenia");
+                String telephoneNumber = rs.getString("telefono.telefono_telefono");
                 String email = rs.getString(UserField.EMAIL.field);
                 Path photo = Paths.get(rs.getString(UserField.PHOTO.field));
 
@@ -143,6 +141,7 @@ public class DB {
     public static boolean registerUsuario (Usuario user) {
         
         //TODO: Verificar que no haya dirección de e-mail repetida si eventualmente se agrega.
+        //TODO: Verificar que el número no esté repetido.
 
         //Primero se verifica que no exista Refugio o Usuario con el mismo nombre.
         if (existeNombre(user.getNombre())) {
@@ -151,26 +150,38 @@ public class DB {
         }
 
         try {
-            String query = "INSERT INTO usuario (" + UserField.NAME.field + "," + UserField.PASS.field + "," + UserField.EMAIL.field + ","  + UserField.NUM.field + ", " + UserField.PHOTO.field + ") VALUES (?, ?, ?, ?, ?)";
+            //Se inserta el número de teléfono primero porque está en una tabla separada.
+            String query = "INSERT INTO telefono (telefono_telefono) VALUES (?)";
             PreparedStatement stat = con.prepareStatement(query);
+            stat.setString(1, user.getNumero_contacto());
+            stat.executeQuery();
+
+            //Se obtiene el ID del teléfono recién insertado.
+            query = "SELECT LAST_INSERT_ID()";
+            stat = con.prepareStatement(query);
+            ResultSet rs = stat.executeQuery();
+            rs.next();
+
+            int telephoneID = rs.getInt(1);
+
+            query = "INSERT INTO usuario (usuario_nombre, usuario_contrasenia, usuario_email, usuario_foto, telefono_id) VALUES (?, ?, ?, ?, ?, ?)";
+            stat = con.prepareStatement(query);
             stat.setString(1, user.getNombre());
             stat.setString(2, user.getContraseña());
             //TODO: Agregar campo de e-mail
             stat.setString(3, "email@example.com");
             stat.setString(4, user.getNumero_contacto());
             stat.setString(5, user.getFoto().toString());
+            stat.setInt(6, telephoneID);
             stat.executeQuery();
 
-            //Se le asigna el ID correspondiente al usuario.
-            //TODO: Cambiarlo a LAST_INSERT_ID
-            ResultSet rs = null;
-            query = "SELECT " + UserField.ID + " from usuario WHERE " + UserField.NAME + " = ?";
+            //Se le asigna el ID correspondiente al objeto Usuario.            
+            query = "SELECT LAST_INSERT_ID()";
             stat = con.prepareStatement(query);
-            stat.setString(1, user.getNombre());
             rs = stat.executeQuery();
             rs.next();
 
-            user.setId(rs.getInt(UserField.ID.field));
+            user.setId(rs.getInt(1));
             System.out.println("El usuario '" + user.getNombre() + "' ha sido creado correctamente.");
             return true;
 
@@ -194,7 +205,26 @@ public class DB {
         } else if (FIELD == UserField.ID) return false;
 
         try {
-            String query = "UPDATE usuario SET " + FIELD.field + " = ? WHERE " + UserField.ID.field + " = ?";
+            //Como el número de teléfono se encuentra en una tabla separada, se tiene que considerar individualmente.
+            if (FIELD == UserField.NUM) {
+                String query = "SELECT telefono_id from usuario WHERE usuario_id = ?";
+                PreparedStatement stat = con.prepareStatement(query);
+                stat.setInt(1, user.getId());
+                ResultSet rs = stat.executeQuery();
+                rs.next();
+
+                int telephoneID = rs.getInt(1);
+
+                query = "UPDATE telefono SET telefono_telefono = ? WHERE telefono_id = ?";
+                stat = con.prepareStatement(query);
+                stat.setString(1, user.getNumero_contacto());
+                stat.setInt(2, telephoneID);
+                stat.executeQuery();
+                System.out.println("Se ha actualizado el teléfono del usuario '" + user.getNombre() + "''.");
+                return true;
+            }
+
+            String query = "UPDATE usuario SET " + FIELD.field + " = ? WHERE usuario_id = ?";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, getFieldUsuario(user, FIELD));
             stat.setInt(2, user.getId());
@@ -217,16 +247,18 @@ public class DB {
             return false;
         }
         try {
-            String query = "UPDATE usuario SET " + UserField.NAME.field + " = ?, " + UserField.PASS.field + " = ?, " + UserField.EMAIL + " = ?, " + UserField.NUM.field + "= ? WHERE " + UserField.ID.field + " = ?";
+            String query = "UPDATE usuario SET usuario_nombre = ?, usuario_contrasenia = ?, usuario_email = ?, usuario_foto = ? WHERE usuario_id = ?";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, user.getNombre());
             stat.setString(2, user.getContraseña());
 
             //TODO: Agregar variable e-mail
             stat.setString(3, "email@example.com");
-            stat.setString(4, user.getNumero_contacto());
+            stat.setString(4, user.getFoto().toString());
             stat.setInt(5, user.getId());
             stat.executeQuery();
+
+            updateUsuario(user, UserField.NUM);
             System.out.println("El usuario '" + user.getNombre() + "' ha sido actualizado en la base de datos.");
             return true;
 
@@ -249,8 +281,25 @@ public class DB {
             return false;
         }
         try {
-            String query = "DELETE FROM usuario WHERE " + UserField.NAME.field + " = ?";
+            //Es necesario borrar el número de teléfono de forma independiente porque está en otra tabla.
+            
+            //Primero se obtiene telefono_id de la tabla 'usuario'.
+            String query = "SELECT telefono_id FROM usuario WHERE usuario_nombre = ?";
             PreparedStatement stat = con.prepareStatement(query);
+            stat.setString(1, username);
+            ResultSet rs = stat.executeQuery();
+            rs.next();
+
+            int telephoneID = rs.getInt(1);
+
+            //Se elimina la entrada de la tabla 'telefono' correspondiente.
+            query = "DELETE FROM telefono WHERE telefono_id = ?";
+            stat = con.prepareStatement(query);
+            stat.setInt(1, telephoneID);
+            stat.executeQuery();
+
+            query = "DELETE FROM usuario WHERE usuario_nombre = ?";
+            stat = con.prepareStatement(query);
             stat.setString(1, username);
             System.out.println("El usuario '" + username + "' fue eliminado.");
             return true;
@@ -271,8 +320,25 @@ public class DB {
         }
 
         try {
-            String query = "DELETE FROM usuario WHERE " + UserField.ID.field + " = ?";
+            //Es necesario borrar el número de teléfono de forma independiente porque está en otra tabla.
+            
+            //Primero se obtiene telefono_id de la tabla 'usuario'.
+            String query = "SELECT telefono_id FROM usuario WHERE usuario_id = ?";
             PreparedStatement stat = con.prepareStatement(query);
+            stat.setInt(1, ID);
+            ResultSet rs = stat.executeQuery();
+            rs.next();
+
+            int telephoneID = rs.getInt(1);
+
+            //Se elimina la entrada de la tabla 'telefono' correspondiente.
+            query = "DELETE FROM telefono WHERE telefono_id = ?";
+            stat = con.prepareStatement(query);
+            stat.setInt(1, telephoneID);
+            stat.executeQuery();
+
+            query = "DELETE FROM usuario WHERE usuario_id = ?";
+            stat = con.prepareStatement(query);
             stat.setInt(1, ID);
             System.out.println("El usuario con el ID '" + ID + "' fue eliminado.");
             return true;
@@ -290,9 +356,6 @@ public class DB {
             case PASS:
                 field = user.getContraseña();
                 break;
-            case NUM:
-                field = user.getNumero_contacto();
-                break;
             case PHOTO:
                 field = user.getFoto().toString();
             case EMAIL:
@@ -308,37 +371,125 @@ public class DB {
     MÉTODOS DE REFUGIO
     ------------------*/
     /**
-     * Metodo para crear un usuario tipo Refugio
-     * @param refugio Refugio
-     * @return Confirmacion: true o false
+     * Crea un nuevo refugio en la base de datos.
+     * @param       refugio Refugio que se quiere registrar en la base de datos.
+     * @return      Confirmación de que se ha creado el usuario (true) o ha fallado la operación (false).
      */
     public static boolean crearRefugio(Refugio refugio) {
-        try {
-            if (!(DB.existeNombre(refugio.getNombre()) && DB.existeRefugio(refugio.getNombre()))) {
-                // Primero agregamos la direccion
-                String[] direccionRefugio = refugio.getDireccion().split(","); //[0]:calle, [1]:altura, [2]:departamento
-                PreparedStatement direccion_query = con.prepareStatement("INSERT INTO direccion VALUES(NULL, '"+direccionRefugio[0]+"', '"+direccionRefugio[1]+"', '"+direccionRefugio[2]+"');");
-                direccion_query.executeQuery();
-                PreparedStatement direccion_id_query = con.prepareStatement("SELECT LAST_INSERT_ID()");
-                ResultSet direccion_id = direccion_id_query.executeQuery();
-                direccion_id.next();
-                con.prepareStatement("INSERT INTO refugio VALUES(NULL,'"+direccion_id.getString("LAST_INSERT_ID")+"','"+refugio.getNombre()+"','1');").executeQuery();
-                return true;    
-            }
-            else{
-                System.out.println("El refugio ya existe");
-                return false;
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        //Primero se verifica que no exista Refugio o Usuario con el mismo nombre.
+        if (existeNombre(refugio.getNombre())) {
+            System.out.println("El nombre de usuario '" + refugio.getNombre() + "' no se encuentra disponible.");
             return false;
         }
+
+        try {
+            //Primero se agrega la dirección.
+            String[] addressRefugio = refugio.getDireccion().split(","); //[0]:calle, [1]:altura, [2]:departamento
+            String query = "INSERT INTO direccion (direccion_calle, direccion_altura, direccion_departamento) VALUES (?, ?, ?)";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setString(1, addressRefugio[0]);
+            //TODO: Hacerlo un int en vez?
+            stat.setString(2, addressRefugio[1]); 
+            stat.setString(3, addressRefugio[2]);
+
+            //Se obtiene el ID de la dirección recién insertada.
+            query = "SELECT LAST_INSERT_ID()";
+            stat = con.prepareStatement(query);
+            ResultSet rs = stat.executeQuery();
+            rs.next();
+
+            int addressID = rs.getInt(1);
+
+            //Se repite el proceso con el número de teléfono.
+            query = "INSERT INTO telefono (telefono_telefono) VALUES (?)";
+            stat = con.prepareStatement(query);
+            stat.setString(1, refugio.getNumero_contacto());
+            stat.executeQuery();
+
+            query = "SELECT LAST_INSERT_ID()";
+            stat = con.prepareStatement(query);
+            rs = stat.executeQuery();
+            rs.next();
+
+            int telephoneID = rs.getInt(1);
+
+            //Se repite con la tabla 'administrador', que contiene todas las características iguales a los usuarios pero para refugios.
+            query = "INSERT INTO administrador (administrador_nombre, administrador_contrasenia, administrador_email) VALUES (?, ?, ?)";
+            stat = con.prepareStatement(query);
+            stat.setString(1, refugio.getNombre());
+            stat.setString(2, refugio.getContraseña());
+            //TODO: Agregar e-mail.
+            stat.setString(3, "email@example.com");
+            stat.executeQuery();
+
+            query = "SELECT LAST_INSERT_ID()";
+            stat = con.prepareStatement(query);
+            rs = stat.executeQuery();
+            rs.next();
+
+            int administratorID = rs.getInt(1);
+
+            //Ahora se inserta el resto de la información del refugio.
+            //TODO: Nombre de usuario != nombre del refugio.
+            query = "INSERT INTO refugio (refugio_nombre, refugio_foto, administrador_id, direccion_id, telefono_id) VALUES (?, ?, ?, ?, ?)";
+            stat = con.prepareStatement(query);
+            stat.setString(1, refugio.getNombre());
+            stat.setString(2, refugio.getFoto().toString());
+            stat.setInt(3, administratorID);
+            stat.setInt(4, addressID);
+            stat.setInt(5, telephoneID);
+            stat.executeQuery();
+
+            //Se busca el ID para asignárselo a el objeto 'refugio'.
+            query = "SELECT LAST_INSERT_ID()";
+            stat = con.prepareStatement(query);
+            rs = stat.executeQuery();
+            rs.next();
+
+            refugio.setId(rs.getInt(1));
+            System.out.println("El refugio '" + refugio.getNombre() + "' ha sido creado correctamente.");
+            return true;
+        } catch (SQLException se) { System.out.println(se + "en crearRefugio"); }
+        return false;
     }
     /**
      * Metodo para obtener un refugio por su id
      * @param refugio_id id del refugio
      * @return Refugio
      */
+
+    public static Refugio getRefugio (String username) {
+        Refugio refugio = null;
+        try {
+            //El nombre de usuario corresponde al administrador, así que primero se debe buscar su ID.
+            String query = "SELECT * FROM administrador WHERE administrador_nombre = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setString(1, username);
+            ResultSet rs = stat.executeQuery();
+            rs.next();
+
+            String password = rs.getString("administrador_contrasenia");
+            String email = rs.getString("administrador_email");
+            int administratorID = rs.getInt("administrador_id");
+
+            query = "SELECT * FROM refugio INNER JOIN telefono ON telefono.telefono_id = refugio.telefono_id INNER JOIN direccion ON direccion.direccion_id = refugio.direccion_id WHERE refugio.administrador_id = ?";
+            stat = con.prepareStatement(query);
+            stat.setInt(1, administratorID);
+            rs = stat.executeQuery();
+            rs.next();
+            
+            int refugioID = rs.getInt("refugio.refugio_id");
+            String nameRefugio = rs.getString("refugio.refugio_nombre");
+            String telephoneNumber = rs.getString("telefono.telefono_telefono");
+            String address = rs.getString("direccion.direccion_calle") + "," + rs.getString("direccion.direccion_altura") + "," + rs.getString("direccion.direccion_departamento");
+            Path photo = Paths.get(rs.getString("refugio.refugio_foto"));
+
+            refugio = new Refugio(refugioID, nameRefugio, password, telephoneNumber, address, null, photo);
+
+        } catch (SQLException se) { System.out.println(se + "en getRefugio"); }
+        return refugio;
+    }
+
     public static Refugio getRefugio(int refugio_id) {
         ResultSet refugioBD = null;
         Refugio refugio = null;
@@ -395,7 +546,7 @@ public class DB {
     }
 
     /*------------------
-    MÉTODOS DE REFUGIO
+    MÉTODOS DE POST
     ------------------*/
 
     public static boolean publicarPost (Post post) {
@@ -591,7 +742,7 @@ public class DB {
         NAME("usuario_nombre"),
         PASS("usuario_contrasenia"),
         EMAIL("usuario_email"),
-        NUM("usuario_numero"),
+        NUM(""),
         PHOTO("usuario_foto");
 
         public final String field;

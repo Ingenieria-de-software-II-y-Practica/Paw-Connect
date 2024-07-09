@@ -1,6 +1,6 @@
 package Backend.DB;
 public class Test {
-    private static void main (String args[]) throws Backend.DB.Exceptions.UserDoesNotExistException{
+    private static void main (String args[]) {
         DB.getUsuario("algo");
     }
 }

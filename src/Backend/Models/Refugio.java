@@ -1,9 +1,13 @@
 package Backend.Models;
 
+import Backend.DB.DB;
 import java.nio.file.Path;
 import java.util.ArrayList;
+<<<<<<< Updated upstream
 
 import Backend.DB.DB;
+=======
+>>>>>>> Stashed changes
 /**
  * Clase refugio hereda de Usuario porque es un tipo de usuario.
  */
@@ -33,8 +37,13 @@ public class Refugio extends Usuario{
         this.tipo_mascota = tipo_mascota;
     }
 
+<<<<<<< Updated upstream
     public boolean registrarse(String nombre, String contra, String numero, String direccion, DB db){
         if(db.getUsername(nombre) == null){
+=======
+    public boolean registrarse(String nombre, String contra, String numero, String direccion, DB db) {
+        if(DB.getUsuario(nombre) == null){
+>>>>>>> Stashed changes
             setNombre(nombre);
             setContraseña(contra);
             setNumero_contacto(numero);
