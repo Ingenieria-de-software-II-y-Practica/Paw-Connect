@@ -1,5 +1,6 @@
 package Backend.Models;
 
+import java.io.File;
 import java.nio.file.Path;
 import Backend.DB.DB;
 import Backend.DB.Exceptions.UserDoesNotExistException;
@@ -10,7 +11,7 @@ public class Post {
     int id;
     String titulo, raza, descripcion, tamaño, tipoMascota, edad;
     Opciones verificacion;
-    Path foto;
+    File foto;
     
     /*
      * Metodos
@@ -18,7 +19,7 @@ public class Post {
     public Post(){
     }
     public Post(String titulo, String raza, String descripcion, Opciones verificacion,
-                String edad, String tamaño, String tipoMascota, Path foto){
+                String edad, String tamaño, String tipoMascota, File foto){
         this.titulo = titulo;
         this.raza = raza;
         this.descripcion = descripcion;
@@ -29,7 +30,7 @@ public class Post {
         this.foto = foto;
     }
     public Post(int id, String titulo, String raza, String descripcion, Opciones verificacion,
-            String edad, String tamaño, String tipoMascota, Path foto) {
+            String edad, String tamaño, String tipoMascota, File foto) {
         this.id = id;
         this.titulo = titulo;
         this.raza = raza;
@@ -138,10 +139,10 @@ public class Post {
     public void setTipoMascota(String tipoMascota) {
         this.tipoMascota = tipoMascota;
     }
-    public Path getFoto() {
+    public File getFoto() {
         return foto;
     }
-    public void setFoto(Path foto) {
+    public void setFoto(File foto) {
         this.foto = foto;
     }
     public String getTitulo() {
