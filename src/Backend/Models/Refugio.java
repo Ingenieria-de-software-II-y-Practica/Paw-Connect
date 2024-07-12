@@ -31,7 +31,7 @@ public class Refugio extends Usuario{
         this.direccion = direccion;
     }
 
-    public String registrarse(String nombre, String contra, String numero, String direccion, Path foto) throws UserDoesNotExistException{
+    public String registrarse(String nombre, String contra, String numero, String direccion) throws UserDoesNotExistException{
         if(DB.getUsuario(nombre) == null){
             setNombre(nombre);
             setContraseña(contra);

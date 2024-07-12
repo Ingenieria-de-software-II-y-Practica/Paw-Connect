@@ -23,9 +23,9 @@ public class Controller {
      * @throws UserDoesNotExistException Por si no existe el usuario que se busca.
      */
     public Usuario loginUsuario(String username, String password) throws UserDoesNotExistException{
-        if(db.existeNombre(username)){
-            if(db.getUsuario(username) != null){
-                user = db.getUsuario(username);
+        if(DB.existeNombre(username)){
+            if(DB.getUsuario(username) != null){
+                user = DB.getUsuario(username);
                 user = user.login(username,password);
                 return user;
             } else{
@@ -36,4 +36,5 @@ public class Controller {
         }
         return null;
     }
+    public Usuario registrarse()
 }
