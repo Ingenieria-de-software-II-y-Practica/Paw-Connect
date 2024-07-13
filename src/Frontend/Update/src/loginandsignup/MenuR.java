@@ -109,7 +109,6 @@ public class MenuR extends javax.swing.JFrame {
         jLabel46 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         textArea1 = new java.awt.TextArea();
         jLabel18 = new javax.swing.JLabel();
@@ -131,7 +130,6 @@ public class MenuR extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        Imagenn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -585,17 +583,6 @@ public class MenuR extends javax.swing.JFrame {
         jLabel16.setToolTipText("");
         jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 236, 236));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setText("Elige otra imagen");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 160, 30));
-
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(51, 51, 51));
         jLabel17.setText("Tipo");
@@ -604,12 +591,12 @@ public class MenuR extends javax.swing.JFrame {
         textArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         textArea1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         textArea1.setForeground(new java.awt.Color(51, 51, 51));
-        jPanel3.add(textArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 730, 110));
+        jPanel3.add(textArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 890, 110));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel18.setText("Agrega una breve descripcion");
-        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, -1));
+        jLabel18.setText("Descripcion");
+        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 120, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(51, 51, 51));
@@ -736,7 +723,7 @@ public class MenuR extends javax.swing.JFrame {
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel25.setText("Agrega sus caracteristicas");
+        jLabel25.setText("Caracteristicas");
         jPanel3.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, 20));
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
@@ -757,7 +744,6 @@ public class MenuR extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 550, 160, 50));
-        jPanel3.add(Imagenn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 170, 120));
 
         jTabbedPane1.addTab("tab2", jPanel3);
 
@@ -806,23 +792,6 @@ public class MenuR extends javax.swing.JFrame {
     private void BUSCARMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BUSCARMouseExited
          BUSCAR.setBackground(new Color(247,247,247));
     }//GEN-LAST:event_BUSCARMouseExited
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String Ruta = "";
-        JFileChooser jFileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JGP & PNG","jpg","png");
-        jFileChooser.setFileFilter(filter);
-        
-        int respuesta = jFileChooser.showOpenDialog(this);
-        
-        if (respuesta == JFileChooser.APPROVE_OPTION){
-            Ruta = jFileChooser.getSelectedFile().getPath();
-            
-            Image mImage = new ImageIcon(Ruta).getImage();
-            ImageIcon mIcono = new ImageIcon(mImage.getScaledInstance(Imagenn.getWidth(), Imagenn.getHeight() , Image.SCALE_SMOOTH));
-            Imagenn.setIcon(mIcono);
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -957,13 +926,11 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JButton EligeImg;
     private javax.swing.JPanel HOME;
     private javax.swing.JLabel Imagen;
-    private javax.swing.JLabel Imagenn;
     private javax.swing.JLabel Img1;
     private javax.swing.JLabel Img2;
     private javax.swing.JLabel Img3;
     private javax.swing.JLabel Img4;
     private javax.swing.JPanel SALIR;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
