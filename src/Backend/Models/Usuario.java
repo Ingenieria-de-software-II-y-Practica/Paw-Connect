@@ -36,8 +36,6 @@ public class Usuario {
      * @param contra
      * @param numero
      * @return
-     * @throws UserDoesNotExistException
-     * @throws SQLException
      */
     public boolean registrarse(String nombre, String contra, String numero) {
        setNombre(nombre);

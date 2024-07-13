@@ -1,7 +1,6 @@
 package Backend.Models;
 
 import Backend.DB.DB;
-import Backend.DB.Exceptions.UserDoesNotExistException;
 /**
  * Clase refugio hereda de Usuario porque es un tipo de usuario.
  */
