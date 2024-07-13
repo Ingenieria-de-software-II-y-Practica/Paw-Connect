@@ -7,12 +7,14 @@ package Frontend.LoginAndSignUp.src.loginandsignup;
 import java.awt.Color;
 import Frontend.LoginAAbsoluteConstraints;
 
+import Backend.Models.Usuario;
+
 /**
  *
  * @author audre
  */
 public class MenuUsr extends javax.swing.JFrame {
-
+    public Usuario usuario;
     /**
      * Creates new form MenuUsr
      */
@@ -20,7 +22,10 @@ public class MenuUsr extends javax.swing.JFrame {
         initComponents();
         
     }
-
+    public MenuUsr(Usuario usuario) {
+        this.usuario = usuario;
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
