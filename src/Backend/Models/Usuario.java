@@ -2,9 +2,7 @@ package Backend.Models;
 
 import java.nio.file.Path;
 import java.sql.SQLException;
-
 import Backend.DB.DB;
-import Backend.DB.Exceptions.UserDoesNotExistException;
 
 public class Usuario {
     /*
@@ -41,7 +39,7 @@ public class Usuario {
      * @throws UserDoesNotExistException
      * @throws SQLException
      */
-    public boolean registrarse(String nombre, String contra, String numero) throws UserDoesNotExistException, SQLException{
+    public boolean registrarse(String nombre, String contra, String numero) {
        setNombre(nombre);
        setContraseña(contra);
        setNumero_contacto(numero);

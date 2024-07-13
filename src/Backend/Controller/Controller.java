@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Backend.DB.DB;
-import Backend.DB.Exceptions.UserDoesNotExistException;
 import Backend.Models.Opciones;
 import Backend.Models.Post;
 import Backend.Models.Refugio;

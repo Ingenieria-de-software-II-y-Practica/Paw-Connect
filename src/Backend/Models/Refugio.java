@@ -37,7 +37,7 @@ public class Refugio extends Usuario{
      * @return
      * @throws UserDoesNotExistException
      */
-    public boolean registrarse(String nombre, String contra, String numero, String direccion) throws UserDoesNotExistException{
+    public boolean registrarse(String nombre, String contra, String numero, String direccion){
         setNombre(nombre);
         setContraseña(contra);
         setNumero_contacto(numero);
