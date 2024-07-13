@@ -50,24 +50,28 @@ public class MenuUsr extends javax.swing.JFrame {
         jPanel19 = new javax.swing.JPanel();
         jPanel20 = new javax.swing.JPanel();
         Descrip4 = new javax.swing.JLabel();
+        NombreR4 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         Img4 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jPanel14 = new javax.swing.JPanel();
         Descrip2 = new javax.swing.JLabel();
+        NombreR2 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         Img2 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jPanel17 = new javax.swing.JPanel();
         Descrip3 = new javax.swing.JLabel();
+        NombreR3 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
         Img3 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         Descrip1 = new javax.swing.JLabel();
+        NombreR1 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         Img1 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -214,7 +218,8 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
         jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel20.add(Descrip4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
+        jPanel20.add(Descrip4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
+        jPanel20.add(NombreR4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
 
         jPanel19.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
 
@@ -237,7 +242,8 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel14.add(Descrip2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
+        jPanel14.add(Descrip2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
+        jPanel14.add(NombreR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
 
         jPanel13.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
 
@@ -260,7 +266,8 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel17.add(Descrip3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
+        jPanel17.add(Descrip3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
+        jPanel17.add(NombreR3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
 
         jPanel16.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
 
@@ -283,7 +290,8 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel7.add(Descrip1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
+        jPanel7.add(Descrip1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
+        jPanel7.add(NombreR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
 
         jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
 
@@ -401,39 +409,39 @@ public class MenuUsr extends javax.swing.JFrame {
         Tablaa.setForeground(new java.awt.Color(51, 51, 51));
         Tablaa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre Mascota", "Refugio", "Raza", "Telefono"
+                "Nombre Mascota", "Refugio", "Raza", "Telefono", "Direccion"
             }
         ));
         Tablaa.setGridColor(new java.awt.Color(153, 153, 153));
@@ -531,6 +539,10 @@ public class MenuUsr extends javax.swing.JFrame {
     private javax.swing.JLabel Img2;
     private javax.swing.JLabel Img3;
     private javax.swing.JLabel Img4;
+    private javax.swing.JLabel NombreR1;
+    private javax.swing.JLabel NombreR2;
+    private javax.swing.JLabel NombreR3;
+    private javax.swing.JLabel NombreR4;
     private javax.swing.JPanel SALIR;
     private javax.swing.JTable Tablaa;
     private javax.swing.JCheckBox jCheckBox1;
