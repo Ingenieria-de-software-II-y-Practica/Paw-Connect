@@ -1,7 +1,5 @@
 package Backend.Models;
 
-import java.nio.file.Path;
-
 import Backend.DB.DB;
 import Backend.DB.Exceptions.UserDoesNotExistException;
 /**
@@ -25,23 +23,27 @@ public class Refugio extends Usuario{
      * @param tipo_mascota
      * @param foto
      */
-    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, Path foto){
-        super(id,nombre, contraseña, numero_contacto,foto);
+    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion){
+        super(id,nombre, contraseña, numero_contacto);
         setAcceso(true); // True indica que el usuario es un refugio.
         this.direccion = direccion;
     }
-
-    public String registrarse(String nombre, String contra, String numero, String direccion) throws UserDoesNotExistException{
-        if(DB.getUsuario(nombre) == null){
-            setNombre(nombre);
-            setContraseña(contra);
-            setNumero_contacto(numero);
-            setDireccion(direccion);
-            setAcceso(true);
-            DB.crearRefugio(this);
-            return "OK";
-        }
-        return "Error: Ya existe un usuario con ese nombre de usuario.";
+    /**
+     * Metodo el cual asigna valores a los atributos y guarda el Refugio en la base de datos
+     * @param nombre
+     * @param contra
+     * @param numero
+     * @param direccion
+     * @return
+     * @throws UserDoesNotExistException
+     */
+    public boolean registrarse(String nombre, String contra, String numero, String direccion) throws UserDoesNotExistException{
+        setNombre(nombre);
+        setContraseña(contra);
+        setNumero_contacto(numero);
+        setDireccion(direccion);
+        setAcceso(true);
+        return DB.crearRefugio(this);
     }
     /*
      * GETTERS & SETTERS

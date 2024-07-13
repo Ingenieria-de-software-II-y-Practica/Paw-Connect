@@ -13,76 +13,66 @@ import Backend.Models.Refugio;
 import Backend.Models.Usuario;
 
 public class Controller {
-    DB db = new DB();
-    Usuario user = new Usuario();
-    Refugio refugio = new Refugio();
-    Post post = new Post();
-    Opciones opcion = new Opciones();
     /**
      * Metodo para que la vista se loguee.
      * @param username Nombre de usuario que nos pasa la vista
      * @param password Contraseña que nos pasa la vista
      * @return Devuelve un refugio, un adoptante o nulo.
-     * @throws UserDoesNotExistException Por si no existe el usuario que se busca.
      */
-    public Usuario loginUsuario(String username, String password) throws UserDoesNotExistException{
+    public Usuario loginUsuario(String username, String password){
         if(DB.existeNombre(username)){
-            if(DB.getUsuario(username) != null){
-                user = DB.getUsuario(username);
-                user = user.login(username,password);
+            Usuario user;
+            try{
+                if(DB.getUsuario(username) != null){
+                    user = DB.getUsuario(username);
+                } else{
+                    user = DB.getRefugio(username);
+                }
+                user = user.login(username, password);
                 return user;
-            } else{
-                refugio = db.getRefugio(username);
-                refugio = refugio.login(username, password);
-                return refugio;
+            } catch(Exception e){
+                e.printStackTrace();
+                return null;
             }
         }
         return null;
     }
     /**
-     * Metodo para registrar un Usuario en la BD
-     * @param nombre
-     * @param contraseña
-     * @param contacto
+     * Metodo para el boton de registrar de la Vista.
+     * @param nombre Nombre de usuario proporcionado por la vista
+     * @param contraseña Contraseña proporcionada por la vista
+     * @param contacto Numero de contacto
      * @return OK O Error: => Mensaje
      */
     public String registrarUsuario(String nombre, String contraseña, String contacto){
-        if (!(DB.existeNombre(nombre))) {
+        if (!(DB.existeUsuario(nombre))) {
             // Si no existe otro usuario con ese nombre
             Usuario usuario = new Usuario();
-            usuario.setNombre(nombre);
-            usuario.setContraseña(contraseña);
-            usuario.setNumero_contacto(contacto);
-            usuario.setAcceso(false);
             try {
-                return (DB.crearUsuario(usuario))? "OK" : "Error";
-            } catch (SQLException e) {
+                // True -> "OK" | False -> "Error"
+                return (usuario.registrarse(nombre, contraseña, contacto))? "OK" : "Error";
+            } catch (Exception e) {
                 e.printStackTrace();
-                return "Error: "+e.getMessage();
+                return "Error: "+ e.getMessage();
             }
         }else{
             return "Error: Usuario ya existe..";
         }
     }
     /**
-     * Metodo para registrar un Refugio en la BD
-     * @param nombre
-     * @param contraseña
-     * @param contacto
-     * @param direccion
+     * Metodo para registrar un refugio por la vista.
+     * @param nombre Nombre de usuario
+     * @param contraseña Contraseña
+     * @param contacto Numero de contacto
+     * @param direccion Direccion
      * @return OK o Error: => Mensaje
      */
-    public String registrarRefugio(String nombre, String contraseña, String contacto, String direccion) {
-        if (!(DB.existeNombre(nombre))) {
+    public String registrarRefugio(String nombre, String contraseña, String contacto, String direccion){
+        if (!(DB.existeRefugio(nombre))) {
             // Si no existe otro refugio con ese nombre
             Refugio refugio = new Refugio();
-            refugio.setNombre(nombre);
-            refugio.setContraseña(contraseña);
-            refugio.setNumero_contacto(contacto);
-            refugio.setAcceso(true);
-            refugio.setDireccion(direccion);
             try {
-                return (DB.crearRefugio(refugio))? "OK" : "Error";
+                return (refugio.registrarse(nombre, contraseña, contacto, direccion)) ? "OK" : "Error";
             } catch (Exception e) {
                 e.printStackTrace();
                 return "Error: "+e.getMessage();
@@ -109,11 +99,11 @@ public class Controller {
     public Post publicarPost(String titulo, String raza, String descripcion, 
     boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado,
     String edad, String tamaño, String tipoMascosta, File foto) {
-        Post post = new Post(titulo, raza, descripcion, new Opciones(vacunas, niños, otrasMascotas, desparacitado),edad,tamaño, tipoMascosta, foto);
-        Post postGuardado = DB.publicarPost(post);
-        if (postGuardado != null) {
-            return postGuardado;
-        }else{
+        Post post = new Post();
+        try{
+            return post.guardarPost(titulo, descripcion, raza, tamaño, new Opciones(vacunas, niños, otrasMascotas, desparacitado), edad, tipoMascosta, foto);
+        } catch(Exception e){
+            e.printStackTrace();
             return null;
         }
     }
@@ -136,7 +126,7 @@ public class Controller {
        }
     }
     /**
-     * Metodo para modifcar un post de la BD
+     * Metodo para modificar un post de la BD
      * @param idPost
      * @param titulo
      * @param raza
@@ -151,14 +141,15 @@ public class Controller {
      * @param foto
      * @return OK o Error: => Mensaje
      */
-    public String modifcarPost(int idPost, String titulo, String raza, String descripcion, 
+    public String modificarPost(int idPost, String titulo, String raza, String descripcion, 
     boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado,
-    String edad, String tamaño, String tipoMascosta, File foto) {
+    String edad, String tamaño, String tipoMascosta) {
         try {
             if (DB.getPostId(idPost) != null) {
                 // Si el Post existe dentro de la base de datos
-                Post nuevo = new Post(idPost,titulo, raza, descripcion, new Opciones(vacunas, niños, otrasMascotas, desparacitado), edad, tamaño, tipoMascosta, foto);
-                return (DB.modificarPost(nuevo))? "OK": "Error";
+                Post viejo = DB.getPostId(idPost);
+                Post nuevo = new Post(titulo, raza, descripcion, new Opciones(vacunas, niños, otrasMascotas, desparacitado), edad, tamaño, tipoMascosta);
+                return (viejo.editarPost(nuevo));
             }else{
                 return "Error: No existe el post";
             }
@@ -175,13 +166,9 @@ public class Controller {
      * @param desparacitado
      * @return ArrayList con todos los posts
      */
-    public ArrayList<Post> filtrPosts(boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado) {
+    public ArrayList<Post> filtroPosts(boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado, String tipoMascota, String tamaño) {
         Opciones filtro = new Opciones(vacunas, niños, otrasMascotas, desparacitado);
-        ArrayList<Post> lista_filtro = DB.filtrarPost(filtro);
-        if (lista_filtro != null) {
-            return lista_filtro;
-        }else{
-            return null;
-        }
+        ArrayList<Post> lista_filtro = DB.filtrarPost(filtro, tipoMascota, tamaño);
+        return lista_filtro;
     }
 }

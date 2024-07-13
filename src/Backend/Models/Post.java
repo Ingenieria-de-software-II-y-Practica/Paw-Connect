@@ -41,7 +41,12 @@ public class Post {
         this.tipoMascota = tipoMascota;
         this.foto = foto;
     }
-    public void asignar(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota){
+    
+    public Post(String titulo2, String raza2, String descripcion2, Opciones opciones, String edad2, String tamaño2,
+            String tipoMascosta) {
+        //TODO Auto-generated constructor stub
+    }
+    public void asignar(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota, File foto){
         this.titulo = titulo;
         this.raza = raza;
         this.descripcion = descripcion;
@@ -49,43 +54,32 @@ public class Post {
         this.edad = edad;
         this.tamaño = tamaño;
         this.tipoMascota = tipoMascota;
+        this.foto = foto;
     }
     /**
-     * Metodo para eliminar un Post de la BD
-     * @param PostId Id del Post
-     * @return Confirmacion: OK ==> true, Error => mensaje
+     * Metodo con el cual un Post se guardara en la base de datos
+     * @param titulo
+     * @param descripcion
+     * @param raza
+     * @param tamaño
+     * @param verificacion Clase en la que estaran atributos booleanos
+     * @param edad
+     * @param tipoMascota
+     * @param foto
+     * @return Regresa el objeto si se publico exitosamente. Sino un null.
      */
-    public String eliminarPost(int PostId){
-        boolean confirmacion = DB.eliminarPost(PostId);
-        if (confirmacion) {
-            return "OK";
-        }else{
-            return "Error: al eliminar";
-        }
-    }
-    /**
-     * Metodo para guardar un Post en la DB
-     * @param post Post que se va a guardar
-     * @return Confirmacion: OK => true, Error => mensaje
-     */
-    public String guardarPost(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota) {
-        asignar(titulo, descripcion, raza, tamaño, verificacion, edad, tipoMascota);
-        boolean confirmacion = DB.publicarPost(this);
-        return (confirmacion)? "OK" : "Error: al publicar";
+    public Post guardarPost(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota, File foto) {
+        asignar(titulo, descripcion, raza, tamaño, verificacion, edad, tipoMascota, foto);
+        return DB.publicarPost(this);
     }
     /**
      * Metodo para editar un Post en la DB
-     * @param post Post a editar
+     * @param nuevo Cambios del post
      * @return Post editar, caso no existir: null
      */
-    public Post editarPost(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota) {
-        if (DB.existePost(id)) {
-            asignar(titulo, descripcion, raza, tamaño, verificacion, edad, tipoMascota);
-            Post postUpdate = DB.modificarPost(this);
-            return postUpdate;
-        }
-        
-        return null;
+    public String editarPost(Post nuevo) {
+        asignar(nuevo.titulo, nuevo.descripcion, nuevo.raza, nuevo.tamaño, nuevo.verificacion, nuevo.edad, tipoMascota, foto);
+        return (DB.modificarPost(this)) ? "OK" : "Error";
     }
 
     /*
