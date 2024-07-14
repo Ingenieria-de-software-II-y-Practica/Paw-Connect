@@ -1,11 +1,7 @@
 package Frontend.LoginAndSignUp.src.loginandsignup;
 
 import java.awt.Color;
-import java.awt.Image;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 import Backend.Models.Usuario;
@@ -15,17 +11,14 @@ import Backend.Models.Usuario;
  * @author audre
  */
 public class MenuR extends javax.swing.JFrame {
-    public Usuario refugio;
+
     /**
      * Creates new form MenuR
      */
     public MenuR() {
         initComponents();
     }
-    public MenuR(Usuario refugio) {
-        this.refugio = refugio;
-        initComponents();
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,36 +50,37 @@ public class MenuR extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jPanel20 = new javax.swing.JPanel();
-        jLabel33 = new javax.swing.JLabel();
+        Descrip4 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
-        jLabel30 = new javax.swing.JLabel();
+        Img4 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
+        Descrip2 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
+        Img2 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
-        jLabel32 = new javax.swing.JLabel();
+        Descrip3 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
+        Img3 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jLabel31 = new javax.swing.JLabel();
+        Descrip1 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
+        Img1 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel36 = new javax.swing.JLabel();
+        EligeImg = new javax.swing.JButton();
         jLabel37 = new javax.swing.JLabel();
         textArea2 = new java.awt.TextArea();
         jLabel38 = new javax.swing.JLabel();
@@ -105,14 +99,12 @@ public class MenuR extends javax.swing.JFrame {
         jCheckBox7 = new javax.swing.JCheckBox();
         jLabel44 = new javax.swing.JLabel();
         jCheckBox8 = new javax.swing.JCheckBox();
+        jButton4 = new javax.swing.JButton();
+        Imagen = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         textArea1 = new java.awt.TextArea();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -121,7 +113,6 @@ public class MenuR extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
@@ -169,7 +160,7 @@ public class MenuR extends javax.swing.JFrame {
         SALIR.setLayout(new AbsoluteLayout());
 
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\audre\\OneDrive\\Documentos\\NetBeansProjects\\LoginAndSignUp\\src\\icon\\Imagen6.png")); // NOI18N
-        SALIR.add(jLabel7, new AbsoluteConstraints(20, 30, -1, 50));
+        SALIR.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 50));
 
         jLabel8.setBackground(new java.awt.Color(102, 102, 102));
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
@@ -274,14 +265,14 @@ public class MenuR extends javax.swing.JFrame {
         jPanel19.add(jButton15, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel20.setLayout(new AbsoluteLayout());
-        jPanel20.add(jLabel33, new AbsoluteConstraints(0, 0, 220, 160));
+        jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel20.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
 
         jPanel19.add(jPanel20, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel21.setLayout(new AbsoluteLayout());
-        jPanel21.add(jLabel30, new AbsoluteConstraints(0, 0, 70, 70));
+        jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel21.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel19.add(jPanel21, new AbsoluteConstraints(20, 20, 70, 70));
 
@@ -307,14 +298,14 @@ public class MenuR extends javax.swing.JFrame {
         jPanel13.add(jButton11, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel14.setLayout(new AbsoluteLayout());
-        jPanel14.add(jLabel34, new AbsoluteConstraints(0, 0, 220, 160));
+        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel14.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
 
         jPanel13.add(jPanel14, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel15.setLayout(new AbsoluteLayout());
-        jPanel15.add(jLabel28, new AbsoluteConstraints(0, 0, 70, 70));
+        jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel15.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel13.add(jPanel15, new AbsoluteConstraints(20, 20, 70, 70));
 
@@ -340,14 +331,14 @@ public class MenuR extends javax.swing.JFrame {
         jPanel16.add(jButton13, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel17.setLayout(new AbsoluteLayout());
-        jPanel17.add(jLabel32, new AbsoluteConstraints(0, 0, 220, 160));
+        jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel17.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
 
         jPanel16.add(jPanel17, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel18.setLayout(new AbsoluteLayout());
-        jPanel18.add(jLabel29, new AbsoluteConstraints(0, 0, 70, 70));
+        jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel18.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel16.add(jPanel18, new AbsoluteConstraints(20, 20, 70, 70));
 
@@ -373,16 +364,16 @@ public class MenuR extends javax.swing.JFrame {
         jPanel4.add(jButton9, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setLayout(new AbsoluteLayout());
-        jPanel7.add(jLabel31, new AbsoluteConstraints(0, 0, 220, 160));
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel7.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
 
         jPanel4.add(jPanel7, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setLayout(new AbsoluteLayout());
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/leia.jpg"))); // NOI18N
-        jPanel10.add(jLabel27, new AbsoluteConstraints(0, 0, 70, 70));
+        jPanel10.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel4.add(jPanel10, new AbsoluteConstraints(20, 20, 70, 70));
 
@@ -407,46 +398,46 @@ public class MenuR extends javax.swing.JFrame {
         jLabel35.setToolTipText("");
         jPanel5.add(jLabel35, new AbsoluteConstraints(290, 50, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 236, 236));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Imagen");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        EligeImg.setBackground(new java.awt.Color(255, 236, 236));
+        EligeImg.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        EligeImg.setForeground(new java.awt.Color(51, 51, 51));
+        EligeImg.setText("Elige una imagen");
+        EligeImg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                EligeImgActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton2, new AbsoluteConstraints(80, 150, 120, 110));
+        jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 120, 110));
 
         jLabel36.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel36.setForeground(new java.awt.Color(51, 51, 51));
         jLabel36.setText("Elige una imagen");
-        jPanel5.add(jLabel36, new AbsoluteConstraints(80, 110, -1, -1));
+        jPanel5.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
         jLabel37.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(51, 51, 51));
         jLabel37.setText("Tipo");
-        jPanel5.add(jLabel37, new AbsoluteConstraints(430, 330, -1, -1));
+        jPanel5.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, -1, -1));
 
         textArea2.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         textArea2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         textArea2.setForeground(new java.awt.Color(51, 51, 51));
-        jPanel5.add(textArea2, new AbsoluteConstraints(240, 150, 730, 110));
+        jPanel5.add(textArea2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 730, 110));
 
         jLabel38.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel38.setForeground(new java.awt.Color(51, 51, 51));
         jLabel38.setText("Agrega una breve descripcion");
-        jPanel5.add(jLabel38, new AbsoluteConstraints(240, 110, -1, -1));
+        jPanel5.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, -1));
 
         jLabel39.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel39.setForeground(new java.awt.Color(51, 51, 51));
         jLabel39.setText("Edad ");
-        jPanel5.add(jLabel39, new AbsoluteConstraints(80, 470, -1, -1));
+        jPanel5.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, -1, -1));
 
         jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel40.setForeground(new java.awt.Color(51, 51, 51));
         jLabel40.setText("Raza");
-        jPanel5.add(jLabel40, new AbsoluteConstraints(80, 400, -1, -1));
+        jPanel5.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
 
         jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(51, 51, 51));
@@ -464,7 +455,7 @@ public class MenuR extends javax.swing.JFrame {
                 jTextField5ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField5, new AbsoluteConstraints(80, 360, 260, 30));
+        jPanel5.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 260, 30));
 
         jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField6.setForeground(new java.awt.Color(51, 51, 51));
@@ -473,12 +464,12 @@ public class MenuR extends javax.swing.JFrame {
                 jTextField6ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField6, new AbsoluteConstraints(80, 430, 260, 30));
+        jPanel5.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 260, 30));
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(51, 51, 51));
         jLabel41.setText("Nombre");
-        jPanel5.add(jLabel41, new AbsoluteConstraints(80, 330, -1, -1));
+        jPanel5.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBox3.setForeground(new java.awt.Color(51, 51, 51));
@@ -488,12 +479,12 @@ public class MenuR extends javax.swing.JFrame {
                 jComboBox3ActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBox3, new AbsoluteConstraints(430, 360, 230, -1));
+        jPanel5.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, 230, -1));
 
         jLabel42.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel42.setForeground(new java.awt.Color(51, 51, 51));
         jLabel42.setText("Verificacion (Selecciona si lo cumple)");
-        jPanel5.add(jLabel42, new AbsoluteConstraints(720, 330, -1, 30));
+        jPanel5.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, -1, 30));
 
         jComboBox4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBox4.setForeground(new java.awt.Color(51, 51, 51));
@@ -504,12 +495,12 @@ public class MenuR extends javax.swing.JFrame {
                 jComboBox4ActionPerformed(evt);
             }
         });
-        jPanel5.add(jComboBox4, new AbsoluteConstraints(430, 430, 230, -1));
+        jPanel5.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 230, -1));
 
         jLabel43.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(51, 51, 51));
         jLabel43.setText("Tamaño");
-        jPanel5.add(jLabel43, new AbsoluteConstraints(430, 400, -1, 20));
+        jPanel5.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, -1, 20));
 
         jCheckBox2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jCheckBox2.setForeground(new java.awt.Color(51, 51, 51));
@@ -520,7 +511,7 @@ public class MenuR extends javax.swing.JFrame {
                 jCheckBox2ActionPerformed(evt);
             }
         });
-        jPanel5.add(jCheckBox2, new AbsoluteConstraints(720, 450, 220, 30));
+        jPanel5.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 220, 30));
 
         jCheckBox6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jCheckBox6.setForeground(new java.awt.Color(51, 51, 51));
@@ -531,7 +522,7 @@ public class MenuR extends javax.swing.JFrame {
                 jCheckBox6ActionPerformed(evt);
             }
         });
-        jPanel5.add(jCheckBox6, new AbsoluteConstraints(720, 390, 140, 30));
+        jPanel5.add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 390, 140, 30));
 
         jCheckBox7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jCheckBox7.setForeground(new java.awt.Color(51, 51, 51));
@@ -542,12 +533,12 @@ public class MenuR extends javax.swing.JFrame {
                 jCheckBox7ActionPerformed(evt);
             }
         });
-        jPanel5.add(jCheckBox7, new AbsoluteConstraints(720, 420, 170, 30));
+        jPanel5.add(jCheckBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 420, 170, 30));
 
         jLabel44.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(51, 51, 51));
         jLabel44.setText("Agrega sus caracteristicas");
-        jPanel5.add(jLabel44, new AbsoluteConstraints(80, 290, -1, 20));
+        jPanel5.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, 20));
 
         jCheckBox8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jCheckBox8.setForeground(new java.awt.Color(51, 51, 51));
@@ -558,15 +549,15 @@ public class MenuR extends javax.swing.JFrame {
                 jCheckBox8ActionPerformed(evt);
             }
         });
-        jPanel5.add(jCheckBox8, new AbsoluteConstraints(720, 360, 100, 30));
+        jPanel5.add(jCheckBox8, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, 100, 30));
 
         jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel45.setToolTipText("");
-        jPanel5.add(jLabel45, new AbsoluteConstraints(-140, -140, -1, 710));
+        jPanel5.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(-140, -140, -1, 710));
 
         jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel46.setToolTipText("");
-        jPanel5.add(jLabel46, new AbsoluteConstraints(680, 80, 650, 720));
+        jPanel5.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 650, 720));
 
         jButton4.setBackground(new java.awt.Color(255, 236, 236));
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -577,7 +568,7 @@ public class MenuR extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton4, new AbsoluteConstraints(450, 550, 160, 50));
+        jPanel5.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 550, 160, 50));
 
         jTabbedPane1.addTab("tab2", jPanel5);
 
@@ -588,7 +579,7 @@ public class MenuR extends javax.swing.JFrame {
         jLabel16.setForeground(new java.awt.Color(255, 153, 153));
         jLabel16.setText("EDITAR PUBLICACION");
         jLabel16.setToolTipText("");
-        jPanel3.add(jLabel16, new AbsoluteConstraints(460, 40, -1, -1));
+        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 40, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(255, 236, 236));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -599,32 +590,32 @@ public class MenuR extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new AbsoluteConstraints(80, 150, 120, 110));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 120, 110));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(51, 51, 51));
         jLabel12.setText("Elige una imagen");
-        jPanel3.add(jLabel12, new AbsoluteConstraints(80, 110, -1, -1));
+        jPanel3.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(51, 51, 51));
         jLabel17.setText("Tipo");
-        jPanel3.add(jLabel17, new AbsoluteConstraints(430, 330, -1, -1));
+        jPanel3.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, -1, -1));
 
         textArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         textArea1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         textArea1.setForeground(new java.awt.Color(51, 51, 51));
-        jPanel3.add(textArea1, new AbsoluteConstraints(240, 150, 730, 110));
+        jPanel3.add(textArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 730, 110));
 
         jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(51, 51, 51));
         jLabel18.setText("Agrega una breve descripcion");
-        jPanel3.add(jLabel18, new AbsoluteConstraints(240, 110, -1, -1));
+        jPanel3.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, -1, -1));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(51, 51, 51));
         jLabel19.setText("Edad ");
-        jPanel3.add(jLabel19, new AbsoluteConstraints(80, 470, -1, -1));
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, -1, -1));
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(51, 51, 51));
@@ -638,7 +629,7 @@ public class MenuR extends javax.swing.JFrame {
                 jTextField1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField1, new AbsoluteConstraints(80, 500, 260, 30));
+        jPanel3.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 260, 30));
 
         jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(51, 51, 51));
@@ -661,7 +652,7 @@ public class MenuR extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(51, 51, 51));
         jLabel22.setText("Nombre");
-        jPanel3.add(jLabel22, new AbsoluteConstraints(80, 330, -1, -1));
+        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, -1, -1));
 
         jComboBox1.setBackground(new java.awt.Color(255, 246, 246));
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -672,7 +663,7 @@ public class MenuR extends javax.swing.JFrame {
                 jComboBox1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jComboBox1, new AbsoluteConstraints(430, 360, 230, -1));
+        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, 230, -1));
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(51, 51, 51));
@@ -689,12 +680,12 @@ public class MenuR extends javax.swing.JFrame {
                 jComboBox2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jComboBox2, new AbsoluteConstraints(430, 430, 230, -1));
+        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 430, 230, -1));
 
         jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(51, 51, 51));
         jLabel24.setText("Tamaño");
-        jPanel3.add(jLabel24, new AbsoluteConstraints(430, 400, -1, 20));
+        jPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 400, -1, 20));
 
         jCheckBox1.setBackground(new java.awt.Color(255, 246, 246));
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -747,7 +738,7 @@ public class MenuR extends javax.swing.JFrame {
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(51, 51, 51));
         jLabel25.setText("Agrega sus caracteristicas");
-        jPanel3.add(jLabel25, new AbsoluteConstraints(80, 290, -1, 20));
+        jPanel3.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, -1, 20));
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel21.setToolTipText("");
@@ -817,20 +808,8 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_BUSCARMouseExited
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String Ruta = "";
-        JFileChooser jFileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JGP & PNG","jpg","png");
-        jFileChooser.setFileFilter(filter);
-        
-        int respuesta = jFileChooser.showOpenDialog(this);
-        
-        if (respuesta == JFileChooser.APPROVE_OPTION){
-            Ruta = jFileChooser.getSelectedFile().getPath();
-            
-            Image mImage = new ImageIcon(Ruta).getImage();
-            ImageIcon mIcono = new ImageIcon(mImage.getScaledInstance(Imagenn.getWidth(), Imagenn.getHeight() , Image.SCALE_SMOOTH));
-            Imagenn.setIcon(mIcono);
-        }
+        JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        int r = j.showSaveDialog(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -844,10 +823,6 @@ public class MenuR extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
@@ -894,20 +869,8 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String Ruta = "";
-        JFileChooser jFileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("JGP & PNG","jpg","png");
-        jFileChooser.setFileFilter(filter);
-        
-        int respuesta = jFileChooser.showOpenDialog(this);
-        
-        if (respuesta == JFileChooser.APPROVE_OPTION){
-            Ruta = jFileChooser.getSelectedFile().getPath();
-            
-            Image mImage = new ImageIcon(Ruta).getImage();
-            ImageIcon mIcono = new ImageIcon(mImage.getScaledInstance(Imagen.getWidth(), Imagen.getHeight() , Image.SCALE_SMOOTH));
-            Imagen.setIcon(mIcono);
-        }
+        JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        int r = j.showSaveDialog(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -917,10 +880,6 @@ public class MenuR extends javax.swing.JFrame {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
@@ -954,21 +913,33 @@ public class MenuR extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
   
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BUSCAR;
+    private javax.swing.JLabel Descrip1;
+    private javax.swing.JLabel Descrip2;
+    private javax.swing.JLabel Descrip3;
+    private javax.swing.JLabel Descrip4;
+    private javax.swing.JButton EligeImg;
     private javax.swing.JPanel HOME;
+    private javax.swing.JLabel Imagen;
+    private javax.swing.JLabel Img1;
+    private javax.swing.JLabel Img2;
+    private javax.swing.JLabel Img3;
+    private javax.swing.JLabel Img4;
     private javax.swing.JPanel SALIR;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
@@ -981,7 +952,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
@@ -993,7 +963,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -1005,16 +974,8 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
@@ -1057,5 +1018,7 @@ public class MenuR extends javax.swing.JFrame {
     private java.awt.TextArea textArea1;
     private java.awt.TextArea textArea2;
     // End of variables declaration//GEN-END:variables
+
+
 
 }
