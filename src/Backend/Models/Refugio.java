@@ -27,6 +27,11 @@ public class Refugio extends Usuario{
         setAcceso(true); // True indica que el usuario es un refugio.
         this.direccion = direccion;
     }
+    public Refugio(int id_refugio, String nombreRefugio, String direccion2) {
+        this.id = id_refugio;
+        this.nombre = nombreRefugio;
+        this.direccion=direccion2;
+    }
     /**
      * Metodo el cual asigna valores a los atributos y guarda el Refugio en la base de datos
      * @param nombre
