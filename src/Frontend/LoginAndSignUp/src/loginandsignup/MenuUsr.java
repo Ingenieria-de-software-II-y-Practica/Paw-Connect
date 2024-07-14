@@ -6,14 +6,12 @@ package loginandsignup;
 
 import java.awt.Color;
 
-import Backend.Models.Usuario;
-
 /**
  *
  * @author audre
  */
 public class MenuUsr extends javax.swing.JFrame {
-    public Usuario usuario;
+
     /**
      * Creates new form MenuUsr
      */
@@ -21,10 +19,7 @@ public class MenuUsr extends javax.swing.JFrame {
         initComponents();
         
     }
-    public MenuUsr(Usuario usuario) {
-        this.usuario = usuario;
-        initComponents();
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,53 +48,51 @@ public class MenuUsr extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jPanel19 = new javax.swing.JPanel();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
         jPanel20 = new javax.swing.JPanel();
-        jLabel33 = new javax.swing.JLabel();
+        Descrip4 = new javax.swing.JLabel();
+        NombreR4 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
-        jLabel30 = new javax.swing.JLabel();
+        Img4 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
+        Descrip2 = new javax.swing.JLabel();
+        NombreR2 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
+        Img2 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
-        jButton12 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
-        jLabel32 = new javax.swing.JLabel();
+        Descrip3 = new javax.swing.JLabel();
+        NombreR3 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
+        Img3 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jLabel31 = new javax.swing.JLabel();
+        Descrip1 = new javax.swing.JLabel();
+        NombreR1 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
+        Img1 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
         jCheckBox5 = new javax.swing.JCheckBox();
-        jButton3 = new javax.swing.JButton();
-        jPanel8 = new javax.swing.JPanel();
+        ButtonBuscar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Tablaa = new javax.swing.JTable();
         jLabel26 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1500, 780));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(247, 247, 247));
@@ -133,8 +126,8 @@ public class MenuUsr extends javax.swing.JFrame {
         });
         SALIR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\audre\\OneDrive\\Documentos\\NetBeansProjects\\LoginAndSignUp\\src\\icon\\Imagen6.png")); // NOI18N
-        SALIR.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 50));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen6.png"))); // NOI18N
+        SALIR.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 50, 50));
 
         jLabel8.setBackground(new java.awt.Color(102, 102, 102));
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
@@ -223,32 +216,23 @@ public class MenuUsr extends javax.swing.JFrame {
         jPanel19.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton14.setBackground(new java.awt.Color(247, 247, 247));
-        jButton14.setForeground(new java.awt.Color(51, 51, 51));
-        jButton14.setText("Editar");
-        jButton14.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton14ActionPerformed(evt);
-            }
-        });
-        jPanel19.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
-
-        jButton15.setBackground(new java.awt.Color(247, 247, 247));
-        jButton15.setForeground(new java.awt.Color(51, 51, 51));
-        jButton15.setText("Eliminar");
-        jPanel19.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 30));
-
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
         jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel20.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
+        jPanel20.add(Descrip4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
+        jPanel20.add(NombreR4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
 
         jPanel19.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
         jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel21.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
+        jPanel21.add(Img4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel19.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+
+        jLabel19.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel19.setText("Numero de Tel:");
+        jLabel19.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel19.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 80));
 
         jPanel2.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, 350, 200));
 
@@ -256,32 +240,23 @@ public class MenuUsr extends javax.swing.JFrame {
         jPanel13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton10.setBackground(new java.awt.Color(247, 247, 247));
-        jButton10.setForeground(new java.awt.Color(51, 51, 51));
-        jButton10.setText("Editar");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        jPanel13.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
-
-        jButton11.setBackground(new java.awt.Color(247, 247, 247));
-        jButton11.setForeground(new java.awt.Color(51, 51, 51));
-        jButton11.setText("Eliminar");
-        jPanel13.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 30));
-
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel14.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
+        jPanel14.add(Descrip2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
+        jPanel14.add(NombreR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
 
         jPanel13.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel15.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
+        jPanel15.add(Img2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel13.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+
+        jLabel17.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel17.setText("Numero de Tel:");
+        jLabel17.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel13.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 80));
 
         jPanel2.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 350, 200));
 
@@ -289,32 +264,23 @@ public class MenuUsr extends javax.swing.JFrame {
         jPanel16.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton12.setBackground(new java.awt.Color(247, 247, 247));
-        jButton12.setForeground(new java.awt.Color(51, 51, 51));
-        jButton12.setText("Editar");
-        jButton12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton12ActionPerformed(evt);
-            }
-        });
-        jPanel16.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
-
-        jButton13.setBackground(new java.awt.Color(247, 247, 247));
-        jButton13.setForeground(new java.awt.Color(51, 51, 51));
-        jButton13.setText("Eliminar");
-        jPanel16.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 30));
-
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel17.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
+        jPanel17.add(Descrip3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
+        jPanel17.add(NombreR3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
 
         jPanel16.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel18.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
+        jPanel18.add(Img3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel16.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+
+        jLabel18.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel18.setText("Numero de Tel:");
+        jLabel18.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel16.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 80));
 
         jPanel2.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 350, 200));
 
@@ -322,34 +288,23 @@ public class MenuUsr extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton6.setBackground(new java.awt.Color(247, 247, 247));
-        jButton6.setForeground(new java.awt.Color(51, 51, 51));
-        jButton6.setText("Editar");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
-
-        jButton9.setBackground(new java.awt.Color(247, 247, 247));
-        jButton9.setForeground(new java.awt.Color(51, 51, 51));
-        jButton9.setText("Eliminar");
-        jPanel4.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 30));
-
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel7.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
+        jPanel7.add(Descrip1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
+        jPanel7.add(NombreR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
 
         jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/leia.jpg"))); // NOI18N
-        jPanel10.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
+        jPanel10.add(Img1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel4.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+
+        jLabel12.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel12.setText("Numero de Tel:");
+        jLabel12.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 80));
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 350, 200));
 
@@ -380,25 +335,13 @@ public class MenuUsr extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de mascota", "Perro", "Gato" }));
-        jPanel6.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 173, -1));
-
-        jComboBox2.setBackground(new java.awt.Color(255, 246, 246));
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Raza", "Mestizo", "Caniche", "Salchicha" }));
-        jPanel6.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 173, -1));
+        jPanel6.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 173, -1));
 
         jComboBox5.setBackground(new java.awt.Color(255, 246, 246));
         jComboBox5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jComboBox5.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tamaño", "Chico", "Mediano", "Grande" }));
-        jPanel6.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 173, -1));
-
-        jComboBox6.setBackground(new java.awt.Color(255, 246, 246));
-        jComboBox6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jComboBox6.setForeground(new java.awt.Color(51, 51, 51));
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tamaño", "Chico", "Mediano", "Grande" }));
-        jPanel6.add(jComboBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 50, 173, -1));
+        jPanel6.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 173, -1));
 
         jCheckBox1.setBackground(new java.awt.Color(255, 246, 246));
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -410,7 +353,7 @@ public class MenuUsr extends javax.swing.JFrame {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel6.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 220, 30));
+        jPanel6.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 220, 30));
 
         jCheckBox3.setBackground(new java.awt.Color(255, 246, 246));
         jCheckBox3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -434,7 +377,7 @@ public class MenuUsr extends javax.swing.JFrame {
                 jCheckBox4ActionPerformed(evt);
             }
         });
-        jPanel6.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 170, 30));
+        jPanel6.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 170, 30));
 
         jCheckBox5.setBackground(new java.awt.Color(255, 246, 246));
         jCheckBox5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -448,33 +391,64 @@ public class MenuUsr extends javax.swing.JFrame {
         });
         jPanel6.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 30));
 
-        jButton3.setBackground(new java.awt.Color(255, 246, 246));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(51, 51, 51));
-        jButton3.setText("Buscar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        ButtonBuscar.setBackground(new java.awt.Color(255, 246, 246));
+        ButtonBuscar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        ButtonBuscar.setForeground(new java.awt.Color(51, 51, 51));
+        ButtonBuscar.setText("Buscar");
+        ButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ButtonBuscarActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 140, 30));
+        jPanel6.add(ButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 140, 30));
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 790, 190));
 
-        jPanel8.setBackground(new java.awt.Color(255, 236, 236));
+        jScrollPane2.setBackground(new java.awt.Color(255, 236, 236));
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 790, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
-        );
+        Tablaa.setForeground(new java.awt.Color(51, 51, 51));
+        Tablaa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre Mascota", "Refugio", "Raza", "Telefono", "Direccion"
+            }
+        ));
+        Tablaa.setGridColor(new java.awt.Color(153, 153, 153));
+        Tablaa.setOpaque(false);
+        jScrollPane2.setViewportView(Tablaa);
 
-        jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 790, 240));
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 790, 260));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel26.setToolTipText("");
@@ -531,22 +505,6 @@ public class MenuUsr extends javax.swing.JFrame {
         BUSCAR.setBackground(new Color(247,247,247));
     }//GEN-LAST:event_BUSCARMouseExited
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
-    }//GEN-LAST:event_jButton14ActionPerformed
-
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
-    }//GEN-LAST:event_jButton10ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
-    }//GEN-LAST:event_jButton6ActionPerformed
-
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
@@ -563,56 +521,51 @@ public class MenuUsr extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        MenuR MenuFrame = new MenuR();
-        MenuFrame.setVisible(true);
-        MenuFrame.pack();
-        MenuFrame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
+
+    }//GEN-LAST:event_ButtonBuscarActionPerformed
 
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BUSCAR;
+    private javax.swing.JButton ButtonBuscar;
+    private javax.swing.JLabel Descrip1;
+    private javax.swing.JLabel Descrip2;
+    private javax.swing.JLabel Descrip3;
+    private javax.swing.JLabel Descrip4;
     private javax.swing.JPanel HOME;
+    private javax.swing.JLabel Img1;
+    private javax.swing.JLabel Img2;
+    private javax.swing.JLabel Img3;
+    private javax.swing.JLabel Img4;
+    private javax.swing.JLabel NombreR1;
+    private javax.swing.JLabel NombreR2;
+    private javax.swing.JLabel NombreR3;
+    private javax.swing.JLabel NombreR4;
     private javax.swing.JPanel SALIR;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JTable Tablaa;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -635,7 +588,7 @@ public class MenuUsr extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 }
