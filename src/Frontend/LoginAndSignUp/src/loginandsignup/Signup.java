@@ -4,10 +4,13 @@
  */
 package Frontend.LoginAndSignUp.src.loginandsignup;
 
+import Backend.Controller.Controller;
+import Backend.Models.Refugio;
+import Backend.Models.Usuario;
 
 public class Signup extends javax.swing.JFrame {
 
-
+    
     public Signup() {
         initComponents();
     }
@@ -210,15 +213,15 @@ public class Signup extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setMinimumSize(new java.awt.Dimension(400, 500));
         jPanel4.setPreferredSize(new java.awt.Dimension(420, 500));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.setLayout(new AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen1.jpg"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        jPanel4.add(jLabel1, new AbsoluteConstraints(70, 50, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 153, 153));
         jLabel2.setText("PAW CONNECT");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+        jPanel4.add(jLabel2, new AbsoluteConstraints(60, 270, -1, -1));
 
         jPanel1.add(jPanel4);
         jPanel4.setBounds(390, -10, 410, 510);
@@ -255,14 +258,14 @@ public class Signup extends javax.swing.JFrame {
         
         
         if ("Adoptante".equals(tipoUsr)) {
-            Usuario usuario = controller.registrarUsr(nombre, numero, contra);
+            Usuario usuario = Controller.registrarUsuario(nombre, numero, contra);
             Login LoginFrame = new Login(usuario);
             LoginFrame.setVisible(true);
             LoginFrame.pack();
             LoginFrame.setLocationRelativeTo(null);
             this.dispose();
         }else{
-            Refugio refugio = controller.registrarR(nombre, numero, contra);
+            Refugio refugio = Controller.registrarRefugio(nombre, numero, contra);
             Login LoginFrame = new Login(refugio);
             LoginFrame.setVisible(true);
             LoginFrame.pack();

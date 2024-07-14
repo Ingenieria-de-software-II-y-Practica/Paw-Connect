@@ -1,4 +1,4 @@
-package loginandsignup;
+package Frontend.LoginAndSignUp.src.loginandsignup;
 
 public class LoginAndSignUp {
 

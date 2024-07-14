@@ -18,7 +18,7 @@ public class Controller {
      * @param password Contraseña que nos pasa la vista
      * @return Devuelve un refugio, un adoptante o nulo.
      */
-    public Usuario loginUsuario(String username, String password){
+    public static Usuario loginUsuario(String username, String password){
         if(DB.existeNombre(username)){
             Usuario user;
             try{
@@ -43,7 +43,7 @@ public class Controller {
      * @param contacto Numero de contacto
      * @return OK O Error: => Mensaje
      */
-    public String registrarUsuario(String nombre, String contraseña, String contacto){
+    public static String registrarUsuario(String nombre, String contraseña, String contacto){
         if (!(DB.existeUsuario(nombre))) {
             // Si no existe otro usuario con ese nombre
             Usuario usuario = new Usuario();
@@ -66,7 +66,7 @@ public class Controller {
      * @param direccion Direccion
      * @return OK o Error: => Mensaje
      */
-    public String registrarRefugio(String nombre, String contraseña, String contacto, String direccion){
+    public static String registrarRefugio(String nombre, String contraseña, String contacto, String direccion){
         if (!(DB.existeRefugio(nombre))) {
             // Si no existe otro refugio con ese nombre
             Refugio refugio = new Refugio();
@@ -95,7 +95,7 @@ public class Controller {
      * @param foto
      * @return Post recientemente publicado
      */
-    public Post publicarPost(String titulo, String raza, String descripcion, 
+    public static Post publicarPost(String titulo, String raza, String descripcion, 
     boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado,
     String edad, String tamaño, String tipoMascosta, File foto) {
         Post post = new Post();
@@ -111,7 +111,7 @@ public class Controller {
      * @param post Post ha eliminar
      * @return OK o Error => Mensaje
      */
-    public String eliminarPost(int idPost) {
+    public static String eliminarPost(int idPost) {
        try {
         if (DB.getPostId(idPost) != null) {
             // Si encuentra el post dentro de la BD
@@ -140,7 +140,7 @@ public class Controller {
      * @param foto
      * @return OK o Error: => Mensaje
      */
-    public String modificarPost(int idPost, String titulo, String raza, String descripcion, 
+    public static String modificarPost(int idPost, String titulo, String raza, String descripcion, 
     boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado,
     String edad, String tamaño, String tipoMascosta) {
         try {
@@ -165,7 +165,7 @@ public class Controller {
      * @param desparacitado
      * @return ArrayList con todos los posts
      */
-    public ArrayList<Post> filtroPosts(boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado, String tipoMascota, String tamaño) {
+    public static ArrayList<Post> filtroPosts(boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado, String tipoMascota, String tamaño) {
         Opciones filtro = new Opciones(vacunas, niños, otrasMascotas, desparacitado);
         ArrayList<Post> lista_filtro = DB.filtrarPost(filtro, tipoMascota, tamaño);
         return lista_filtro;

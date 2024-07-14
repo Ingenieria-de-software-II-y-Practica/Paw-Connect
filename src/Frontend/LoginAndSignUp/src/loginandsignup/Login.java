@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package loginandsignup;
+package Frontend.LoginAndSignUp.src.loginandsignup;
 
 import Backend.Controller.Controller;
+import Backend.Models.Refugio;
 import Backend.Models.Usuario;
 
 public class Login extends javax.swing.JFrame {
@@ -220,7 +217,7 @@ public class Login extends javax.swing.JFrame {
         String nombre = Contra.getText();
         String contra = Contra.getText();
         
-        Usuario confirmacion = controller.loginUsuario(nombre, contra); 
+        Usuario confirmacion = Controller.loginUsuario(nombre, contra); 
         if (confirmacion.isAcceso() == false){
             MenuUsr MenuFrame = new MenuUsr(confirmacion);
             MenuFrame.setVisible(true);
