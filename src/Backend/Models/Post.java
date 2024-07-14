@@ -70,7 +70,7 @@ public class Post {
      */
     public Post guardarPost(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota, File foto) {
         asignar(titulo, descripcion, raza, tamaño, verificacion, edad, tipoMascota, foto);
-        return DB.publicarPost(this);
+        return this;
     }
     /**
      * Metodo para editar un Post en la DB
@@ -79,7 +79,7 @@ public class Post {
      */
     public String editarPost(Post nuevo) {
         asignar(nuevo.titulo, nuevo.descripcion, nuevo.raza, nuevo.tamaño, nuevo.verificacion, nuevo.edad, tipoMascota, foto);
-        return (DB.modificarPost(this)) ? "OK" : "Error";
+        return (DB.updatePost(this)) ? "OK" : "Error";
     }
 
     /*
