@@ -204,16 +204,16 @@ public class Login extends javax.swing.JFrame {
         String nombre = Contra.getText();
         String contra = Contra.getText();
         
-        Usuario confirmacion = controller.loginUsuario(nombre, contra); 
+        Usuario confirmacion = Controller.loginUsuario(nombre, contra); 
         if (confirmacion.isAcceso() == false){
-            MenuUsr MenuFrame = new MenuUsr(confirmacion);
+            MenuUsr MenuFrame = new MenuUsr();
             MenuFrame.setVisible(true);
             MenuFrame.pack();
             MenuFrame.setLocationRelativeTo(null);
             this.dispose();
             
         }else{
-            MenuR MenuFrame = new MenuR(confirmacion);
+            MenuR MenuFrame = new MenuR(confirmacion.getId(),confirmacion.getNombre(),confirmacion.getNumero_contacto());
             MenuFrame.setVisible(true);
             MenuFrame.pack();
             MenuFrame.setLocationRelativeTo(null);
@@ -222,7 +222,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Signup1 SignupFrame = new Signup1();
+        Signup SignupFrame = new Signup();
         SignupFrame.setVisible(true);
         SignupFrame.pack();
         SignupFrame.setLocationRelativeTo(null);

@@ -4,6 +4,7 @@
  */
 package Frontend.LoginAndSignUp.src.loginandsignup;
 
+import Backend.Controller.Controller;
 
 public class Signup extends javax.swing.JFrame {
 
@@ -264,23 +265,32 @@ public class Signup extends javax.swing.JFrame {
         String nombre = Nombre.getText();
         String numero = Numero.getText();
         String contra = Contra.getText();
+        String direccion = Dire.getText().replaceAll(" ", ",");
         String tipoUsr = String.valueOf(tipousr.getSelectedItem());
         
         
         if ("Adoptante".equals(tipoUsr)) {
-            Usuario usuario = controller.registrarUsr(nombre, numero, contra);
-            Login LoginFrame = new Login(usuario);
-            LoginFrame.setVisible(true);
-            LoginFrame.pack();
-            LoginFrame.setLocationRelativeTo(null);
-            this.dispose();
+            String usuario = Controller.registrarUsuario(nombre, numero, contra);
+            if (usuario == "OK") {
+                Login LoginFrame = new Login();
+                LoginFrame.setVisible(true);
+                LoginFrame.pack();
+                LoginFrame.setLocationRelativeTo(null);
+                this.dispose();
+            }else{
+                System.out.println(usuario);
+            }
         }else{
-            Refugio refugio = controller.registrarR(nombre, numero, contra);
-            Login LoginFrame = new Login(refugio);
-            LoginFrame.setVisible(true);
-            LoginFrame.pack();
-            LoginFrame.setLocationRelativeTo(null);
-            this.dispose();
+            String refugio = Controller.registrarRefugio(nombre, numero, contra, direccion);
+            if (refugio == "OK") {
+                Login LoginFrame = new Login();
+                LoginFrame.setVisible(true);
+                LoginFrame.pack();
+                LoginFrame.setLocationRelativeTo(null);
+                this.dispose();
+            }else{
+                System.out.println(refugio);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

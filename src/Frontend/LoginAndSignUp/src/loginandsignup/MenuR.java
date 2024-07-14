@@ -11,14 +11,21 @@ import Backend.Models.Usuario;
  * @author audre
  */
 public class MenuR extends javax.swing.JFrame {
-
+    private int idUsuario;
+    private String usuario;
+    private String direccion;
     /**
      * Creates new form MenuR
      */
+    public MenuR(int idUsuario, String usuario, String direccion) {
+        this.idUsuario=idUsuario;
+        this.usuario=usuario;
+        this.direccion=direccion;
+        initComponents();
+    }
     public MenuR() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
