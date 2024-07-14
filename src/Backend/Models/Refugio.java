@@ -1,7 +1,6 @@
 package Backend.Models;
 
 import Backend.DB.DB;
-import Backend.DB.Exceptions.UserDoesNotExistException;
 /**
  * Clase refugio hereda de Usuario porque es un tipo de usuario.
  */
@@ -28,14 +27,18 @@ public class Refugio extends Usuario{
         setAcceso(true); // True indica que el usuario es un refugio.
         this.direccion = direccion;
     }
+    public Refugio(int id_refugio, String nombreRefugio, String direccion2) {
+        this.id = id_refugio;
+        this.nombre = nombreRefugio;
+        this.direccion=direccion2;
+    }
     /**
      * Metodo el cual asigna valores a los atributos y guarda el Refugio en la base de datos
      * @param nombre
      * @param contra
      * @param numero
      * @param direccion
-     * @return
-     * @throws UserDoesNotExistException
+     * @return True = Exitoso | False = Error.
      */
     public boolean registrarse(String nombre, String contra, String numero, String direccion){
         setNombre(nombre);
