@@ -1,6 +1,6 @@
 package Backend.Models;
 
-import java.nio.file.Path;
+import Backend.DB.DB;
 /**
  * Clase refugio hereda de Usuario porque es un tipo de usuario.
  */
@@ -8,15 +8,13 @@ public class Refugio extends Usuario{
     /*
      * Atributos
      */
-    private String direccion, tipo_mascota;
-    private Path foto;
+    public String direccion;
     /*
      * Metodos
      */
-
+    public Refugio(){}
     /**
      * Constructor que amplia el constructor de usuario con los atributos de esta clase.
-     * @param id
      * @param nombre
      * @param contraseña
      * @param numero_contacto
@@ -24,36 +22,41 @@ public class Refugio extends Usuario{
      * @param tipo_mascota
      * @param foto
      */
-    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, String tipo_mascota, Path foto) {
-        super(id, nombre, contraseña, numero_contacto);
+    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion){
+        super(id,nombre, contraseña, numero_contacto);
         setAcceso(true); // True indica que el usuario es un refugio.
         this.direccion = direccion;
-        this.tipo_mascota = tipo_mascota;
-        this.foto = foto;
     }
-
+    public Refugio(int id_refugio, String nombreRefugio, String direccion2) {
+        this.id = id_refugio;
+        this.nombre = nombreRefugio;
+        this.direccion=direccion2;
+    }
+    /**
+     * Metodo el cual asigna valores a los atributos y guarda el Refugio en la base de datos
+     * @param nombre
+     * @param contra
+     * @param numero
+     * @param direccion
+     * @return True = Exitoso | False = Error.
+     */
+    public boolean registrarse(String nombre, String contra, String numero, String direccion){
+        setNombre(nombre);
+        setContraseña(contra);
+        setNumero_contacto(numero);
+        setDireccion(direccion);
+        setAcceso(true);
+        return DB.crearRefugio(this);
+    }
+    /*
+     * GETTERS & SETTERS
+     */
     public String getDireccion() {
         return direccion;
     }
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public String getTipo_mascota() {
-        return tipo_mascota;
-    }
-
-    public void setTipo_mascota(String tipo_mascota) {
-        this.tipo_mascota = tipo_mascota;
-    }
-
-    public Path getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Path foto) {
-        this.foto = foto;
     }
     
 }

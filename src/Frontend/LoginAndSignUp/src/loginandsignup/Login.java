@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package loginandsignup;
+package Frontend.LoginAndSignUp.src.loginandsignup;
 
+import Backend.Controller.Controller;
+import Backend.Models.Usuario;
 
 public class Login extends javax.swing.JFrame {
 
@@ -203,11 +201,24 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
-        MenuUsr MenuUsrFrame = new MenuUsr();
-        MenuUsrFrame.setVisible(true);
-        MenuUsrFrame.pack();
-        MenuUsrFrame.setLocationRelativeTo(null);
-        this.dispose();    
+        String nombre = Contra.getText();
+        String contra = Contra.getText();
+        
+        Usuario confirmacion = controller.loginUsuario(nombre, contra); 
+        if (confirmacion.isAcceso() == false){
+            MenuUsr MenuFrame = new MenuUsr(confirmacion);
+            MenuFrame.setVisible(true);
+            MenuFrame.pack();
+            MenuFrame.setLocationRelativeTo(null);
+            this.dispose();
+            
+        }else{
+            MenuR MenuFrame = new MenuR(confirmacion);
+            MenuFrame.setVisible(true);
+            MenuFrame.pack();
+            MenuFrame.setLocationRelativeTo(null);
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

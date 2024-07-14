@@ -2,15 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package loginandsignup;
+package Frontend.LoginAndSignUp.src.loginandsignup;
 
-/**
- *
- * @author audre
- */
-public class Signup1 extends javax.swing.JFrame {
 
-    public Signup1() {
+public class Signup extends javax.swing.JFrame {
+
+
+    public Signup() {
         initComponents();
     }
 
@@ -230,15 +228,15 @@ public class Signup1 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setMinimumSize(new java.awt.Dimension(400, 500));
         jPanel4.setPreferredSize(new java.awt.Dimension(420, 500));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.setLayout(new AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen1.jpg"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        jPanel4.add(jLabel1, new AbsoluteConstraints(70, 50, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 153, 153));
         jLabel2.setText("PAW CONNECT");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+        jPanel4.add(jLabel2, new AbsoluteConstraints(60, 270, -1, -1));
 
         jPanel1.add(jPanel4);
         jPanel4.setBounds(390, -10, 410, 510);
@@ -262,7 +260,28 @@ public class Signup1 extends javax.swing.JFrame {
     }//GEN-LAST:event_NumeroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        
+        String nombre = Nombre.getText();
+        String numero = Numero.getText();
+        String contra = Contra.getText();
+        String tipoUsr = String.valueOf(tipousr.getSelectedItem());
+        
+        
+        if ("Adoptante".equals(tipoUsr)) {
+            Usuario usuario = controller.registrarUsr(nombre, numero, contra);
+            Login LoginFrame = new Login(usuario);
+            LoginFrame.setVisible(true);
+            LoginFrame.pack();
+            LoginFrame.setLocationRelativeTo(null);
+            this.dispose();
+        }else{
+            Refugio refugio = controller.registrarR(nombre, numero, contra);
+            Login LoginFrame = new Login(refugio);
+            LoginFrame.setVisible(true);
+            LoginFrame.pack();
+            LoginFrame.setLocationRelativeTo(null);
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -1,27 +1,27 @@
 package Backend.Models;
 
+import java.io.File;
 import java.nio.file.Path;
-
+import Backend.DB.DB;
+import Backend.DB.Exceptions.UserDoesNotExistException;
 public class Post {
     /*
      *  Atributos 
      */
-    private int id;
-    private String titulo, raza, direccion, descripcion, verificacion, edad, tamaño, tipoMascota;
-    private Path foto;
+    int id;
+    String titulo, raza, descripcion, tamaño, tipoMascota, edad;
+    Opciones verificacion;
+    File foto;
     
     /*
      * Metodos
      */
     public Post(){
-
     }
-    public Post(int id, String titulo, String raza, String direccion, String descripcion, String verificacion,
-            String edad, String tamaño, String tipoMascota, Path foto) {
-        this.id = id;
+    public Post(String titulo, String raza, String descripcion, Opciones verificacion,
+                String edad, String tamaño, String tipoMascota, File foto){
         this.titulo = titulo;
         this.raza = raza;
-        this.direccion = direccion;
         this.descripcion = descripcion;
         this.verificacion = verificacion;
         this.edad = edad;
@@ -29,20 +29,59 @@ public class Post {
         this.tipoMascota = tipoMascota;
         this.foto = foto;
     }
-    // Tengo una idea para este metodo de hacer una clase que sea filtro. Hablar con Tomas
-    public Post filtrar(){
-        Post post = new Post();
-        return post;
+    public Post(int id, String titulo, String raza, String descripcion, Opciones verificacion,
+            String edad, String tamaño, String tipoMascota, File foto) {
+        this.id = id;
+        this.titulo = titulo;
+        this.raza = raza;
+        this.descripcion = descripcion;
+        this.verificacion = verificacion;
+        this.edad = edad;
+        this.tamaño = tamaño;
+        this.tipoMascota = tipoMascota;
+        this.foto = foto;
     }
-    public void publicar(){
+    
+    public Post(String titulo2, String raza2, String descripcion2, Opciones opciones, String edad2, String tamaño2,
+            String tipoMascosta) {
+        //TODO Auto-generated constructor stub
+    }
+    public void asignar(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota, File foto){
+        this.titulo = titulo;
+        this.raza = raza;
+        this.descripcion = descripcion;
+        this.verificacion = verificacion;
+        this.edad = edad;
+        this.tamaño = tamaño;
+        this.tipoMascota = tipoMascota;
+        this.foto = foto;
+    }
+    /**
+     * Metodo con el cual un Post se guardara en la base de datos
+     * @param titulo
+     * @param descripcion
+     * @param raza
+     * @param tamaño
+     * @param verificacion Clase en la que estaran atributos booleanos
+     * @param edad
+     * @param tipoMascota
+     * @param foto
+     * @return Regresa el objeto si se publico exitosamente. Sino un null.
+     */
+    public Post guardarPost(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota, File foto) {
+        asignar(titulo, descripcion, raza, tamaño, verificacion, edad, tipoMascota, foto);
+        return DB.publicarPost(this);
+    }
+    /**
+     * Metodo para editar un Post en la DB
+     * @param nuevo Cambios del post
+     * @return Post editar, caso no existir: null
+     */
+    public String editarPost(Post nuevo) {
+        asignar(nuevo.titulo, nuevo.descripcion, nuevo.raza, nuevo.tamaño, nuevo.verificacion, nuevo.edad, tipoMascota, foto);
+        return (DB.modificarPost(this)) ? "OK" : "Error";
+    }
 
-    }
-    public void editar(){
-
-    }
-    public void eliminar(){
-        
-    }
     /*
      * Getters and Setters
      */
@@ -64,22 +103,16 @@ public class Post {
     public void setRaza(String raza) {
         this.raza = raza;
     }
-    public String getDireccion() {
-        return direccion;
-    }
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
     public String getDescripcion() {
         return descripcion;
     }
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    public String getVerificacion() {
+    public Opciones getVerificacion() {
         return verificacion;
     }
-    public void setVerificacion(String verificacion) {
+    public void setVerificacion(Opciones verificacion) {
         this.verificacion = verificacion;
     }
     public String getEdad() {
@@ -100,10 +133,10 @@ public class Post {
     public void setTipoMascota(String tipoMascota) {
         this.tipoMascota = tipoMascota;
     }
-    public Path getFoto() {
+    public File getFoto() {
         return foto;
     }
-    public void setFoto(Path foto) {
+    public void setFoto(File foto) {
         this.foto = foto;
     }
     public String getTitulo() {
