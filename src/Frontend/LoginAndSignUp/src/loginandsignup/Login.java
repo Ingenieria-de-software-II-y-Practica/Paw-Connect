@@ -1,8 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package loginandsignup;
+package Frontend.LoginAndSignUp.src.loginandsignup;
 
 import Backend.Controller.Controller;
 import Backend.Models.Usuario;
@@ -14,18 +10,6 @@ public class Login extends javax.swing.JFrame {
         initComponents();
     }
     
-    public Login(Usuario usuario){
-        this.usuario = usuario;
-    }
-    
-    public Login(Refugio refugio){
-        this.usuario = usuario;
-    }
-    
-    public Usuario usuario;
-    
-    public Controller controller;
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -93,7 +77,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("INICIAR SECION");
+        jLabel1.setText("INICIAR SESION");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -238,7 +222,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Signup SignupFrame = new Signup();
+        Signup1 SignupFrame = new Signup1();
         SignupFrame.setVisible(true);
         SignupFrame.pack();
         SignupFrame.setLocationRelativeTo(null);

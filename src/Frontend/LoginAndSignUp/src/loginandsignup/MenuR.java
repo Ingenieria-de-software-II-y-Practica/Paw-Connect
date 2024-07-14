@@ -1,8 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package loginandsignup;
+package Frontend.LoginAndSignUp.src.loginandsignup;
 
 import java.awt.Color;
 import javax.swing.JFileChooser;
@@ -15,17 +11,14 @@ import Backend.Models.Usuario;
  * @author audre
  */
 public class MenuR extends javax.swing.JFrame {
-    public Usuario refugio;
+
     /**
      * Creates new form MenuR
      */
     public MenuR() {
         initComponents();
     }
-    public MenuR(Usuario refugio) {
-        this.refugio = refugio;
-        initComponents();
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,36 +50,37 @@ public class MenuR extends javax.swing.JFrame {
         jButton14 = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jPanel20 = new javax.swing.JPanel();
-        jLabel33 = new javax.swing.JLabel();
+        Descrip4 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
-        jLabel30 = new javax.swing.JLabel();
+        Img4 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
-        jLabel34 = new javax.swing.JLabel();
+        Descrip2 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
+        Img2 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
-        jLabel32 = new javax.swing.JLabel();
+        Descrip3 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
-        jLabel29 = new javax.swing.JLabel();
+        Img3 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jLabel31 = new javax.swing.JLabel();
+        Descrip1 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
+        Img1 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel36 = new javax.swing.JLabel();
+        EligeImg = new javax.swing.JButton();
         jLabel37 = new javax.swing.JLabel();
         textArea2 = new java.awt.TextArea();
         jLabel38 = new javax.swing.JLabel();
@@ -105,14 +99,12 @@ public class MenuR extends javax.swing.JFrame {
         jCheckBox7 = new javax.swing.JCheckBox();
         jLabel44 = new javax.swing.JLabel();
         jCheckBox8 = new javax.swing.JCheckBox();
+        jButton4 = new javax.swing.JButton();
+        Imagen = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
         textArea1 = new java.awt.TextArea();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -121,7 +113,6 @@ public class MenuR extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
@@ -135,22 +126,22 @@ public class MenuR extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(247, 247, 247));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen3.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 140, 150));
+        jPanel1.add(jLabel4, new AbsoluteConstraints(110, 30, 140, 150));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("PEPE");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
+        jPanel1.add(jLabel3, new AbsoluteConstraints(150, 180, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen2.jpg"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 270));
+        jPanel1.add(jLabel2, new AbsoluteConstraints(0, 0, 360, 270));
 
         SALIR.setBackground(new java.awt.Color(247, 247, 247));
         SALIR.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -166,7 +157,7 @@ public class MenuR extends javax.swing.JFrame {
                 SALIRMouseExited(evt);
             }
         });
-        SALIR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        SALIR.setLayout(new AbsoluteLayout());
 
         jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\audre\\OneDrive\\Documentos\\NetBeansProjects\\LoginAndSignUp\\src\\icon\\Imagen6.png")); // NOI18N
         SALIR.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 50));
@@ -175,9 +166,9 @@ public class MenuR extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("SALIR");
-        SALIR.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 50, 70, 20));
+        SALIR.add(jLabel8, new AbsoluteConstraints(86, 50, 70, 20));
 
-        jPanel1.add(SALIR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 360, 110));
+        jPanel1.add(SALIR, new AbsoluteConstraints(0, 490, 360, 110));
 
         HOME.setBackground(new java.awt.Color(247, 247, 247));
         HOME.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -193,18 +184,18 @@ public class MenuR extends javax.swing.JFrame {
                 HOMEMouseExited(evt);
             }
         });
-        HOME.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        HOME.setLayout(new AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen4.png"))); // NOI18N
-        HOME.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 50));
+        HOME.add(jLabel5, new AbsoluteConstraints(20, 30, -1, 50));
 
         jLabel6.setBackground(new java.awt.Color(102, 102, 102));
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("HOME");
-        HOME.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 70, 20));
+        HOME.add(jLabel6, new AbsoluteConstraints(90, 50, 70, 20));
 
-        jPanel1.add(HOME, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 360, 110));
+        jPanel1.add(HOME, new AbsoluteConstraints(0, 270, 360, 110));
 
         BUSCAR.setBackground(new java.awt.Color(247, 247, 247));
         BUSCAR.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -220,43 +211,43 @@ public class MenuR extends javax.swing.JFrame {
                 BUSCARMouseExited(evt);
             }
         });
-        BUSCAR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        BUSCAR.setLayout(new AbsoluteLayout());
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen5.png"))); // NOI18N
-        BUSCAR.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 50));
+        BUSCAR.add(jLabel9, new AbsoluteConstraints(20, 30, -1, 50));
 
         jLabel10.setBackground(new java.awt.Color(102, 102, 102));
         jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("PUBLICA A UN AMIGO/A");
-        BUSCAR.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 50, 230, 20));
+        BUSCAR.add(jLabel10, new AbsoluteConstraints(86, 50, 230, 20));
 
-        jPanel1.add(BUSCAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 360, 110));
+        jPanel1.add(BUSCAR, new AbsoluteConstraints(0, 380, 360, 110));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 780));
+        getContentPane().add(jPanel1, new AbsoluteConstraints(0, 0, -1, 780));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen2.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 1180, 80));
+        getContentPane().add(jLabel1, new AbsoluteConstraints(320, 0, 1180, 80));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(new AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 153, 153));
         jLabel11.setText("BIENVENIDOS A PAW CONNECT");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
+        jPanel2.add(jLabel11, new AbsoluteConstraints(230, 40, -1, -1));
 
         jLabel13.setBackground(new java.awt.Color(102, 102, 102));
         jLabel13.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
         jLabel13.setText("Mis publicaciones");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, -1, -1));
+        jPanel2.add(jLabel13, new AbsoluteConstraints(410, 100, -1, -1));
 
         jPanel19.setBackground(new java.awt.Color(255, 236, 236));
         jPanel19.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel19.setLayout(new AbsoluteLayout());
 
         jButton14.setBackground(new java.awt.Color(247, 247, 247));
         jButton14.setForeground(new java.awt.Color(51, 51, 51));
@@ -266,30 +257,30 @@ public class MenuR extends javax.swing.JFrame {
                 jButton14ActionPerformed(evt);
             }
         });
-        jPanel19.add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
+        jPanel19.add(jButton14, new AbsoluteConstraints(20, 110, -1, 30));
 
         jButton15.setBackground(new java.awt.Color(247, 247, 247));
         jButton15.setForeground(new java.awt.Color(51, 51, 51));
         jButton15.setText("Eliminar");
-        jPanel19.add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 30));
+        jPanel19.add(jButton15, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
         jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel20.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
 
-        jPanel19.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
+        jPanel19.add(jPanel20, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
         jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel21.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
-        jPanel19.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+        jPanel19.add(jPanel21, new AbsoluteConstraints(20, 20, 70, 70));
 
-        jPanel2.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, 350, 200));
+        jPanel2.add(jPanel19, new AbsoluteConstraints(540, 390, 350, 200));
 
         jPanel13.setBackground(new java.awt.Color(255, 236, 236));
         jPanel13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel13.setLayout(new AbsoluteLayout());
 
         jButton10.setBackground(new java.awt.Color(247, 247, 247));
         jButton10.setForeground(new java.awt.Color(51, 51, 51));
@@ -299,30 +290,30 @@ public class MenuR extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel13.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
+        jPanel13.add(jButton10, new AbsoluteConstraints(20, 110, -1, 30));
 
         jButton11.setBackground(new java.awt.Color(247, 247, 247));
         jButton11.setForeground(new java.awt.Color(51, 51, 51));
         jButton11.setText("Eliminar");
-        jPanel13.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 30));
+        jPanel13.add(jButton11, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel14.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
 
-        jPanel13.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
+        jPanel13.add(jPanel14, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel15.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
-        jPanel13.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+        jPanel13.add(jPanel15, new AbsoluteConstraints(20, 20, 70, 70));
 
-        jPanel2.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 350, 200));
+        jPanel2.add(jPanel13, new AbsoluteConstraints(540, 170, 350, 200));
 
         jPanel16.setBackground(new java.awt.Color(255, 236, 236));
         jPanel16.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel16.setLayout(new AbsoluteLayout());
 
         jButton12.setBackground(new java.awt.Color(247, 247, 247));
         jButton12.setForeground(new java.awt.Color(51, 51, 51));
@@ -332,30 +323,30 @@ public class MenuR extends javax.swing.JFrame {
                 jButton12ActionPerformed(evt);
             }
         });
-        jPanel16.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
+        jPanel16.add(jButton12, new AbsoluteConstraints(20, 110, -1, 30));
 
         jButton13.setBackground(new java.awt.Color(247, 247, 247));
         jButton13.setForeground(new java.awt.Color(51, 51, 51));
         jButton13.setText("Eliminar");
-        jPanel16.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 30));
+        jPanel16.add(jButton13, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel17.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
 
-        jPanel16.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
+        jPanel16.add(jPanel17, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel18.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
-        jPanel16.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+        jPanel16.add(jPanel18, new AbsoluteConstraints(20, 20, 70, 70));
 
-        jPanel2.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 350, 200));
+        jPanel2.add(jPanel16, new AbsoluteConstraints(120, 390, 350, 200));
 
         jPanel4.setBackground(new java.awt.Color(255, 236, 236));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.setLayout(new AbsoluteLayout());
 
         jButton6.setBackground(new java.awt.Color(247, 247, 247));
         jButton6.setForeground(new java.awt.Color(51, 51, 51));
@@ -365,18 +356,18 @@ public class MenuR extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 30));
+        jPanel4.add(jButton6, new AbsoluteConstraints(20, 110, -1, 30));
 
         jButton9.setBackground(new java.awt.Color(247, 247, 247));
         jButton9.setForeground(new java.awt.Color(51, 51, 51));
         jButton9.setText("Eliminar");
-        jPanel4.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 30));
+        jPanel4.add(jButton9, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel7.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 160));
 
-        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
+        jPanel4.add(jPanel7, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -384,36 +375,36 @@ public class MenuR extends javax.swing.JFrame {
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/leia.jpg"))); // NOI18N
         jPanel10.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
 
-        jPanel4.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+        jPanel4.add(jPanel10, new AbsoluteConstraints(20, 20, 70, 70));
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 350, 200));
+        jPanel2.add(jPanel4, new AbsoluteConstraints(120, 170, 350, 200));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel15.setToolTipText("");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(-140, -140, -1, 710));
+        jPanel2.add(jLabel15, new AbsoluteConstraints(-140, -140, -1, 710));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel14.setToolTipText("");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 650, 720));
+        jPanel2.add(jLabel14, new AbsoluteConstraints(680, 80, 650, 720));
 
         jTabbedPane1.addTab("tab1", jPanel2);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel5.setLayout(new AbsoluteLayout());
 
         jLabel35.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel35.setForeground(new java.awt.Color(255, 153, 153));
         jLabel35.setText("PUBLICALOS, ASI PUEDEN ENCONTRAR UN HOGAR");
         jLabel35.setToolTipText("");
-        jPanel5.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
+        jPanel5.add(jLabel35, new AbsoluteConstraints(290, 50, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(255, 236, 236));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setText("Imagen");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        EligeImg.setBackground(new java.awt.Color(255, 236, 236));
+        EligeImg.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        EligeImg.setForeground(new java.awt.Color(51, 51, 51));
+        EligeImg.setText("Elige una imagen");
+        EligeImg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                EligeImgActionPerformed(evt);
             }
         });
         jPanel5.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 120, 110));
@@ -455,7 +446,7 @@ public class MenuR extends javax.swing.JFrame {
                 jTextField4ActionPerformed(evt);
             }
         });
-        jPanel5.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 260, 30));
+        jPanel5.add(jTextField4, new AbsoluteConstraints(80, 500, 260, 30));
 
         jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(51, 51, 51));
@@ -582,7 +573,7 @@ public class MenuR extends javax.swing.JFrame {
         jTabbedPane1.addTab("tab2", jPanel5);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setLayout(new AbsoluteLayout());
 
         jLabel16.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 153, 153));
@@ -629,7 +620,7 @@ public class MenuR extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(51, 51, 51));
         jLabel20.setText("Raza");
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
+        jPanel3.add(jLabel20, new AbsoluteConstraints(80, 400, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(51, 51, 51));
@@ -647,7 +638,7 @@ public class MenuR extends javax.swing.JFrame {
                 jTextField2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 260, 30));
+        jPanel3.add(jTextField2, new AbsoluteConstraints(80, 360, 260, 30));
 
         jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(51, 51, 51));
@@ -656,7 +647,7 @@ public class MenuR extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
-        jPanel3.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 260, 30));
+        jPanel3.add(jTextField3, new AbsoluteConstraints(80, 430, 260, 30));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(51, 51, 51));
@@ -677,7 +668,7 @@ public class MenuR extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(51, 51, 51));
         jLabel23.setText("Verificacion (Selecciona si lo cumple)");
-        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, -1, 30));
+        jPanel3.add(jLabel23, new AbsoluteConstraints(720, 330, -1, 30));
 
         jComboBox2.setBackground(new java.awt.Color(255, 246, 246));
         jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -706,7 +697,7 @@ public class MenuR extends javax.swing.JFrame {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 450, 220, 30));
+        jPanel3.add(jCheckBox1, new AbsoluteConstraints(720, 450, 220, 30));
 
         jCheckBox3.setBackground(new java.awt.Color(255, 246, 246));
         jCheckBox3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -718,7 +709,7 @@ public class MenuR extends javax.swing.JFrame {
                 jCheckBox3ActionPerformed(evt);
             }
         });
-        jPanel3.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 390, 140, 30));
+        jPanel3.add(jCheckBox3, new AbsoluteConstraints(720, 390, 140, 30));
 
         jCheckBox4.setBackground(new java.awt.Color(255, 246, 246));
         jCheckBox4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -730,7 +721,7 @@ public class MenuR extends javax.swing.JFrame {
                 jCheckBox4ActionPerformed(evt);
             }
         });
-        jPanel3.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 420, 170, 30));
+        jPanel3.add(jCheckBox4, new AbsoluteConstraints(720, 420, 170, 30));
 
         jCheckBox5.setBackground(new java.awt.Color(255, 246, 246));
         jCheckBox5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -742,7 +733,7 @@ public class MenuR extends javax.swing.JFrame {
                 jCheckBox5ActionPerformed(evt);
             }
         });
-        jPanel3.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, 100, 30));
+        jPanel3.add(jCheckBox5, new AbsoluteConstraints(720, 360, 100, 30));
 
         jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(51, 51, 51));
@@ -751,11 +742,11 @@ public class MenuR extends javax.swing.JFrame {
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel21.setToolTipText("");
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(-140, -140, -1, 710));
+        jPanel3.add(jLabel21, new AbsoluteConstraints(-140, -140, -1, 710));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel26.setToolTipText("");
-        jPanel3.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 650, 720));
+        jPanel3.add(jLabel26, new AbsoluteConstraints(680, 80, 650, 720));
 
         jButton3.setBackground(new java.awt.Color(255, 236, 236));
         jButton3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -766,11 +757,11 @@ public class MenuR extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 550, 160, 50));
+        jPanel3.add(jButton3, new AbsoluteConstraints(450, 550, 160, 50));
 
         jTabbedPane1.addTab("tab2", jPanel3);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 1160, 730));
+        getContentPane().add(jTabbedPane1, new AbsoluteConstraints(340, 40, 1160, 730));
 
         pack();
         setLocationRelativeTo(null);
@@ -809,7 +800,7 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_BUSCARMouseMoved
 
     private void BUSCARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BUSCARMouseClicked
-         jTabbedPane1.setSelectedIndex(2);
+         jTabbedPane1.setSelectedIndex(1);
     }//GEN-LAST:event_BUSCARMouseClicked
 
     private void BUSCARMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BUSCARMouseExited
@@ -832,10 +823,6 @@ public class MenuR extends javax.swing.JFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
@@ -866,19 +853,19 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        jTabbedPane1.setSelectedIndex(1);
+        jTabbedPane1.setSelectedIndex(2);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -893,10 +880,6 @@ public class MenuR extends javax.swing.JFrame {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
@@ -930,21 +913,33 @@ public class MenuR extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
   
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BUSCAR;
+    private javax.swing.JLabel Descrip1;
+    private javax.swing.JLabel Descrip2;
+    private javax.swing.JLabel Descrip3;
+    private javax.swing.JLabel Descrip4;
+    private javax.swing.JButton EligeImg;
     private javax.swing.JPanel HOME;
+    private javax.swing.JLabel Imagen;
+    private javax.swing.JLabel Img1;
+    private javax.swing.JLabel Img2;
+    private javax.swing.JLabel Img3;
+    private javax.swing.JLabel Img4;
     private javax.swing.JPanel SALIR;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
@@ -957,7 +952,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JCheckBox jCheckBox7;
     private javax.swing.JCheckBox jCheckBox8;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
@@ -969,7 +963,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -981,16 +974,8 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
@@ -1033,5 +1018,7 @@ public class MenuR extends javax.swing.JFrame {
     private java.awt.TextArea textArea1;
     private java.awt.TextArea textArea2;
     // End of variables declaration//GEN-END:variables
+
+
 
 }

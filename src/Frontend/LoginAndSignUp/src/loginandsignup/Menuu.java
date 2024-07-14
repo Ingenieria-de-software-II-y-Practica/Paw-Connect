@@ -1,5 +1,5 @@
 
-package loginandsignup;
+package Frontend.LoginAndSignUp.src.loginandsignup;
 
 /**
  *
