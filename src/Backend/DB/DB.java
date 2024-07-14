@@ -45,9 +45,8 @@ public class DB {
                 String password = rs.getString("usuario.usuario_contrasenia");
                 String telephoneNumber = rs.getString("telefono.telefono_telefono");
                 String email = rs.getString("usuario.usuario_email");
-                Path photo = Paths.get(rs.getString("usuario.usuario_foto"));
 
-                user = new Usuario(id, username, password, telephoneNumber, photo);
+                user = new Usuario(id, username, password, telephoneNumber);
             }
 
         } catch (SQLException se) { System.out.println(se + "en getUsuario"); }
@@ -72,14 +71,13 @@ public class DB {
                 String username = rs.getString("usuario.usuario_nombre");
                 String password = rs.getString("usuaro.usuario_contrasenia");
                 String telephoneNumber = rs.getString("telefono.telefono_telefono");
-                String email = rs.getString(UserField.EMAIL.field);
-                Path photo = Paths.get(rs.getString(UserField.PHOTO.field));
+                String email = rs.getString("usuario.usuario_email");
 
                 user.setNombre(username);
                 user.setContraseña(password);
                 user.setNumero_contacto(telephoneNumber);
                 //TODO: user.setEmail(email);
-                user.setFoto(photo);
+
                 System.out.println("Se han reestablecido los valores del usuario con el ID '" + user.getId() + ".");
                 return true;
             } else {
@@ -98,7 +96,7 @@ public class DB {
      */
     public static boolean resetUsuarioField (Usuario user, UserField FIELD) {
         try {
-            String query = "SELECT " + FIELD.field + " FROM usuario WHERE " + UserField.ID.field + " = ?";
+            String query = "SELECT " + FIELD.field + " FROM usuario WHERE usuario_id = ?";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setInt(1, user.getId());
             ResultSet rs = stat.executeQuery();
@@ -120,9 +118,6 @@ public class DB {
                     break;
                 case NUM:
                     user.setNumero_contacto(rs.getString(UserField.NUM.field));
-                    break;
-                case PHOTO:
-                    user.setFoto(Paths.get(rs.getString(UserField.PHOTO.field)));
                     break;
                 case ID:
                     return false;
@@ -164,15 +159,14 @@ public class DB {
 
             int telephoneID = rs.getInt(1);
 
-            query = "INSERT INTO usuario (usuario_nombre, usuario_contrasenia, usuario_email, usuario_foto, telefono_id) VALUES (?, ?, ?, ?, ?, ?)";
+            query = "INSERT INTO usuario (usuario_nombre, usuario_contrasenia, usuario_email, telefono_id) VALUES (?, ?, ?, ?, ?)";
             stat = con.prepareStatement(query);
             stat.setString(1, user.getNombre());
             stat.setString(2, user.getContraseña());
             //TODO: Agregar campo de e-mail
             stat.setString(3, "email@example.com");
             stat.setString(4, user.getNumero_contacto());
-            stat.setString(5, user.getFoto().toString());
-            stat.setInt(6, telephoneID);
+            stat.setInt(5, telephoneID);
             stat.executeQuery();
 
             //Se le asigna el ID correspondiente al objeto Usuario.            
@@ -247,15 +241,14 @@ public class DB {
             return false;
         }
         try {
-            String query = "UPDATE usuario SET usuario_nombre = ?, usuario_contrasenia = ?, usuario_email = ?, usuario_foto = ? WHERE usuario_id = ?";
+            String query = "UPDATE usuario SET usuario_nombre = ?, usuario_contrasenia = ?, usuario_email = ? WHERE usuario_id = ?";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, user.getNombre());
             stat.setString(2, user.getContraseña());
 
             //TODO: Agregar variable e-mail
             stat.setString(3, "email@example.com");
-            stat.setString(4, user.getFoto().toString());
-            stat.setInt(5, user.getId());
+            stat.setInt(4, user.getId());
             stat.executeQuery();
 
             updateUsuario(user, UserField.NUM);
@@ -356,8 +349,6 @@ public class DB {
             case PASS:
                 field = user.getContraseña();
                 break;
-            case PHOTO:
-                field = user.getFoto().toString();
             case EMAIL:
                 field = "email@example.com";
             default:
@@ -388,7 +379,6 @@ public class DB {
             String query = "INSERT INTO direccion (direccion_calle, direccion_altura, direccion_departamento) VALUES (?, ?, ?)";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, addressRefugio[0]);
-            //TODO: Hacerlo un int en vez?
             stat.setString(2, addressRefugio[1]); 
             stat.setString(3, addressRefugio[2]);
 
@@ -431,13 +421,12 @@ public class DB {
 
             //Ahora se inserta el resto de la información del refugio.
             //TODO: Nombre de usuario != nombre del refugio.
-            query = "INSERT INTO refugio (refugio_nombre, refugio_foto, administrador_id, direccion_id, telefono_id) VALUES (?, ?, ?, ?, ?)";
+            query = "INSERT INTO refugio (refugio_nombre, administrador_id, direccion_id, telefono_id) VALUES (?, ?, ?, ?, ?)";
             stat = con.prepareStatement(query);
             stat.setString(1, refugio.getNombre());
-            stat.setString(2, refugio.getFoto().toString());
-            stat.setInt(3, administratorID);
-            stat.setInt(4, addressID);
-            stat.setInt(5, telephoneID);
+            stat.setInt(2, administratorID);
+            stat.setInt(3, addressID);
+            stat.setInt(4, telephoneID);
             stat.executeQuery();
 
             //Se busca el ID para asignárselo a el objeto 'refugio'.
@@ -482,36 +471,13 @@ public class DB {
             String nameRefugio = rs.getString("refugio.refugio_nombre");
             String telephoneNumber = rs.getString("telefono.telefono_telefono");
             String address = rs.getString("direccion.direccion_calle") + "," + rs.getString("direccion.direccion_altura") + "," + rs.getString("direccion.direccion_departamento");
-            Path photo = Paths.get(rs.getString("refugio.refugio_foto"));
 
-            refugio = new Refugio(refugioID, nameRefugio, password, telephoneNumber, address, null, photo);
+            refugio = new Refugio(refugioID, nameRefugio, password, telephoneNumber, address);
 
         } catch (SQLException se) { System.out.println(se + "en getRefugio"); }
         return refugio;
     }
 
-    public static Refugio getRefugio(int refugio_id) {
-        ResultSet refugioBD = null;
-        Refugio refugio = null;
-        try {
-            PreparedStatement query = con.prepareStatement("SELECT * FROM refugio WHERE refugio_id = "+refugio_id+";");
-            refugioBD = query.executeQuery();
-            if (refugioBD.next()) {
-                int id_refugio = Integer.parseInt(refugioBD.getString("refugio_id"));
-                String nombreRefugio = refugioBD.getString("refugio_nombre");
-                String direccion = refugioBD.getString("refugio_direccion_id");
-                refugio = new Refugio(id_refugio,nombreRefugio, direccion);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-        if (refugio == null) {
-            return null;
-        }else{
-            return refugio;
-        }
-    }
     /**
      * Metodo para obtener la direccion de un refugio
      * @param id_direccion Refugio.getDireccion()
@@ -551,28 +517,37 @@ public class DB {
 
     public static boolean publicarPost (Post post) {
         try {
-            
             int saludID = getSaludID(post.getVerificacion().isVacunas(), post.getVerificacion().isDesparacitado());
             int habitacionID = getHabitacionID(post.getVerificacion().isOtrasMascotas(), post.getVerificacion().isNiños());
+            int animalID = getAnimalID(post.getTipoMascota(), post.getTamaño());
+
             if (saludID == -1 || habitacionID == -1) {
                 System.out.println("Ha habido un error al crear el post.");
                 return false;
             }
 
-            String query = "INSERT INTO mascota (mascota_nombre, mascota_edad, mascota_descripcion, mascota_recomendacion, mascota_id_refugio, mascota_salud, mascota_habitacion, mascota_tamanio, mascota_tipo)";
+            String query = "INSERT INTO mascota (mascota_nombre, mascota_edad, mascota_descripcion, mascota_recomendacion, refugio_id, salud_id, animal_id, habitacion_id, mascota_foto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, post.getTitulo());
             stat.setString(2, post.getEdad());
             stat.setString(3, post.getDescripcion());
-            //TODO: getRecomendacion();
-            stat.setString(4, "Recomendación.");
-            //TODO: getRefugio_ID
+            stat.setString(4, "recomendacion");
+            //TODO: RefugioID
             stat.setInt(5, 0);
             stat.setInt(6, saludID);
-            stat.setInt(7, habitacionID);
-            stat.setString(8, post.getTamaño());
-            stat.setString(9, post.getTipoMascota());
+            stat.setInt(7, animalID);
+            stat.setInt(8, habitacionID);
+            //TODO: Foto mascota
+            stat.setString(9, "foto mascota");
+            stat.executeQuery();
 
+            //Busco el ID recién insertado para asignarselo a el objeto 'Post'
+            query = "SELECT LAST_INSERT_ID()";
+            stat = con.prepareStatement(query);
+            ResultSet rs = stat.executeQuery();
+            rs.next();
+            post.setId(rs.getInt(1));
+            
             System.out.println("El post se ha creado correctamente.");
             return true;
 
@@ -580,34 +555,181 @@ public class DB {
         return false;
     }
 
-    public static ArrayList<Post> filtrarPost (Opciones opciones) {
+    public static boolean updatePost (Post post) {
+        try {
+            int saludID = getSaludID(post.getVerificacion().isVacunas(), post.getVerificacion().isDesparacitado());
+            int habitacionID = getHabitacionID(post.getVerificacion().isOtrasMascotas(), post.getVerificacion().isNiños());
+            int animalID = getAnimalID(post.getTipoMascota(), post.getTamaño());
+
+            if (saludID == -1 || habitacionID == -1) {
+                System.out.println("Ha habido un error al crear el post.");
+                return false;
+            }
+
+            String query = "UPDATE mascota SET mascota_nombre = ?, mascota_edad = ?, mascota_recomendacion = ?, refugio_id = ?, salud_id = ?, animal_id = ?, habitacion_id = ?, mascota_foto = ? WHERE mascota_id = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setString(1, post.getTitulo());
+            stat.setString(2, post.getEdad());
+            stat.setString(3, post.getDescripcion());
+            stat.setString(4, "recomendacion");
+            //TODO: RefugioID
+            stat.setInt(5, 0);
+            stat.setInt(6, saludID);
+            stat.setInt(7, animalID);
+            stat.setInt(8, habitacionID);
+            //TODO: Foto mascota
+            stat.setString(9, "foto mascota");
+            stat.setInt(10, post.getId());
+            stat.executeQuery();
+
+            System.out.println("El post se ha actualizado correctamente.");
+            return true;
+
+        } catch (SQLException sqe) { System.out.println(sqe + "en PublicarPost"); }
+        return false;
+    }
+
+    public static ArrayList<Post> filtrarPost (Opciones opciones, String tamanio, String animal) {
         try {
             int saludID = getSaludID(opciones.isVacunas(), opciones.isDesparacitado());
             int habitacionID = getHabitacionID(opciones.isOtrasMascotas(), opciones.isNiños());
+            int animalID = getAnimalID(animal, tamanio);
 
-            String query = "SELECT * from mascota WHERE mascota_salud_id = ? and mascota_habitacion_id = ?";
+            String query = "SELECT * FROM mascota INNER JOIN animal ON animal.animal_id = mascota.animal_id INNER JOIN habitacion ON habitacion.habitacion_id = mascota.habitacion_id INNER JOIN salud ON salud.salud_id = mascota.salud_id WHERE mascota.salud_id = ? AND mascota.habitacion_id = ? AND mascota.animal_id = ?";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setInt(1, saludID);
             stat.setInt(2, habitacionID);
+            stat.setInt(3, animalID);
             ResultSet rs = stat.executeQuery();
+
             ArrayList<Post> result = new ArrayList<Post>();
             Post post = null;
             Opciones opcionesPost = null;
 
+            //Atributos de post.
+            int postID;
+            String nombre, descripcion, edad;
+            Path foto;
+            Opciones verificacion;
+            boolean isVacunado, isDesparacitado, isNinios, isOtrasMascotas;
+
             while (rs.next()) {
-                post = new Post(rs.getInt("mascota_id"), rs.getString("mascota_nombre"), "RAZA", rs.getString("mascota_descripcion"), opciones, rs.getString("mascota_edad"), rs.getString("mascota_tamanio"), rs.getString("mascota_tipo"), Paths.get(rs.getString("mascota_foto"));
+                isVacunado = rs.getBoolean("salud.salud_vacunado");
+                isDesparacitado = rs.getBoolean("salud.salud_desparacitado");
+                isNinios = rs.getBoolean("habitacion.habitacion_ninios");
+                isOtrasMascotas = rs.getBoolean("habitacion.habitacion_otras_mascotas");
+
+                verificacion = new Opciones(isVacunado, isNinios, isOtrasMascotas, isDesparacitado);
+                postID = rs.getInt("mascota.mascota_id");
+                nombre = rs.getString("mascota.mascota_nombre");
+                descripcion = rs.getString("mascota.mascota_descripcion");
+                edad = rs.getString("mascota.mascota_edad");
+                foto = Paths.get(rs.getString("mascota.mascota_foto"));
+                tamanio = rs.getString("animal.animal_tamanio");
+                animal = rs.getString("animal.animal_nombre");
+
+                post = new Post(postID, nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal, null);
                 result.add(post);
             }
 
             if (result.size() == 0) return null;
             else return result;
             
-            
         } catch (SQLException sqe) {
             return null;
         }
     }
 
+    private static int getSaludID (boolean vacunado, boolean desparacitado) {
+        int saludID = -1;
+        try {
+            
+            String query = "SELECT salud_id FROM salud WHERE salud_vacunado = ? AND salud_desparacitado = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setBoolean(1, vacunado);
+            stat.setBoolean(2, desparacitado);
+            ResultSet rs = stat.executeQuery();
+            if (rs.next()) saludID = rs.getInt("salud_id");
+            else {
+                /*Todavía no existe tabla en 'salud' que corresponda a los atributos de la mascota que se quiere publicar.
+                Se crea la entrada. */
+                query = "INSERT INTO salud (salud_vacunado, salud_desparacitado) VALUES (?, ?)";
+                stat = con.prepareStatement(query);
+                stat.setBoolean(1, vacunado);
+                stat.setBoolean(2, desparacitado);
+                stat.executeQuery();
+
+                //Se busca el ID de la entrada recién creada.
+                query = "SELECT LAST_INSERT_ID()";
+                stat = con.prepareStatement(query);
+                rs = stat.executeQuery();
+                rs.next();
+                saludID = rs.getInt(1);
+            }
+            
+        } catch (SQLException sqe) { System.out.println(sqe + "en getSaludID"); }
+        return saludID;
+    }
+
+    private static int getHabitacionID (boolean mascotas, boolean ninios) {
+        int habitacionID = -1;
+        try {
+            
+            String query = "SELECT habitacion_id FROM habitacion WHERE habitacion_otras_mascotas = ? AND habitacion_ninios = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setBoolean(1, mascotas);
+            stat.setBoolean(2, ninios);
+            ResultSet rs = stat.executeQuery();
+            if (rs.next()) habitacionID = rs.getInt("habitacion_id");
+            else {
+                query = "INSERT INTO habitacion (habitacion_otras_mascotas, habitacion_ninios) VALUES (?, ?)";
+                stat = con.prepareStatement(query);
+                stat.setBoolean(1,mascotas);
+                stat.setBoolean(2, ninios);
+                stat.executeQuery();
+
+                query = "SELECT LAST_INSERT_ID()";
+                stat = con.prepareStatement(query);
+                rs = stat.executeQuery();
+                rs.next();
+                habitacionID = rs.getInt(1);
+            }
+         }  catch (SQLException se) { System.out.println(se + "en getHabitacionID"); }
+
+         return habitacionID;
+    }
+    
+    private static int getAnimalID (String animal, String tamanio) {
+        int animalID = -1;
+        try {
+            
+            String query = "SELECT animal_id FROM animal WHERE animal_nombre = ? AND animal_tamanio = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setString(1, animal);
+            stat.setString(2, tamanio);
+            ResultSet rs = stat.executeQuery();
+            if (rs.next()) animalID = rs.getInt("salud_id");
+            else {
+                /*Todavía no existe tabla en 'animal' que corresponda a los atributos de la mascota que se quiere publicar.
+                Se crea la entrada. */
+                query = "INSERT INTO animal (animal_nombre, animal_tamanio) VALUES (?, ?)";
+                stat = con.prepareStatement(query);
+                stat.setString(1, animal);
+                stat.setString(2, tamanio);
+                stat.executeQuery();
+
+                //Se busca el ID de la entrada recién creada.
+                query = "SELECT LAST_INSERT_ID()";
+                stat = con.prepareStatement(query);
+                rs = stat.executeQuery();
+                rs.next();
+                animalID = rs.getInt(1);
+            }
+            
+        } catch (SQLException sqe) { System.out.println(sqe + "en getAnimalID"); }
+        return animalID;
+    }
+    
     //Verifica que no exista ni usuario ni refugio con el nombre de usuario dado.
     public static boolean existeNombre (String username) {
         return existeUsuario(username) || existeRefugio(username);
@@ -656,65 +778,6 @@ public class DB {
         return false;
     }
 
-    private static int getSaludID (boolean vacunado, boolean desparacitado) {
-        int saludID = -1;
-        try {
-            
-            String query = "SELECT salud_id FROM salud WHERE salud_vacunado = ? AND salud_desparacitado = ?";
-            PreparedStatement stat = con.prepareStatement(query);
-            stat.setBoolean(1, vacunado);
-            stat.setBoolean(2, desparacitado);
-            ResultSet rs = stat.executeQuery();
-            if (rs.next()) saludID = rs.getInt("salud_id");
-            else {
-                /*Todavía no existe tabla en 'salud' que corresponda a los atributos de la mascota que se quiere publicar.
-                Se crea la entrada. */
-                query = "INSERT INTO salud (salud_vacunado, salud_desparacitado) VALUES (?, ?)";
-                stat = con.prepareStatement(query);
-                stat.setBoolean(1, vacunado);
-                stat.setBoolean(2, desparacitado);
-                stat.executeQuery();
-
-                //Se busca el ID de la entrada recién creada.
-                query = "SELECT LAST_INSERT_ID()";
-                stat = con.prepareStatement(query);
-                rs = stat.executeQuery();
-                rs.next();
-                saludID = rs.getInt("salud_id");
-            }
-            
-        } catch (SQLException sqe) { System.out.println(sqe + "en getSaludID"); }
-        return saludID;
-    }
-
-    private static int getHabitacionID (boolean mascotas, boolean ninios) {
-        int habitacionID = -1;
-        try {
-            
-            String query = "SELECT habitacion_id FROM habitacion WHERE habitacion_otras_mascotas = ? AND habitacion_ninios = ?";
-            PreparedStatement stat = con.prepareStatement(query);
-            stat.setBoolean(1, mascotas);
-            stat.setBoolean(2, ninios);
-            ResultSet rs = stat.executeQuery();
-            if (rs.next()) habitacionID = rs.getInt("habitacion_id");
-            else {
-                query = "INSERT INTO habitacion (habitacion_otras_mascotas, habitacion_ninios) VALUES (?, ?)";
-                stat = con.prepareStatement(query);
-                stat.setBoolean(1,mascotas);
-                stat.setBoolean(2, ninios);
-                stat.executeQuery();
-
-                query = "SELECT LAST_INSERT_ID()";
-                stat = con.prepareStatement(query);
-                rs = stat.executeQuery();
-                rs.next();
-                habitacionID = rs.getInt("habitacion_id");
-            }
-         }  catch (SQLException se) { System.out.println(se + "en getHabitacionID"); }
-
-         return habitacionID;
-    }
-
     public static void connectToDatabase() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -742,8 +805,7 @@ public class DB {
         NAME("usuario_nombre"),
         PASS("usuario_contrasenia"),
         EMAIL("usuario_email"),
-        NUM(""),
-        PHOTO("usuario_foto");
+        NUM("");
 
         public final String field;
 
