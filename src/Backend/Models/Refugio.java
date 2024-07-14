@@ -1,8 +1,5 @@
 package Backend.Models;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-
 import Backend.DB.DB;
 import Backend.DB.Exceptions.UserDoesNotExistException;
 /**
@@ -12,8 +9,7 @@ public class Refugio extends Usuario{
     /*
      * Atributos
      */
-    private String direccion;
-    ArrayList<String> tipo_mascota;
+    public String direccion;
     /*
      * Metodos
      */
@@ -27,24 +23,27 @@ public class Refugio extends Usuario{
      * @param tipo_mascota
      * @param foto
      */
-    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion, ArrayList<String> tipo_mascota, Path foto) throws UserDoesNotExistException{
-        super(id,nombre, contraseña, numero_contacto,foto);
+    public Refugio(int id, String nombre, String contraseña, String numero_contacto, String direccion){
+        super(id,nombre, contraseña, numero_contacto);
         setAcceso(true); // True indica que el usuario es un refugio.
         this.direccion = direccion;
-        this.tipo_mascota = tipo_mascota;
     }
-
-    public boolean registrarse(String nombre, String contra, String numero, String direccion, DB db) throws UserDoesNotExistException{
-        if(DB.getUsuario(nombre) == null){
-            setNombre(nombre);
-            setContraseña(contra);
-            setNumero_contacto(numero);
-            setDireccion(direccion);
-            setAcceso(true);
-            return true;
-        }
-        System.out.println("No se pudo registrar el usuario.");
-        return false;
+    /**
+     * Metodo el cual asigna valores a los atributos y guarda el Refugio en la base de datos
+     * @param nombre
+     * @param contra
+     * @param numero
+     * @param direccion
+     * @return
+     * @throws UserDoesNotExistException
+     */
+    public boolean registrarse(String nombre, String contra, String numero, String direccion){
+        setNombre(nombre);
+        setContraseña(contra);
+        setNumero_contacto(numero);
+        setDireccion(direccion);
+        setAcceso(true);
+        return DB.crearRefugio(this);
     }
     /*
      * GETTERS & SETTERS
@@ -55,14 +54,6 @@ public class Refugio extends Usuario{
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public ArrayList<String> getTipo_mascota() {
-        return tipo_mascota;
-    }
-
-    public void setTipo_mascota(ArrayList<String> tipo_mascota) {
-        this.tipo_mascota = tipo_mascota;
     }
     
 }
