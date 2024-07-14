@@ -1,0 +1,70 @@
+/*Se vuelve tiliza un reset de estilos para eliminar los margenes y el relleno predeterminados 
+de todos los elementos, y luego define estilos especificos para el cuerpo de la pagina, el formulario 
+de registro y sus elementos como encabezados, campos de entrada y botones. Estos estilos incluyen 
+el diseño del formulario, el fondo de la página, los colores de texto y fondo, asi como margenes, 
+rellenos y sombras para mejorar la apariencia visual del formulario.*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-image: url('back.gif');
+  background-size: 600px 600px;
+}
+
+.form-register {
+  width: 300px;
+  height: 550px;
+  background: #ffffff;
+  margin: auto;
+  margin-top: 40px;
+  box-shadow: 17px 20px 30px #000;
+  padding: 45px 55px;
+}
+
+.form-register h4 {
+  margin: 0;
+  text-align: center;
+  height: 40px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid;
+  color:#F7B69C;
+}
+
+.controls{
+  border: none;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 11px 10px;
+  background: #edeeee;
+  font-weight: bold;
+}
+
+.buttons{
+  width: 50%;
+  margin-left: 8px;
+  margin-top: 30px;
+  padding: 10px 5px;
+  background: #F7B69C;
+  border: none;
+}
+
+.form-register p{
+  height: 40px;
+  text-align: center;
+  margin-top: 20px;
+  border-bottom: 1px solid;
+}
+
+.form-register a{
+  color: #300303;
+  text-decoration: none;
+}
+
+.form-register a:hover{
+  text-decoration: underline;
+}
