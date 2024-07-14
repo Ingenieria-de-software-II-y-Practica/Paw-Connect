@@ -3,8 +3,8 @@ package Backend.DB;
 import Backend.DB.DB.UserField;
 import java.util.ArrayList;
 import Backend.Models.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
+import java.io.File;
 import java.sql.*;
 
 import com.mysql.cj.protocol.Resultset;
@@ -44,7 +44,6 @@ public class DB {
                 int id = rs.getInt("usuario.usuario_id");
                 String password = rs.getString("usuario.usuario_contrasenia");
                 String telephoneNumber = rs.getString("telefono.telefono_telefono");
-                String email = rs.getString("usuario.usuario_email");
 
                 user = new Usuario(id, username, password, telephoneNumber);
             }
@@ -71,7 +70,6 @@ public class DB {
                 String username = rs.getString("usuario.usuario_nombre");
                 String password = rs.getString("usuaro.usuario_contrasenia");
                 String telephoneNumber = rs.getString("telefono.telefono_telefono");
-                String email = rs.getString("usuario.usuario_email");
 
                 user.setNombre(username);
                 user.setContraseña(password);
@@ -458,7 +456,6 @@ public class DB {
             rs.next();
 
             String password = rs.getString("administrador_contrasenia");
-            String email = rs.getString("administrador_email");
             int administratorID = rs.getInt("administrador_id");
 
             query = "SELECT * FROM refugio INNER JOIN telefono ON telefono.telefono_id = refugio.telefono_id INNER JOIN direccion ON direccion.direccion_id = refugio.direccion_id WHERE refugio.administrador_id = ?";
@@ -609,7 +606,7 @@ public class DB {
             //Atributos de post.
             int postID;
             String nombre, descripcion, edad;
-            Path foto;
+            File foto;
             Opciones verificacion;
             boolean isVacunado, isDesparacitado, isNinios, isOtrasMascotas;
 
