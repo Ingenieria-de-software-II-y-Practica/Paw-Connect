@@ -26,12 +26,16 @@ import javax.swing.*;
  */
 public class MenuR extends javax.swing.JFrame {
     public ArrayList<Post> publicaciones;
-    public Refugio refugio;
+    public Refugio refugio = new Refugio();
     /**
      * Creates new form MenuR
      */
     public MenuR(Usuario usuario) {
         this.refugio = (Refugio) usuario;
+        this.publicaciones = Controller.getRefugioPosts(refugio.getId());
+        initComponents();
+    }
+    public MenuR() {
         this.publicaciones = Controller.getRefugioPosts(refugio.getId());
         initComponents();
     }
@@ -850,7 +854,7 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        MenuR MenuFrame = new MenuR();
+        MenuR MenuFrame = new MenuR(usuario);
         MenuFrame.setVisible(true);
         MenuFrame.pack();
         MenuFrame.setLocationRelativeTo(null);

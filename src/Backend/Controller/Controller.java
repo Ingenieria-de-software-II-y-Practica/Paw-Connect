@@ -179,4 +179,7 @@ public class Controller {
         ArrayList<Post> lista_filtro = DB.filtrarPost(filtro, tipoMascota, tamaño);
         return lista_filtro;
     }
+    public static ArrayList<Post> getRefugioPosts(int id){
+        return DB.filtrarPost(id);
+    }
 }
