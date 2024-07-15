@@ -3,13 +3,9 @@ package Backend.DB;
 import Backend.DB.DB.UserField;
 import java.util.ArrayList;
 import Backend.Models.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.*;
 
-import com.mysql.cj.protocol.Resultset;
-import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
-import javax.xml.stream.events.StartDocument;
+import java.io.File;
+import java.sql.*;
 
 public class DB {
     private static String USER = "root";
@@ -35,7 +31,7 @@ public class DB {
         
         Usuario user = null;
         try {
-            String query = "SELECT * FROM usuario WHERE usuario_nombre = ? INNER JOIN telefono ON usuario.telefono_id = telefono.telefono_id";
+            String query = "SELECT * FROM usuario INNER JOIN telefono ON usuario.telefono_id = telefono.telefono_id WHERE usuario_nombre = ?";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, username);
             ResultSet rs = stat.executeQuery();
@@ -44,12 +40,11 @@ public class DB {
                 int id = rs.getInt("usuario.usuario_id");
                 String password = rs.getString("usuario.usuario_contrasenia");
                 String telephoneNumber = rs.getString("telefono.telefono_telefono");
-                String email = rs.getString("usuario.usuario_email");
 
                 user = new Usuario(id, username, password, telephoneNumber);
             }
 
-        } catch (SQLException se) { System.out.println(se + "en getUsuario"); }
+        } catch (SQLException se) { System.out.println(se + " en getUsuario"); }
 
         if (user == null) System.out.println("El usuario '" + username + "' no existe en la base de datos.");
         return user;
@@ -71,7 +66,6 @@ public class DB {
                 String username = rs.getString("usuario.usuario_nombre");
                 String password = rs.getString("usuaro.usuario_contrasenia");
                 String telephoneNumber = rs.getString("telefono.telefono_telefono");
-                String email = rs.getString("usuario.usuario_email");
 
                 user.setNombre(username);
                 user.setContraseña(password);
@@ -149,7 +143,7 @@ public class DB {
             String query = "INSERT INTO telefono (telefono_telefono) VALUES (?)";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, user.getNumero_contacto());
-            stat.executeQuery();
+            stat.executeUpdate();
 
             //Se obtiene el ID del teléfono recién insertado.
             query = "SELECT LAST_INSERT_ID()";
@@ -159,15 +153,14 @@ public class DB {
 
             int telephoneID = rs.getInt(1);
 
-            query = "INSERT INTO usuario (usuario_nombre, usuario_contrasenia, usuario_email, telefono_id) VALUES (?, ?, ?, ?, ?)";
+            query = "INSERT INTO usuario (usuario_nombre, usuario_contrasenia, usuario_email, telefono_id) VALUES (?, ?, ?, ?)";
             stat = con.prepareStatement(query);
             stat.setString(1, user.getNombre());
             stat.setString(2, user.getContraseña());
             //TODO: Agregar campo de e-mail
             stat.setString(3, "email@example.com");
-            stat.setString(4, user.getNumero_contacto());
-            stat.setInt(5, telephoneID);
-            stat.executeQuery();
+            stat.setInt(4, telephoneID);
+            stat.executeUpdate();
 
             //Se le asigna el ID correspondiente al objeto Usuario.            
             query = "SELECT LAST_INSERT_ID()";
@@ -245,11 +238,10 @@ public class DB {
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, user.getNombre());
             stat.setString(2, user.getContraseña());
-
             //TODO: Agregar variable e-mail
             stat.setString(3, "email@example.com");
             stat.setInt(4, user.getId());
-            stat.executeQuery();
+            stat.executeUpdate();
 
             updateUsuario(user, UserField.NUM);
             System.out.println("El usuario '" + user.getNombre() + "' ha sido actualizado en la base de datos.");
@@ -264,11 +256,11 @@ public class DB {
      * @param user      El usuario al que se quiere eliminar de la base de datos.
      * @return          Confirmación de que se ha eliminado al usuario de la base de datos (true) o ha fallado la operación (false).
      */
-    public static boolean EliminarUsuario (Usuario user) {
-        return EliminarUsuario(user.getId());
+    public static boolean eliminarUsuario (Usuario user) {
+        return eliminarUsuario(user.getId());
     }
 
-    public static boolean EliminarUsuario (String username) {
+    public static boolean eliminarUsuario (String username) {
         if (!existeUsuario(username)) {
             System.out.println("El usuario '" + username + "' no existe en la base de datos.");
             return false;
@@ -285,16 +277,16 @@ public class DB {
 
             int telephoneID = rs.getInt(1);
 
+            query = "DELETE FROM usuario WHERE usuario_nombre = ?";
+            stat = con.prepareStatement(query);
+            stat.setString(1, username);
+            System.out.println("El usuario '" + username + "' fue eliminado.");
+
             //Se elimina la entrada de la tabla 'telefono' correspondiente.
             query = "DELETE FROM telefono WHERE telefono_id = ?";
             stat = con.prepareStatement(query);
             stat.setInt(1, telephoneID);
             stat.executeQuery();
-
-            query = "DELETE FROM usuario WHERE usuario_nombre = ?";
-            stat = con.prepareStatement(query);
-            stat.setString(1, username);
-            System.out.println("El usuario '" + username + "' fue eliminado.");
             return true;
 
         } catch (SQLException se) { System.out.println(se + "en EliminarUsuario"); }
@@ -306,7 +298,7 @@ public class DB {
      * @param ID        El ID del usuario al que se quiere eliminar de la base de datos.
      * @return          Confirmación de que se ha eliminado al usuario de la base de datos (true) o ha fallado la operación (false).
      */
-    public static boolean EliminarUsuario (int ID) {
+    public static boolean eliminarUsuario (int ID) {
         if (ID < 0 || !existeUsuario(ID)) {
             System.out.println("El usuario con el ID '" + ID + "' no existe en la base de datos.");
             return false;
@@ -324,15 +316,16 @@ public class DB {
 
             int telephoneID = rs.getInt(1);
 
+            query = "DELETE FROM usuario WHERE usuario_id = ?";
+            stat = con.prepareStatement(query);
+            stat.setInt(1, ID);
+
             //Se elimina la entrada de la tabla 'telefono' correspondiente.
             query = "DELETE FROM telefono WHERE telefono_id = ?";
             stat = con.prepareStatement(query);
             stat.setInt(1, telephoneID);
             stat.executeQuery();
 
-            query = "DELETE FROM usuario WHERE usuario_id = ?";
-            stat = con.prepareStatement(query);
-            stat.setInt(1, ID);
             System.out.println("El usuario con el ID '" + ID + "' fue eliminado.");
             return true;
 
@@ -381,6 +374,7 @@ public class DB {
             stat.setString(1, addressRefugio[0]);
             stat.setString(2, addressRefugio[1]); 
             stat.setString(3, addressRefugio[2]);
+            stat.executeUpdate();
 
             //Se obtiene el ID de la dirección recién insertada.
             query = "SELECT LAST_INSERT_ID()";
@@ -394,7 +388,7 @@ public class DB {
             query = "INSERT INTO telefono (telefono_telefono) VALUES (?)";
             stat = con.prepareStatement(query);
             stat.setString(1, refugio.getNumero_contacto());
-            stat.executeQuery();
+            stat.executeUpdate();
 
             query = "SELECT LAST_INSERT_ID()";
             stat = con.prepareStatement(query);
@@ -410,7 +404,7 @@ public class DB {
             stat.setString(2, refugio.getContraseña());
             //TODO: Agregar e-mail.
             stat.setString(3, "email@example.com");
-            stat.executeQuery();
+            stat.executeUpdate();
 
             query = "SELECT LAST_INSERT_ID()";
             stat = con.prepareStatement(query);
@@ -421,13 +415,13 @@ public class DB {
 
             //Ahora se inserta el resto de la información del refugio.
             //TODO: Nombre de usuario != nombre del refugio.
-            query = "INSERT INTO refugio (refugio_nombre, administrador_id, direccion_id, telefono_id) VALUES (?, ?, ?, ?, ?)";
+            query = "INSERT INTO refugio (refugio_nombre, administrador_id, direccion_id, telefono_id) VALUES (?, ?, ?, ?)";
             stat = con.prepareStatement(query);
             stat.setString(1, refugio.getNombre());
             stat.setInt(2, administratorID);
             stat.setInt(3, addressID);
             stat.setInt(4, telephoneID);
-            stat.executeQuery();
+            stat.executeUpdate();
 
             //Se busca el ID para asignárselo a el objeto 'refugio'.
             query = "SELECT LAST_INSERT_ID()";
@@ -441,11 +435,6 @@ public class DB {
         } catch (SQLException se) { System.out.println(se + "en crearRefugio"); }
         return false;
     }
-    /**
-     * Metodo para obtener un refugio por su id
-     * @param refugio_id id del refugio
-     * @return Refugio
-     */
 
     public static Refugio getRefugio (String username) {
         Refugio refugio = null;
@@ -458,7 +447,6 @@ public class DB {
             rs.next();
 
             String password = rs.getString("administrador_contrasenia");
-            String email = rs.getString("administrador_email");
             int administratorID = rs.getInt("administrador_id");
 
             query = "SELECT * FROM refugio INNER JOIN telefono ON telefono.telefono_id = refugio.telefono_id INNER JOIN direccion ON direccion.direccion_id = refugio.direccion_id WHERE refugio.administrador_id = ?";
@@ -478,50 +466,17 @@ public class DB {
         return refugio;
     }
 
-    /**
-     * Metodo para obtener la direccion de un refugio
-     * @param id_direccion Refugio.getDireccion()
-     * @return String direccion del refugio o null si no se encuentra
-     */
-    public static String getDirrecionRefugio(int id_direccion) {
-        try {
-            ResultSet consulta =con.prepareStatement("SELECT * FROM direccion WHERE direccion_id = "+id_direccion+";").executeQuery();
-            if (consulta.next()) {
-                return consulta.getString("direccion_calle")+","+consulta.getString("direccion_altura")+","+consulta.getString("direccion_departamento");
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return null;
-        }
-        return null;
-    }
-    /**
-     * Metodo para elimianar un refugio de la BD
-     * @param refugio_id id del refugio: Refugio.getId()
-     * @return Confirmacion: true o false
-     */
-    public static  boolean eliminarRefugio(int refugio_id) {
-        try {
-            PreparedStatement query = con.prepareStatement("DELETE FROM refugio WHERE refugio_id="+refugio_id+";");
-            query.executeQuery();
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
-
     /*------------------
     MÉTODOS DE POST
     ------------------*/
 
-    public static boolean publicarPost (Post post) {
+    public static boolean publicarPost (Post post, int refugioID) {
         try {
             int saludID = getSaludID(post.getVerificacion().isVacunas(), post.getVerificacion().isDesparacitado());
             int habitacionID = getHabitacionID(post.getVerificacion().isOtrasMascotas(), post.getVerificacion().isNiños());
             int animalID = getAnimalID(post.getTipoMascota(), post.getTamaño());
 
-            if (saludID == -1 || habitacionID == -1) {
+            if (saludID == -1 || habitacionID == -1 || animalID == -1) {
                 System.out.println("Ha habido un error al crear el post.");
                 return false;
             }
@@ -531,15 +486,15 @@ public class DB {
             stat.setString(1, post.getTitulo());
             stat.setString(2, post.getEdad());
             stat.setString(3, post.getDescripcion());
-            stat.setString(4, "recomendacion");
+            stat.setString(4, "Recomendación.");
             //TODO: RefugioID
-            stat.setInt(5, 0);
+            stat.setInt(5, refugioID);
             stat.setInt(6, saludID);
             stat.setInt(7, animalID);
             stat.setInt(8, habitacionID);
             //TODO: Foto mascota
-            stat.setString(9, "foto mascota");
-            stat.executeQuery();
+            stat.setString(9, null);
+            stat.executeUpdate();
 
             //Busco el ID recién insertado para asignarselo a el objeto 'Post'
             query = "SELECT LAST_INSERT_ID()";
@@ -561,32 +516,121 @@ public class DB {
             int habitacionID = getHabitacionID(post.getVerificacion().isOtrasMascotas(), post.getVerificacion().isNiños());
             int animalID = getAnimalID(post.getTipoMascota(), post.getTamaño());
 
-            if (saludID == -1 || habitacionID == -1) {
-                System.out.println("Ha habido un error al crear el post.");
+            if (saludID == -1 || habitacionID == -1 || animalID == -1) {
+                System.out.println("Ha habido un error al actualizar el post.");
                 return false;
             }
 
-            String query = "UPDATE mascota SET mascota_nombre = ?, mascota_edad = ?, mascota_recomendacion = ?, refugio_id = ?, salud_id = ?, animal_id = ?, habitacion_id = ?, mascota_foto = ? WHERE mascota_id = ?";
+            //Se busca el ID del refugio que corresponde a éste post.
+            String query = "SELECT refugio_id FROM mascota WHERE mascota_id = ?";
             PreparedStatement stat = con.prepareStatement(query);
+            stat.setInt(1, post.getId());
+            ResultSet rs = stat.executeQuery();
+            if (!rs.next()) {
+                System.out.println("El post especificado no está publicado.");
+                return false;
+            }
+            int refugioID = rs.getInt(1);
+
+            //Se actualizan todos los valores del post.
+            query = "UPDATE mascota SET mascota_nombre = ?, mascota_edad = ?, mascota_descripcion = ?, mascota_recomendacion = ?, refugio_id = ?, salud_id = ?, animal_id = ?, habitacion_id = ?, mascota_foto = ? WHERE mascota_id = ?";
+            stat = con.prepareStatement(query);
             stat.setString(1, post.getTitulo());
             stat.setString(2, post.getEdad());
             stat.setString(3, post.getDescripcion());
-            stat.setString(4, "recomendacion");
-            //TODO: RefugioID
-            stat.setInt(5, 0);
+            stat.setString(4, "Recomendacion");
+            stat.setInt(5, refugioID);
             stat.setInt(6, saludID);
             stat.setInt(7, animalID);
             stat.setInt(8, habitacionID);
             //TODO: Foto mascota
-            stat.setString(9, "foto mascota");
+            stat.setString(9, post.getFoto());
             stat.setInt(10, post.getId());
-            stat.executeQuery();
+            stat.executeUpdate();
 
             System.out.println("El post se ha actualizado correctamente.");
             return true;
 
         } catch (SQLException sqe) { System.out.println(sqe + "en PublicarPost"); }
         return false;
+    }
+
+    public static Post getPost (int postID) {
+        try {
+            String query = "SELECT * FROM mascota INNER JOIN animal ON animal.animal_id = mascota.animal_id INNER JOIN habitacion ON habitacion.habitacion_id = mascota.habitacion_id INNER JOIN salud ON salud.salud_id = mascota.salud_id WHERE mascota.mascota_id = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setInt(1, postID);
+            ResultSet rs = stat.executeQuery();
+            if (!rs.next()) {
+                System.out.println("El post con ID '" + postID + "' no existe en la base de datos.");
+                return null;
+            }
+
+            String nombre, descripcion, edad, tamanio, animal, foto;
+            Opciones verificacion;
+            boolean isVacunado, isDesparacitado, isNinios, isOtrasMascotas;
+
+            isVacunado = rs.getBoolean("salud.salud_vacunado");
+            isDesparacitado = rs.getBoolean("salud.salud_desparacitado");
+            isNinios = rs.getBoolean("habitacion.habitacion_ninios");
+            isOtrasMascotas = rs.getBoolean("habitacion.habitacion_otras_mascotas");
+            tamanio = rs.getString("animal.animal_tamanio");
+            animal = rs.getString("animal.animal_nombre");
+
+            verificacion = new Opciones(isVacunado, isNinios, isOtrasMascotas, isDesparacitado);
+            postID = rs.getInt("mascota.mascota_id");
+            nombre = rs.getString("mascota.mascota_nombre");
+            descripcion = rs.getString("mascota.mascota_descripcion");
+            edad = rs.getString("mascota.mascota_edad");
+            foto = rs.getString("mascota.mascota_foto");
+            Post post = new Post(postID, nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal, foto);
+            return post;
+
+        } catch (SQLException sqe) { System.out.println(sqe + " en getPost"); }
+        return null;
+    }
+
+    public static ArrayList<Post> filtrarPost (int refugioID) {
+        try {
+            String query = "SELECT * FROM mascota INNER JOIN animal ON animal.animal_id = mascota.animal_id INNER JOIN habitacion ON habitacion.habitacion_id = mascota.habitacion_id INNER JOIN salud ON salud.salud_id = mascota.salud_id WHERE mascota.refugio_id = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setInt(1, refugioID);
+            ResultSet rs = stat.executeQuery();
+
+            ArrayList<Post> result = new ArrayList<>();
+            Post post;
+
+            //Atributos de post.
+            int postID;
+            String nombre, descripcion, edad, foto, tamanio, animal;
+            Opciones verificacion;
+            boolean isVacunado, isDesparacitado, isNinios, isOtrasMascotas;
+
+            while (rs.next()) {
+                isVacunado = rs.getBoolean("salud.salud_vacunado");
+                isDesparacitado = rs.getBoolean("salud.salud_desparacitado");
+                isNinios = rs.getBoolean("habitacion.habitacion_ninios");
+                isOtrasMascotas = rs.getBoolean("habitacion.habitacion_otras_mascotas");
+                tamanio = rs.getString("animal.animal_tamanio");
+                animal = rs.getString("animal.animal_nombre");
+
+                verificacion = new Opciones(isVacunado, isNinios, isOtrasMascotas, isDesparacitado);
+                postID = rs.getInt("mascota.mascota_id");
+                nombre = rs.getString("mascota.mascota_nombre");
+                descripcion = rs.getString("mascota.mascota_descripcion");
+                edad = rs.getString("mascota.mascota_edad");
+                foto = rs.getString("mascota.mascota_foto");
+
+                post = new Post(postID, nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal, foto);
+                result.add(post);
+            }
+
+            if (result.isEmpty()) return null;
+            else return result;
+            
+        } catch (SQLException sqe) {
+            return null;
+        }
     }
 
     public static ArrayList<Post> filtrarPost (Opciones opciones, String tamanio, String animal) {
@@ -603,13 +647,11 @@ public class DB {
             ResultSet rs = stat.executeQuery();
 
             ArrayList<Post> result = new ArrayList<Post>();
-            Post post = null;
-            Opciones opcionesPost = null;
+            Post post;
 
             //Atributos de post.
             int postID;
-            String nombre, descripcion, edad;
-            Path foto;
+            String nombre, descripcion, edad, foto;
             Opciones verificacion;
             boolean isVacunado, isDesparacitado, isNinios, isOtrasMascotas;
 
@@ -624,20 +666,38 @@ public class DB {
                 nombre = rs.getString("mascota.mascota_nombre");
                 descripcion = rs.getString("mascota.mascota_descripcion");
                 edad = rs.getString("mascota.mascota_edad");
-                foto = Paths.get(rs.getString("mascota.mascota_foto"));
+                foto = rs.getString("mascota.mascota_foto");
                 tamanio = rs.getString("animal.animal_tamanio");
                 animal = rs.getString("animal.animal_nombre");
 
-                post = new Post(postID, nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal, null);
+                post = new Post(postID, nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal, foto);
                 result.add(post);
             }
 
-            if (result.size() == 0) return null;
+            if (result.isEmpty()) return null;
             else return result;
             
         } catch (SQLException sqe) {
+            System.out.println(sqe + "en FiltrarPost");
             return null;
         }
+    }
+
+    public static boolean eliminarPost (Post post) {
+        return eliminarPost(post.getId());
+    }
+
+    public static boolean eliminarPost (int postID) {
+        try {
+            String query = "DELETE FROM mascota WHERE mascota_id = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setInt(1, postID);
+            stat.executeUpdate();
+            System.out.println("El post con ID '" + postID + "' ha sido eliminado correctamente.");
+            return true;
+
+        } catch (SQLException sqe) { System.out.println(sqe + " en eliminarPost"); }
+        return false;
     }
 
     private static int getSaludID (boolean vacunado, boolean desparacitado) {
@@ -657,7 +717,7 @@ public class DB {
                 stat = con.prepareStatement(query);
                 stat.setBoolean(1, vacunado);
                 stat.setBoolean(2, desparacitado);
-                stat.executeQuery();
+                stat.executeUpdate();
 
                 //Se busca el ID de la entrada recién creada.
                 query = "SELECT LAST_INSERT_ID()";
@@ -686,7 +746,7 @@ public class DB {
                 stat = con.prepareStatement(query);
                 stat.setBoolean(1,mascotas);
                 stat.setBoolean(2, ninios);
-                stat.executeQuery();
+                stat.executeUpdate();
 
                 query = "SELECT LAST_INSERT_ID()";
                 stat = con.prepareStatement(query);
@@ -708,7 +768,7 @@ public class DB {
             stat.setString(1, animal);
             stat.setString(2, tamanio);
             ResultSet rs = stat.executeQuery();
-            if (rs.next()) animalID = rs.getInt("salud_id");
+            if (rs.next()) animalID = rs.getInt("animal_id");
             else {
                 /*Todavía no existe tabla en 'animal' que corresponda a los atributos de la mascota que se quiere publicar.
                 Se crea la entrada. */
@@ -716,7 +776,7 @@ public class DB {
                 stat = con.prepareStatement(query);
                 stat.setString(1, animal);
                 stat.setString(2, tamanio);
-                stat.executeQuery();
+                stat.executeUpdate();
 
                 //Se busca el ID de la entrada recién creada.
                 query = "SELECT LAST_INSERT_ID()";
@@ -737,7 +797,7 @@ public class DB {
 
     public static boolean existeUsuario (String username) {
         try {
-            ResultSet rs = null;
+            ResultSet rs;
             String query = "SELECT " + UserField.NAME.field + " FROM usuario WHERE " + UserField.NAME.field + " = ?";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, username);
@@ -752,7 +812,7 @@ public class DB {
 
     public static boolean existeUsuario (int ID) {
         try {
-            ResultSet rs = null;
+            ResultSet rs;
             String query = "SELECT " + UserField.ID.field + " FROM usuario WHERE " + UserField.ID.field + " = ?";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setInt(1, ID);
@@ -764,7 +824,7 @@ public class DB {
     }
 
     public static boolean existeRefugio (String username) {
-        ResultSet rs = null;
+        ResultSet rs;
         //TODO: Cambiar por formato field
         try {  
             String query = "SELECT administrador_id FROM administrador WHERE administrador_nombre = ?";
