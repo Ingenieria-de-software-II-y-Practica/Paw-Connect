@@ -544,7 +544,7 @@ public class DB {
             stat.setInt(7, animalID);
             stat.setInt(8, habitacionID);
             //TODO: Foto mascota
-            stat.setString(9, post.getFoto());
+            stat.setString(9, post.getFoto().getAbsolutePath());
             stat.setInt(10, post.getId());
             stat.executeUpdate();
 
@@ -566,7 +566,7 @@ public class DB {
                 return null;
             }
 
-            String nombre, descripcion, edad, tamanio, animal, foto;
+            String nombre, descripcion, edad, tamanio, animal, fotopath;
             Opciones verificacion;
             boolean isVacunado, isDesparacitado, isNinios, isOtrasMascotas;
 
@@ -582,8 +582,9 @@ public class DB {
             nombre = rs.getString("mascota.mascota_nombre");
             descripcion = rs.getString("mascota.mascota_descripcion");
             edad = rs.getString("mascota.mascota_edad");
-            foto = rs.getString("mascota.mascota_foto");
-            Post post = new Post(postID, nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal, foto);
+            fotopath = rs.getString("mascota.mascota_foto");
+            File foto = new File(fotopath);
+            Post post = new Post(nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal,foto);
             return post;
 
         } catch (SQLException sqe) { System.out.println(sqe + " en getPost"); }
@@ -602,7 +603,7 @@ public class DB {
 
             //Atributos de post.
             int postID;
-            String nombre, descripcion, edad, foto, tamanio, animal;
+            String nombre, descripcion, edad, fotopath, tamanio, animal;
             Opciones verificacion;
             boolean isVacunado, isDesparacitado, isNinios, isOtrasMascotas;
 
@@ -619,7 +620,8 @@ public class DB {
                 nombre = rs.getString("mascota.mascota_nombre");
                 descripcion = rs.getString("mascota.mascota_descripcion");
                 edad = rs.getString("mascota.mascota_edad");
-                foto = rs.getString("mascota.mascota_foto");
+                fotopath = rs.getString("mascota.mascota_foto");
+                File foto = new File(fotopath);
 
                 post = new Post(postID, nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal, foto);
                 result.add(post);
@@ -651,7 +653,7 @@ public class DB {
 
             //Atributos de post.
             int postID;
-            String nombre, descripcion, edad, foto;
+            String nombre, descripcion, edad, fotopath;
             Opciones verificacion;
             boolean isVacunado, isDesparacitado, isNinios, isOtrasMascotas;
 
@@ -666,9 +668,10 @@ public class DB {
                 nombre = rs.getString("mascota.mascota_nombre");
                 descripcion = rs.getString("mascota.mascota_descripcion");
                 edad = rs.getString("mascota.mascota_edad");
-                foto = rs.getString("mascota.mascota_foto");
+                fotopath = rs.getString("mascota.mascota_foto");
                 tamanio = rs.getString("animal.animal_tamanio");
                 animal = rs.getString("animal.animal_nombre");
+                File foto = new File(fotopath);
 
                 post = new Post(postID, nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal, foto);
                 result.add(post);
