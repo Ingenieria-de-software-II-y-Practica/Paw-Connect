@@ -18,6 +18,7 @@ import Backend.Controller.Controller;
 import Backend.Models.Post;
 import Backend.Models.Refugio;
 import Backend.Models.Usuario;
+import javax.swing.*;
 
 /**
  *
@@ -71,7 +72,6 @@ public class MenuR extends javax.swing.JFrame {
         Descrip2 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         Img2 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
@@ -79,7 +79,6 @@ public class MenuR extends javax.swing.JFrame {
         Descrip3 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
         Img3 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel(); //Post
         jButton6 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -274,6 +273,11 @@ public class MenuR extends javax.swing.JFrame {
         jButton15.setBackground(new java.awt.Color(247, 247, 247));
         jButton15.setForeground(new java.awt.Color(51, 51, 51));
         jButton15.setText("Eliminar");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarPostButton(evt, publicaciones.get(3).getId(), Img4, Descrip4, jPanel21, jPanel20);
+            }
+        });
         jPanel19.add(jButton15, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
@@ -309,6 +313,11 @@ public class MenuR extends javax.swing.JFrame {
         jButton11.setBackground(new java.awt.Color(247, 247, 247));
         jButton11.setForeground(new java.awt.Color(51, 51, 51));
         jButton11.setText("Eliminar");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarPostButton(evt, publicaciones.get(1).getId(), Img2, Descrip2, jPanel15, jPanel14);
+            }
+        });
         jPanel13.add(jButton11, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
@@ -322,7 +331,6 @@ public class MenuR extends javax.swing.JFrame {
         jPanel15.setLayout(new AbsoluteLayout());
         Img2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+publicaciones.get(1).getFoto().getPath())));
         jPanel15.add(Img2, new AbsoluteConstraints(0, 0, 70, 70));
-        jPanel15.add(jLabel12, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel13.add(jPanel15, new AbsoluteConstraints(20, 20, 70, 70));
 
@@ -345,6 +353,11 @@ public class MenuR extends javax.swing.JFrame {
         jButton13.setBackground(new java.awt.Color(247, 247, 247));
         jButton13.setForeground(new java.awt.Color(51, 51, 51));
         jButton13.setText("Eliminar");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarPostButton(evt, publicaciones.get(2).getId(), Img3, Descrip3, jPanel18, jPanel17);
+            }
+        });
         jPanel16.add(jButton13, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
@@ -358,7 +371,6 @@ public class MenuR extends javax.swing.JFrame {
         jPanel18.setLayout(new AbsoluteLayout());
         Img3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+publicaciones.get(2).getFoto().getPath())));
         jPanel18.add(Img3, new AbsoluteConstraints(0, 0, 70, 70));
-        jPanel18.add(jLabel27, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel16.add(jPanel18, new AbsoluteConstraints(20, 20, 70, 70));
 
@@ -758,7 +770,7 @@ public class MenuR extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    protected void eliminarPostButton(ActionEvent evt, int idPost, JPanel imagen, JPanel descripcion, JPanel original, JPanel descripcionOirginal) {
+    protected void eliminarPostButton(ActionEvent evt, int idPost, JLabel imagen, JLabel descripcion, JPanel original, JPanel descripcionOirginal) {
         if (Controller.eliminarPost(idPost)== "OK") {
             original.remove(imagen);      
             descripcionOirginal.remove(descripcion);
@@ -963,7 +975,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -978,7 +989,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel37;
