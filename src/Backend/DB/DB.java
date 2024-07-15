@@ -7,6 +7,9 @@ import Backend.Models.*;
 import java.io.File;
 import java.sql.*;
 
+import java.io.File;
+import java.sql.*;
+
 public class DB {
     private static String USER = "root";
  	private static String PASS = "root";
@@ -653,7 +656,8 @@ public class DB {
 
             //Atributos de post.
             int postID;
-            String nombre, descripcion, edad, fotopath;
+            String nombre, descripcion, edad;
+            File foto;
             Opciones verificacion;
             boolean isVacunado, isDesparacitado, isNinios, isOtrasMascotas;
 
