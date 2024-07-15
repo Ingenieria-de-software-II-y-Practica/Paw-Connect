@@ -10,8 +10,17 @@ import Backend.Models.Opciones;
 import Backend.Models.Post;
 import Backend.Models.Refugio;
 import Backend.Models.Usuario;
+import Frontend.LoginAndSignUp.src.loginandsignup.Login;
 
 public class Controller {
+    public static void main(String[] args) {
+        
+        Login LoginFrame = new Login();
+        LoginFrame.setVisible(true);
+        LoginFrame.pack();
+        LoginFrame.setLocationRelativeTo(null);
+        
+    }
     /**
      * Metodo para que la vista se loguee.
      * @param username Nombre de usuario que nos pasa la vista

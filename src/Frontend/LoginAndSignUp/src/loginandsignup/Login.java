@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package loginandsignup;
+package Frontend.LoginAndSignUp.src.loginandsignup;
 
+import Backend.Controller.Controller;
+import Backend.Models.Usuario;
 
 public class Login extends javax.swing.JFrame {
 
@@ -13,7 +15,6 @@ public class Login extends javax.swing.JFrame {
     }
     
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -195,39 +196,47 @@ public class Login extends javax.swing.JFrame {
         jPanel1.getAccessibleContext().setAccessibleName("LOGIN");
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void ContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraActionPerformed
+    private void ContraActionPerformed(java.awt.event.ActionEvent evt) {
         
-    }//GEN-LAST:event_ContraActionPerformed
+    }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        MenuUsr MenuUsrFrame = new MenuUsr();
-        MenuUsrFrame.setVisible(true);
-        MenuUsrFrame.pack();
-        MenuUsrFrame.setLocationRelativeTo(null);
-        this.dispose();    
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        String nombre = NombreUsr.getText();
+        String contra = Contra.getText();
+        Usuario usuario = Controller.loginUsuario(nombre, contra);
+        if (usuario != null) {
+            if (!(usuario.isAcceso())) {
+                MenuUsr MenuUsrFrame = new MenuUsr();
+                MenuUsrFrame.setVisible(true);
+                MenuUsrFrame.pack();
+                MenuUsrFrame.setLocationRelativeTo(null);
+                this.dispose();           
+            }else{
+                MenuR MenuRFrame = new MenuR();
+                MenuRFrame.setVisible(true);
+                MenuRFrame.pack();
+                MenuRFrame.setLocationRelativeTo(null);
+                this.dispose();
+            }
+        }
+    }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         Signup1 SignupFrame = new Signup1();
         SignupFrame.setVisible(true);
         SignupFrame.pack();
         SignupFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }
 
-    private void NombreUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreUsrActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_NombreUsrActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
+    private void NombreUsrActionPerformed(java.awt.event.ActionEvent evt) {
+        
+    }
 
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration
     private javax.swing.JTextField Contra;
     private javax.swing.JPanel Left;
     private javax.swing.JTextField NombreUsr;
