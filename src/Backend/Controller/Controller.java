@@ -1,9 +1,7 @@
 package Backend.Controller;
 
 import java.io.File;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import Backend.DB.DB;
 import Backend.Models.Opciones;
@@ -180,5 +178,12 @@ public class Controller {
     }
     public static ArrayList<Post> getRefugioPosts(int id){
         return DB.filtrarPost(id);
+    }
+    public static ArrayList<Post> getAllPosts(){
+        return DB.getAllPosts();
+    }
+    public static Refugio getRefugiobyPost(int id){
+        int id2 = DB.getRefugioID(id);
+        return DB.getRefugio(id2);
     }
 }

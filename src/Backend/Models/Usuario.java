@@ -1,7 +1,5 @@
 package Backend.Models;
 
-import java.nio.file.Path;
-import java.sql.SQLException;
 import Backend.DB.DB;
 
 public class Usuario {
@@ -42,7 +40,7 @@ public class Usuario {
        setContraseña(contra);
        setNumero_contacto(numero);
        setAcceso(false);
-       return DB.crearUsuario(this);
+       return DB.registerUsuario(this);
     }
     /**
      * Con username y contraseña se compara si son iguales los ingresados a las del objeto encontrado.

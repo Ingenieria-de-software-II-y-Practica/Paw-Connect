@@ -1,12 +1,34 @@
 package Frontend.LoginAndSignUp.src.loginandsignup;
 import java.awt.Color;
-public class MenuUsr extends javax.swing.JFrame {
+import java.util.ArrayList;
 
+import javax.swing.table.DefaultTableModel;
+
+import Backend.Controller.Controller;
+import Backend.Models.Post;
+import Backend.Models.Refugio;
+import Backend.Models.Usuario;
+public class MenuUsr extends javax.swing.JFrame {
+    ArrayList<Post> post;
+    DefaultTableModel model = new DefaultTableModel();
+    Usuario usuario = new Usuario();
     /**
      * Creates new form MenuUsr
      */
     public MenuUsr() {
+        post = Controller.getAllPosts();
         initComponents();
+        
+    }
+    public MenuUsr(Usuario usuario) {
+        this.usuario = new Usuario();
+        post = Controller.getAllPosts();
+        initComponents();
+        model.addColumn("Nombre Mascota");
+        model.addColumn("Refugio");
+        model.addColumn("Direccion");
+        model.addColumn("Numero de Contacto");
+        this.Tablaa.setModel(model);
         
     }
 
@@ -94,7 +116,7 @@ public class MenuUsr extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("PEPE");
+        jLabel3.setText(usuario.getNombre());
         jPanel1.add(jLabel3, new AbsoluteConstraints(150, 180, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen2.jpg"))); // NOI18N
@@ -215,12 +237,20 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
         jPanel21.setLayout(new AbsoluteLayout());
+        Img4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+post.get(3).getFoto().getPath())));
         jPanel21.add(Img4, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel19.add(jPanel21, new AbsoluteConstraints(20, 20, 70, 70));
 
         jLabel19.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel19.setText("Numero de Tel:");
+        Refugio refugio = new Refugio();
+        jLabel19.setText("Numero de Tel: ");
+        try{
+            refugio = Controller.getRefugiobyPost(post.get(0).getId());
+            jLabel19.setText("Numero de Tel: " + refugio.getNumero_contacto());
+        } catch(Exception e){
+
+        }
         jLabel19.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel19.add(jLabel19, new AbsoluteConstraints(10, 100, 90, 80));
 
@@ -239,12 +269,19 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new AbsoluteLayout());
+        Img2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+post.get(1).getFoto().getPath())));
         jPanel15.add(Img2, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel13.add(jPanel15, new AbsoluteConstraints(20, 20, 70, 70));
 
         jLabel17.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel17.setText("Numero de Tel:");
+        jLabel17.setText("Numero de Tel: ");
+        try{
+            refugio = Controller.getRefugiobyPost(post.get(1).getId());
+            jLabel17.setText("Numero de Tel: " + refugio.getNumero_contacto());
+        }catch(Exception e){
+
+        }
         jLabel17.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel13.add(jLabel17, new AbsoluteConstraints(10, 100, 90, 80));
 
@@ -263,12 +300,19 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setLayout(new AbsoluteLayout());
+        Img3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+post.get(2).getFoto().getPath())));
         jPanel18.add(Img3, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel16.add(jPanel18, new AbsoluteConstraints(20, 20, 70, 70));
 
         jLabel18.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel18.setText("Numero de Tel:");
+        jLabel18.setText("Numero de Tel: ");
+        try{
+            refugio = Controller.getRefugiobyPost(post.get(2).getId());
+            jLabel18.setText("Numero de Tel: " + refugio.getNumero_contacto());
+        }catch(Exception e){
+
+        }
         jLabel18.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel16.add(jLabel18, new AbsoluteConstraints(10, 100, 90, 80));
 
@@ -287,12 +331,19 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setLayout(new AbsoluteLayout());
+        Img1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+post.get(0).getFoto().getPath())));
         jPanel10.add(Img1, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel4.add(jPanel10, new AbsoluteConstraints(20, 20, 70, 70));
 
         jLabel12.setForeground(new java.awt.Color(51, 51, 51));
         jLabel12.setText("Numero de Tel:");
+        try{
+            refugio = Controller.getRefugiobyPost(post.get(3).getId());
+            jLabel12.setText("Numero de Tel:" + refugio.getNumero_contacto());
+        } catch(Exception e){
+
+        }
         jLabel12.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel4.add(jLabel12, new AbsoluteConstraints(10, 100, 90, 80));
 
@@ -476,6 +527,7 @@ public class MenuUsr extends javax.swing.JFrame {
     }//GEN-LAST:event_HOMEMouseMoved
 
     private void HOMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HOMEMouseClicked
+        post = Controller.getAllPosts();
         jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_HOMEMouseClicked
 
@@ -511,9 +563,19 @@ public class MenuUsr extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
-    private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
+    private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {
+        ArrayList<Post> filtro = Controller.filtroPosts(jCheckBox5.isSelected(), jCheckBox4.isSelected(), jCheckBox1.isSelected(), jCheckBox3.isSelected(), (String) jComboBox1.getSelectedItem(), (String) jComboBox5.getSelectedItem());
+        for(Post post : filtro){
+            Refugio ref = Controller.getRefugiobyPost(post.getId());
+            String [] add = new String[4];
+            add[0] = post.getTitulo();
+            add[1] = ref.getNombre();
+            add[2] = ref.getDireccion();
+            add[3] = ref.getNumero_contacto();
+            model.addRow(add);
 
-    }//GEN-LAST:event_ButtonBuscarActionPerformed
+        }
+    }
 
 
 

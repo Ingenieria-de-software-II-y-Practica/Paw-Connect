@@ -1,5 +1,4 @@
 package Backend.Models;
-import Backend.DB.DB;
 
 public class Opciones {
     // ---------VARIABLES---------//

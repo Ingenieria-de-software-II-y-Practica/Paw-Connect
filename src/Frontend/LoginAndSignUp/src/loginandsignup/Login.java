@@ -4,6 +4,8 @@
  */
 package Frontend.LoginAndSignUp.src.loginandsignup;
 
+import javax.swing.ImageIcon;
+
 import Backend.Controller.Controller;
 import Backend.Models.Usuario;
 
@@ -41,7 +43,7 @@ public class Login extends javax.swing.JFrame {
         Right.setBackground(new java.awt.Color(255, 255, 255));
         Right.setPreferredSize(new java.awt.Dimension(400, 500));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen1.jpg"))); // NOI18N
+        jLabel6.setIcon(new ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagen1.jpg")); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 153, 153));

@@ -5,6 +5,7 @@
 package Frontend.LoginAndSignUp.src.loginandsignup;
 
 import Backend.Controller.Controller;
+import Backend.Models.Usuario;
 
 /**
  *
@@ -233,7 +234,7 @@ public class Signup1 extends javax.swing.JFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(420, 500));
         jPanel4.setLayout(new AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen1.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagen1.jpg")); // NOI18N
         jPanel4.add(jLabel1, new AbsoluteConstraints(70, 50, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
@@ -267,7 +268,8 @@ public class Signup1 extends javax.swing.JFrame {
         String user = (String) tipousr.getSelectedItem();
         if(user.equalsIgnoreCase("Refugio")){
             if(Controller.registrarRefugio(Nombre.getText(), Contra.getText(), Numero.getText(), Dire.getText()).equals("OK")){
-                MenuR MenuFrame = new MenuR();
+                Usuario usuario = Controller.loginUsuario(Nombre.getText(), Contra.getText());
+                MenuR MenuFrame = new MenuR(usuario);
                 MenuFrame.setVisible(true);
                 MenuFrame.pack();
                 MenuFrame.setLocationRelativeTo(null);
@@ -275,7 +277,8 @@ public class Signup1 extends javax.swing.JFrame {
             }
         } else{
             if(Controller.registrarUsuario(Nombre.getText(), Contra.getText(), Numero.getText()).equals("OK")){
-                MenuUsr MenuFrame = new MenuUsr();
+                Usuario usuario = Controller.loginUsuario(Nombre.getText(), Contra.getText());
+                MenuUsr MenuFrame = new MenuUsr(usuario);
                 MenuFrame.setVisible(true);
                 MenuFrame.pack();
                 MenuFrame.setLocationRelativeTo(null);

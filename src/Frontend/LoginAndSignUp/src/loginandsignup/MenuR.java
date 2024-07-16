@@ -948,7 +948,7 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox8ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-        Controller.publicarPost(jTextField5.getText(), textArea2.getText(), jCheckBox8.isSelected(), jCheckBox7.isSelected(), jCheckBox2.isSelected(), jCheckBox6.isSelected(), jTextField4.getText(), (String) jComboBox4.getSelectedItem(), (String) jComboBox3.getSelectedItem(), new File(EligeImgActionPerformed(evt)));daw
+        Controller.publicarPost(jTextField5.getText(), textArea2.getText(), jCheckBox8.isSelected(), jCheckBox7.isSelected(), jCheckBox2.isSelected(), jCheckBox6.isSelected(), jTextField4.getText(), (String) jComboBox4.getSelectedItem(), (String) jComboBox3.getSelectedItem(), new File(EligeImgActionPerformed(evt)));
         MenuR MenuFrame = new MenuR();
         MenuFrame.setVisible(true);
         MenuFrame.pack();

@@ -633,6 +633,47 @@ public class DB {
             return null;
         }
     }
+    public static ArrayList<Post> getAllPosts() {
+        try {
+
+            String query = "SELECT * FROM mascota INNER JOIN animal ON animal.animal_id = mascota.animal_id INNER JOIN habitacion ON habitacion.habitacion_id = mascota.habitacion_id INNER JOIN salud ON salud.salud_id = mascota.salud_id";
+            PreparedStatement stat = con.prepareStatement(query);
+            ResultSet rs = stat.executeQuery();
+
+            ArrayList<Post> result = new ArrayList<Post>();
+            Post post;
+
+            //Atributos de post.
+            int postID;
+            String nombre, descripcion, edad, fotopath, tamanio, animal;
+            Opciones verificacion;
+            boolean isVacunado, isDesparacitado, isNinios, isOtrasMascotas;
+
+            while (rs.next()) {
+                isVacunado = rs.getBoolean("salud.salud_vacunado");
+                isDesparacitado = rs.getBoolean("salud.salud_desparacitado");
+                isNinios = rs.getBoolean("habitacion.habitacion_ninios");
+                isOtrasMascotas = rs.getBoolean("habitacion.habitacion_otras_mascotas");
+
+                verificacion = new Opciones(isVacunado, isNinios, isOtrasMascotas, isDesparacitado);
+                postID = rs.getInt("mascota.mascota_id");
+                nombre = rs.getString("mascota.mascota_nombre");
+                descripcion = rs.getString("mascota.mascota_descripcion");
+                edad = rs.getString("mascota.mascota_edad");
+                fotopath = rs.getString("mascota.mascota_foto");
+                tamanio = rs.getString("animal.animal_tamanio");
+                animal = rs.getString("animal.animal_nombre");
+                File foto = new File(fotopath);
+
+                post = new Post(postID, nombre, descripcion, verificacion, edad, tamanio, animal, foto);
+                result.add(post);
+            }
+
+            if (result.isEmpty()) return null;
+            else return result;
+        } catch (SQLException sqe) { System.out.println(sqe + " en getAllPosts"); }
+        return null;
+    }
 
     public static ArrayList<Post> filtrarPost (Opciones opciones, String tamanio, String animal) {
         try {
@@ -702,6 +743,22 @@ public class DB {
         } catch (SQLException sqe) { System.out.println(sqe + " en eliminarPost"); }
         return false;
     }
+    public static int getRefugioID (int postID) {
+        try {
+            String query = "SELECT refugio_id FROM mascota WHERE mascota_id = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setInt(1, postID);
+            ResultSet rs = stat.executeQuery();
+
+            if (!rs.next()) {
+                System.out.println("El post con ID '" + postID + "' no existe.");
+                return -1;
+            }
+            return rs.getInt(1);
+
+        } catch (SQLException sqe) { System.out.println(sqe + " en getRefugioID"); }
+        return -1;
+    }
 
     private static int getSaludID (boolean vacunado, boolean desparacitado) {
         int saludID = -1;
@@ -732,6 +789,28 @@ public class DB {
             
         } catch (SQLException sqe) { System.out.println(sqe + "en getSaludID"); }
         return saludID;
+    }
+    public static Refugio getRefugio (int refugioID) {
+        try {
+            String query = "SELECT * FROM refugio INNER JOIN administrador ON administrador.administrador_id = refugio.administrador_id INNER JOIN telefono ON telefono.telefono_id = refugio.telefono_id INNER JOIN direccion ON direccion.direccion_id = refugio.direccion_id WHERE refugio.refugio_id = ?";
+            PreparedStatement stat = con.prepareStatement(query);
+            stat.setInt(1, refugioID);
+            ResultSet rs = stat.executeQuery();
+            if (!rs.next()) {
+                System.out.println("El refugio con el ID '" + refugioID + "' no existe en la base de datos.");
+                return null;
+            }
+
+            String nameRefugio = rs.getString("refugio.refugio_nombre");
+            String telephoneNumber = rs.getString("telefono.telefono_telefono");
+            String address = rs.getString("direccion.direccion_calle") + "," + rs.getString("direccion.direccion_altura") + "," + rs.getString("direccion.direccion_departamento");
+            String password = rs.getString("administrador.administrador_contrasenia");
+
+            Refugio refugio = new Refugio(refugioID, nameRefugio, password, telephoneNumber, address);
+            return refugio;
+
+        } catch (SQLException sqe) { System.out.println(sqe + " en getRefugio"); }
+        return null;
     }
 
     private static int getHabitacionID (boolean mascotas, boolean ninios) {
