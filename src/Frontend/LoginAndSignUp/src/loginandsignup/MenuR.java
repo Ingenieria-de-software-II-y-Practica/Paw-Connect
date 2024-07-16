@@ -27,6 +27,7 @@ import javax.swing.*;
 public class MenuR extends javax.swing.JFrame {
     public ArrayList<Post> publicaciones;
     public Refugio refugio = new Refugio();
+    Post post = new Post();
     /**
      * Creates new form MenuR
      */
@@ -854,15 +855,30 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        MenuR MenuFrame = new MenuR(usuario);
-        MenuFrame.setVisible(true);
-        MenuFrame.pack();
-        MenuFrame.setLocationRelativeTo(null);
-        this.dispose();
+        if((String) jComboBox2.getSelectedItem() != "Mostrar todos"){
+            if(Controller.modificarPost(post.getId(), jTextField2.getText(), jTextField3.getText(), textArea1.getText(), jCheckBox5.isSelected(),jCheckBox4.isSelected(),jCheckBox1.isSelected(), jCheckBox3.isSelected(), jTextField1.getText(), (String) jComboBox2.getSelectedItem(), post.getTipoMascota()).equals("OK")){
+                MenuR MenuFrame = new MenuR();
+                MenuFrame.setVisible(true);
+                MenuFrame.pack();
+                MenuFrame.setLocationRelativeTo(null);
+                this.dispose();
+            }
+        }
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         jTabbedPane1.setSelectedIndex(2);
+        textArea1.setText(publicaciones.get(0).getDescripcion());
+        jTextField2.setText(publicaciones.get(0).gettitulo());
+        jTextField3.setText(publicaciones.get(0).getRaza());
+        jTextField1.setText(publicaciones.get(0).getEdad());
+        jComboBox2.setSelectedItem(publicaciones.get(0).getTamaño());
+        jCheckBox5.setSelected(publicaciones.get(0).getVerificacion().isVacunas());
+        jCheckBox4.setSelected(publicaciones.get(0).getVerificacion().isNiños());
+        jCheckBox3.setSelected(publicaciones.get(0).getVerificacion().isDesparacitado());
+        jCheckBox1.setSelected(publicaciones.get(0).getVerificacion().isOtrasMascotas());
+        post = publicaciones.get(0);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
