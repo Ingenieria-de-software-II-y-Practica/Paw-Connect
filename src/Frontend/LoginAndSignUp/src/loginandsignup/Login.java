@@ -7,6 +7,7 @@ package Frontend.LoginAndSignUp.src.loginandsignup;
 import javax.swing.ImageIcon;
 
 import Backend.Controller.Controller;
+import Backend.Models.Refugio;
 import Backend.Models.Usuario;
 
 public class Login extends javax.swing.JFrame {
@@ -208,21 +209,21 @@ public class Login extends javax.swing.JFrame {
         String nombre = NombreUsr.getText();
         String contra = Contra.getText();
         Usuario usuario = Controller.loginUsuario(nombre, contra);
+        Refugio refugio = Controller.loginRefugio(nombre, contra);
         if (usuario != null) {
-            if (!(usuario.isAcceso())) {
-                MenuUsr MenuUsrFrame = new MenuUsr();
-                MenuUsrFrame.setVisible(true);
-                MenuUsrFrame.pack();
-                MenuUsrFrame.setLocationRelativeTo(null);
-                this.dispose();           
-            }else{
-                MenuR MenuRFrame = new MenuR();
+            MenuUsr MenuUsrFrame = new MenuUsr(usuario);
+            MenuUsrFrame.setVisible(true);
+            MenuUsrFrame.pack();
+            MenuUsrFrame.setLocationRelativeTo(null);
+            this.dispose();           
+        }else if (refugio != null){
+                MenuR MenuRFrame = new MenuR(refugio);
                 MenuRFrame.setVisible(true);
                 MenuRFrame.pack();
                 MenuRFrame.setLocationRelativeTo(null);
                 this.dispose();
-            }
         }
+        
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {

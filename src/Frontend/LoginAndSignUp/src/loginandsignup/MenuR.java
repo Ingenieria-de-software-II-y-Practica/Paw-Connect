@@ -10,15 +10,11 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Backend.Controller.Controller;
 import Backend.Models.Post;
 import Backend.Models.Refugio;
-import Backend.Models.Usuario;
 import javax.swing.*;
 
 /**
@@ -26,21 +22,23 @@ import javax.swing.*;
  * @author audre
  */
 public class MenuR extends javax.swing.JFrame {
-    public ArrayList<Post> publicaciones;
+    public ArrayList<Post> publicaciones = new ArrayList<>();
     public Refugio refugio = new Refugio();
     Post post = new Post();
     /**
      * Creates new form MenuR
      */
-    public MenuR(Usuario usuario) {
-        this.refugio = (Refugio) usuario;
-        this.publicaciones = Controller.getRefugioPosts(refugio.getId());
+    public MenuR(Refugio refugio) {
+        System.out.println(refugio.getNombre());
+        System.out.println(refugio.getId());
+        this.refugio = refugio;
+        if(Controller.getRefugioPosts(refugio.getId()) != null){
+            publicaciones = Controller.getRefugioPosts(refugio.getId());
+        }
+       
         initComponents();
     }
-    public MenuR() {
-        this.publicaciones = Controller.getRefugioPosts(refugio.getId());
-        initComponents();
-    }
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -70,28 +68,28 @@ public class MenuR extends javax.swing.JFrame {
         jPanel20 = new javax.swing.JPanel();
         Descrip4 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
-        Img4 = new javax.swing.JLabel();
+        
         jPanel13 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         Descrip2 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
-        Img2 = new javax.swing.JLabel();
+        
         jPanel16 = new javax.swing.JPanel();
         jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
         Descrip3 = new javax.swing.JLabel();
         jPanel18 = new javax.swing.JPanel();
-        Img3 = new javax.swing.JLabel();
+        
         jPanel4 = new javax.swing.JPanel(); //Post
         jButton6 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         Descrip1 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        Img1 = new javax.swing.JLabel();
+        
         jLabel15 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
@@ -143,7 +141,7 @@ public class MenuR extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(247, 247, 247));
         jPanel1.setLayout(new AbsoluteLayout());
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen3.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen3.png")); // NOI18N
         jPanel1.add(jLabel4, new AbsoluteConstraints(110, 30, 140, 150));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -152,7 +150,7 @@ public class MenuR extends javax.swing.JFrame {
         jLabel3.setText(this.refugio.getNombre());
         jPanel1.add(jLabel3, new AbsoluteConstraints(150, 180, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen2.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen2.png")); // NOI18N
         jPanel1.add(jLabel2, new AbsoluteConstraints(0, 0, 360, 270));
 
         SALIR.setBackground(new java.awt.Color(247, 247, 247));
@@ -171,7 +169,7 @@ public class MenuR extends javax.swing.JFrame {
         });
         SALIR.setLayout(new AbsoluteLayout());
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen6.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen6.png")); // NOI18N
         SALIR.add(jLabel7, new AbsoluteConstraints(20, 30, 50, 50));
 
         jLabel8.setBackground(new java.awt.Color(102, 102, 102));
@@ -198,7 +196,7 @@ public class MenuR extends javax.swing.JFrame {
         });
         HOME.setLayout(new AbsoluteLayout());
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen4.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen4.png")); // NOI18N
         HOME.add(jLabel5, new AbsoluteConstraints(20, 30, -1, 50));
 
         jLabel6.setBackground(new java.awt.Color(102, 102, 102));
@@ -225,7 +223,7 @@ public class MenuR extends javax.swing.JFrame {
         });
         BUSCAR.setLayout(new AbsoluteLayout());
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen5.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen5.png")); // NOI18N
         BUSCAR.add(jLabel9, new AbsoluteConstraints(20, 30, -1, 50));
 
         jLabel10.setBackground(new java.awt.Color(102, 102, 102));
@@ -238,7 +236,7 @@ public class MenuR extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new AbsoluteConstraints(0, 0, -1, 780));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen2.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen2.png")); // NOI18N
         getContentPane().add(jLabel1, new AbsoluteConstraints(320, 0, 1180, 80));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
@@ -277,22 +275,24 @@ public class MenuR extends javax.swing.JFrame {
         jButton15.setText("Eliminar");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarPostButton(evt, publicaciones.get(3).getId(), Img4, Descrip4, jPanel21, jPanel20);
+                jButton15ActionPerformed(evt);
             }
         });
         jPanel19.add(jButton15, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
         jPanel20.setLayout(new AbsoluteLayout());
-        Descrip4.setText(publicaciones.get(3).getTitulo()+"\n "+publicaciones.get(3).getDescripcion());
+        if(publicaciones.size() >= 4){
+            Descrip4.setText(publicaciones.get(3).getTitulo()+"\n "+publicaciones.get(3).getDescripcion());
+        } else{
+            Descrip4.setText("");
+        }
         jPanel20.add(Descrip4, new AbsoluteConstraints(0, 0, 220, 160));
 
         jPanel19.add(jPanel20, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
         jPanel21.setLayout(new AbsoluteLayout());
-        Img4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+publicaciones.get(3).getFoto().getPath())));
-        jPanel21.add(Img4, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel19.add(jPanel21, new AbsoluteConstraints(20, 20, 70, 70));
 
@@ -317,22 +317,26 @@ public class MenuR extends javax.swing.JFrame {
         jButton11.setText("Eliminar");
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarPostButton(evt, publicaciones.get(1).getId(), Img2, Descrip2, jPanel15, jPanel14);
+                jButton11ActionPerformed(evt);
             }
         });
+        
         jPanel13.add(jButton11, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setLayout(new AbsoluteLayout());
-        Descrip2.setText(publicaciones.get(1).getTitulo()+"\n "+publicaciones.get(1).getDescripcion());
+        if(publicaciones.size() >= 2){Descrip2.setText(publicaciones.get(1).getTitulo()+"\n "+publicaciones.get(1).getDescripcion());
+        }else{
+            Descrip2.setText("");
+        }
+
+        
         jPanel14.add(Descrip2, new AbsoluteConstraints(0, 0, 220, 160));
 
         jPanel13.add(jPanel14, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new AbsoluteLayout());
-        Img2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+publicaciones.get(1).getFoto().getPath())));
-        jPanel15.add(Img2, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel13.add(jPanel15, new AbsoluteConstraints(20, 20, 70, 70));
 
@@ -357,22 +361,23 @@ public class MenuR extends javax.swing.JFrame {
         jButton13.setText("Eliminar");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarPostButton(evt, publicaciones.get(2).getId(), Img3, Descrip3, jPanel18, jPanel17);
+                jButton13ActionPerformed(evt);
             }
         });
         jPanel16.add(jButton13, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setLayout(new AbsoluteLayout());
-        Descrip3.setText(publicaciones.get(2).getTitulo()+"\n "+publicaciones.get(2).getDescripcion());
+        if(publicaciones.size() >= 3){Descrip3.setText(publicaciones.get(2).getTitulo()+"\n "+publicaciones.get(2).getDescripcion());
+        }else{
+            Descrip3.setText("");
+        }
         jPanel17.add(Descrip3, new AbsoluteConstraints(0, 0, 220, 160));
 
         jPanel16.add(jPanel17, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setLayout(new AbsoluteLayout());
-        Img3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+publicaciones.get(2).getFoto().getPath())));
-        jPanel18.add(Img3, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel16.add(jPanel18, new AbsoluteConstraints(20, 20, 70, 70));
 
@@ -397,33 +402,39 @@ public class MenuR extends javax.swing.JFrame {
         jButton9.setText("Eliminar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarPostButton(evt, publicaciones.get(0).getId(), Img1, Descrip1, jPanel10, jPanel7);
+                jButton9ActionPerformed(evt);
             }
         });
+
         jPanel4.add(jButton9, new AbsoluteConstraints(20, 150, -1, 30));
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new AbsoluteLayout());
-        Descrip1.setText(publicaciones.get(0).getTitulo()+"\n "+publicaciones.get(0).getDescripcion());
+        
+        if(publicaciones.size() >= 1){
+            Descrip1.setText(publicaciones.get(0).getTitulo()+"\n "+publicaciones.get(0).getDescripcion());
+        }else{
+                Descrip1.setText("");
+        }
+            
         jPanel7.add(Descrip1, new AbsoluteConstraints(0, 0, 220, 160));
 
         jPanel4.add(jPanel7, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setLayout(new AbsoluteLayout());
-        Img1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+publicaciones.get(0).getFoto().getPath())));
-        jPanel10.add(Img1, new AbsoluteConstraints(0, 0, 70, 70));
+        
 
 
         jPanel4.add(jPanel10, new AbsoluteConstraints(20, 20, 70, 70));
 
         jPanel2.add(jPanel4, new AbsoluteConstraints(120, 170, 350, 200));
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen9.png")); // NOI18N
         jLabel15.setToolTipText("");
         jPanel2.add(jLabel15, new AbsoluteConstraints(-140, -140, -1, 710));
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen9.png")); // NOI18N
         jLabel14.setToolTipText("");
         jPanel2.add(jLabel14, new AbsoluteConstraints(680, 80, 650, 720));
 
@@ -585,11 +596,11 @@ public class MenuR extends javax.swing.JFrame {
         jPanel5.add(jButton4, new AbsoluteConstraints(450, 550, 160, 50));
         jPanel5.add(Imagen, new AbsoluteConstraints(80, 150, 170, 170));
 
-        jLabel45.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
+        jLabel45.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen9.png")); // NOI18N
         jLabel45.setToolTipText("");
         jPanel5.add(jLabel45, new AbsoluteConstraints(-140, -140, -1, 710));
 
-        jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
+        jLabel46.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen9.png")); // NOI18N
         jLabel46.setToolTipText("");
         jPanel5.add(jLabel46, new AbsoluteConstraints(680, 80, 650, 720));
 
@@ -717,11 +728,11 @@ public class MenuR extends javax.swing.JFrame {
         jLabel25.setText("Caracteristicas");
         jPanel3.add(jLabel25, new AbsoluteConstraints(80, 290, -1, 20));
 
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
+        jLabel21.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen9.png")); // NOI18N
         jLabel21.setToolTipText("");
         jPanel3.add(jLabel21, new AbsoluteConstraints(-140, -140, -1, 710));
 
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
+        jLabel26.setIcon(new javax.swing.ImageIcon("\\icon\\Imagen9.png")); // NOI18N
         jLabel26.setToolTipText("");
         jPanel3.add(jLabel26, new AbsoluteConstraints(680, 80, 650, 720));
 
@@ -749,6 +760,48 @@ public class MenuR extends javax.swing.JFrame {
             original.remove(imagen);      
             descripcionOirginal.remove(descripcion);
         }
+    }
+    private void jButton9ActionPerformed(ActionEvent evt){
+        if(publicaciones.size() >= 1){
+            Controller.eliminarPost(publicaciones.get(0).getId());
+        }
+        
+        MenuR MenuFrame = new MenuR(refugio);
+        MenuFrame.setVisible(true);
+        MenuFrame.pack();
+        MenuFrame.setLocationRelativeTo(null);
+        this.dispose();
+        
+    }
+    private void jButton15ActionPerformed(ActionEvent evt){
+        if(publicaciones.size() >= 4){
+            Controller.eliminarPost(publicaciones.get(3).getId());
+        }
+        MenuR MenuFrame = new MenuR(refugio);
+        MenuFrame.setVisible(true);
+        MenuFrame.pack();
+        MenuFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }
+    private void jButton11ActionPerformed(ActionEvent evt){
+        if(publicaciones.size() >= 2){
+            Controller.eliminarPost(publicaciones.get(1).getId());
+        }
+        MenuR MenuFrame = new MenuR(refugio);
+        MenuFrame.setVisible(true);
+        MenuFrame.pack();
+        MenuFrame.setLocationRelativeTo(null);
+        this.dispose();
+    }
+    private void jButton13ActionPerformed(ActionEvent evt){
+        if(publicaciones.size() >= 3){
+            Controller.eliminarPost(publicaciones.get(2).getId());
+        }
+        MenuR MenuFrame = new MenuR(refugio);
+        MenuFrame.setVisible(true);
+        MenuFrame.pack();
+        MenuFrame.setLocationRelativeTo(null);
+        this.dispose();
     }
 
     private void SALIRMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SALIRMouseMoved
@@ -822,7 +875,7 @@ public class MenuR extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if((String) jComboBox2.getSelectedItem() != "Mostrar todos"){
             if(Controller.modificarPost(post.getId(), jTextField2.getText(), textArea1.getText(), jCheckBox5.isSelected(),jCheckBox4.isSelected(),jCheckBox1.isSelected(), jCheckBox3.isSelected(), jTextField1.getText(), (String) jComboBox2.getSelectedItem(), post.getTipoMascota()).equals("OK")){
-                MenuR MenuFrame = new MenuR();
+                MenuR MenuFrame = new MenuR(refugio);
                 MenuFrame.setVisible(true);
                 MenuFrame.pack();
                 MenuFrame.setLocationRelativeTo(null);
@@ -833,7 +886,7 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        try{
+        if(publicaciones.size() >= 1){
             textArea1.setText(publicaciones.get(0).getDescripcion());
             jTextField2.setText(publicaciones.get(0).gettitulo());
             jTextField1.setText(publicaciones.get(0).getEdad());
@@ -844,13 +897,13 @@ public class MenuR extends javax.swing.JFrame {
             jCheckBox1.setSelected(publicaciones.get(0).getVerificacion().isOtrasMascotas());
             post = publicaciones.get(0);
             jTabbedPane1.setSelectedIndex(2);
-        } catch(Exception e){
         }
+        
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        try{
+        if(publicaciones.size() >= 2){
             textArea1.setText(publicaciones.get(1).getDescripcion());
             jTextField2.setText(publicaciones.get(1).gettitulo());
             jTextField1.setText(publicaciones.get(1).getEdad());
@@ -861,12 +914,11 @@ public class MenuR extends javax.swing.JFrame {
             jCheckBox1.setSelected(publicaciones.get(1).getVerificacion().isOtrasMascotas());
             post = publicaciones.get(1);
             jTabbedPane1.setSelectedIndex(2);
-        } catch(Exception e){
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        try{
+        if(publicaciones.size() >= 3){
             textArea1.setText(publicaciones.get(2).getDescripcion());
             jTextField2.setText(publicaciones.get(2).gettitulo());
             jTextField1.setText(publicaciones.get(2).getEdad());
@@ -877,12 +929,11 @@ public class MenuR extends javax.swing.JFrame {
             jCheckBox1.setSelected(publicaciones.get(2).getVerificacion().isOtrasMascotas());
             post = publicaciones.get(2);
             jTabbedPane1.setSelectedIndex(2);
-        } catch(Exception e){
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        try{
+        if(publicaciones.size() >= 4){
             textArea1.setText(publicaciones.get(3).getDescripcion());
             jTextField2.setText(publicaciones.get(3).gettitulo());
             jTextField1.setText(publicaciones.get(3).getEdad());
@@ -893,7 +944,6 @@ public class MenuR extends javax.swing.JFrame {
             jCheckBox1.setSelected(publicaciones.get(3).getVerificacion().isOtrasMascotas());
             post = publicaciones.get(3);
             jTabbedPane1.setSelectedIndex(2);
-        } catch(Exception e){
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -948,8 +998,9 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox8ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-        Controller.publicarPost(jTextField5.getText(), textArea2.getText(), jCheckBox8.isSelected(), jCheckBox7.isSelected(), jCheckBox2.isSelected(), jCheckBox6.isSelected(), jTextField4.getText(), (String) jComboBox4.getSelectedItem(), (String) jComboBox3.getSelectedItem(), new File(EligeImgActionPerformed(evt)));
-        MenuR MenuFrame = new MenuR();
+        System.out.println(refugio.getId() + refugio.getNombre());
+        Controller.publicarPost(jTextField5.getText(), textArea2.getText(), jCheckBox8.isSelected(), jCheckBox7.isSelected(), jCheckBox2.isSelected(), jCheckBox6.isSelected(), jTextField4.getText(), (String) jComboBox4.getSelectedItem(), (String) jComboBox3.getSelectedItem(), new File("null"), refugio);
+        MenuR MenuFrame = new MenuR(refugio);
         MenuFrame.setVisible(true);
         MenuFrame.pack();
         MenuFrame.setLocationRelativeTo(null);
@@ -968,10 +1019,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JButton EligeImg;
     private javax.swing.JPanel HOME;
     private javax.swing.JLabel Imagen;
-    private javax.swing.JLabel Img1;
-    private javax.swing.JLabel Img2;
-    private javax.swing.JLabel Img3;
-    private javax.swing.JLabel Img4;
     private javax.swing.JPanel SALIR;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;

@@ -62,8 +62,9 @@ public class Post {
      * @param foto
      * @return Regresa el objeto si se publico exitosamente. Sino un null.
      */
-    public Post guardarPost(String titulo, String descripcion, String tamaño, Opciones verificacion, String edad, String tipoMascota, File foto) {
+    public Post guardarPost(String titulo, String descripcion, String tamaño, Opciones verificacion, String edad, String tipoMascota, File foto, Refugio refugio) {
         asignar(titulo, descripcion, tamaño, verificacion, edad, tipoMascota, foto);
+        DB.publicarPost(this, refugio.id);
         return this;
     }
     /**
@@ -74,6 +75,13 @@ public class Post {
     public String editarPost(Post nuevo) {
         asignar(nuevo.titulo, nuevo.descripcion, nuevo.tamaño, nuevo.verificacion, nuevo.edad, tipoMascota, foto);
         return (DB.updatePost(this)) ? "OK" : "Error";
+    }
+    public void vaciar(){
+        setTitulo("");
+        setEdad("");
+        setDescripcion("");
+        setTamaño("");
+        setTipoMascota("");
     }
 
     /*
@@ -132,6 +140,12 @@ public class Post {
     }
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+    @Override
+    public String toString() {
+        return "Post [id=" + id + ", titulo=" + titulo + ", descripcion=" + descripcion + ", tamaño=" + tamaño
+                + ", tipoMascota=" + tipoMascota + ", edad=" + edad + ", verificacion=" + verificacion + ", foto="
+                + foto + "]";
     }
      
 }

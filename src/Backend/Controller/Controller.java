@@ -12,7 +12,7 @@ import Frontend.LoginAndSignUp.src.loginandsignup.Login;
 
 public class Controller {
     public static void main(String[] args) {
-        
+        DB.connectToDatabase();
         Login LoginFrame = new Login();
         LoginFrame.setVisible(true);
         LoginFrame.pack();
@@ -25,18 +25,36 @@ public class Controller {
      * @param password Contraseña que nos pasa la vista
      * @return Devuelve un refugio, un adoptante o nulo.
      */
-    public static Usuario loginUsuario(String username, String password){
-        if(DB.existeNombre(username)){
-            Usuario user;
+    public static Refugio loginRefugio(String username, String password){
+        if(DB.existeRefugio(username)){
+            Refugio ref = new Refugio();
             try{
-                if(DB.getUsuario(username) != null){
-                    user = DB.getUsuario(username);
-                } else{
-                    user = DB.getRefugio(username);
-                }
-                user = user.login(username, password);
-                return user;
+                ref = DB.getRefugio(username);
+                ref = ref.login(username, password);
+                return ref;
             } catch(Exception e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+        return null;
+    }
+    /**
+     * Metodo para que la vista se loguee.
+     * @param username Nombre de usuario que nos pasa la vista
+     * @param password Contraseña que nos pasa la vista
+     * @return Devuelve un refugio, un adoptante o nulo.
+     */
+    public static Usuario loginUsuario(String username, String password){
+        if(DB.existeUsuario(username)){
+            Usuario user = new Usuario();
+            try{
+                    user = DB.getUsuario(username);
+                    Usuario user2 = user.login(username, password);
+                    return user2;
+                }
+                
+            catch(Exception e){
                 e.printStackTrace();
                 return null;
             }
@@ -104,10 +122,10 @@ public class Controller {
      */
     public static Post publicarPost(String titulo, String descripcion, 
     boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado,
-    String edad, String tamaño, String tipoMascosta, File foto) {
+    String edad, String tamaño, String tipoMascosta, File foto, Refugio refugio) {
         Post post = new Post();
         try{
-            return post.guardarPost(titulo, descripcion, tamaño, new Opciones(vacunas, niños, otrasMascotas, desparacitado), edad, tipoMascosta, foto);
+            return post.guardarPost(titulo, descripcion, tamaño, new Opciones(vacunas, niños, otrasMascotas, desparacitado), edad, tipoMascosta, foto, refugio);
         } catch(Exception e){
             e.printStackTrace();
             return null;
@@ -119,17 +137,13 @@ public class Controller {
      * @return OK o Error => Mensaje
      */
     public static String eliminarPost(int idPost) {
-       try {
+       
         if (DB.getPost(idPost) != null) {
             // Si encuentra el post dentro de la BD
             return (DB.eliminarPost(idPost))? "OK" : "Error";
         }else{
             return "Error: Post no encontrado";
         }
-       } catch (Exception e) {
-            e.printStackTrace();
-            return "Error: "+e.getMessage();
-       }
     }
     /**
      * Metodo para modificar un post de la BD
@@ -149,7 +163,6 @@ public class Controller {
     public static String modificarPost(int idPost, String titulo, String descripcion, 
     boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado,
     String edad, String tamaño, String tipoMascosta) {
-        try {
             if (DB.getPost(idPost) != null) {
                 // Si el Post existe dentro de la base de datos
                 Post viejo = DB.getPost(idPost);
@@ -158,10 +171,6 @@ public class Controller {
             }else{
                 return "Error: No existe el post";
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "Error: "+e.getMessage();
-        }
     }
     /**
      * Metodo para filtrar por opciones en la BD
@@ -177,7 +186,7 @@ public class Controller {
         return lista_filtro;
     }
     public static ArrayList<Post> getRefugioPosts(int id){
-        return DB.filtrarPost(id);
+        return DB.allPostRefugio(id);
     }
     public static ArrayList<Post> getAllPosts(){
         return DB.getAllPosts();

@@ -2,7 +2,6 @@ package Backend.DB;
 
 import java.util.ArrayList;
 import Backend.Models.*;
-
 import java.io.File;
 import java.sql.*;
 
@@ -371,8 +370,13 @@ public class DB {
             String query = "INSERT INTO direccion (direccion_calle, direccion_altura, direccion_departamento) VALUES (?, ?, ?)";
             PreparedStatement stat = con.prepareStatement(query);
             stat.setString(1, addressRefugio[0]);
-            stat.setString(2, addressRefugio[1]); 
-            stat.setString(3, addressRefugio[2]);
+            try{
+                stat.setString(2, addressRefugio[1]); 
+                stat.setString(3, addressRefugio[2]);
+            } catch(Exception e){
+                
+            }
+            
             stat.executeUpdate();
 
             //Se obtiene el ID de la dirección recién insertada.
@@ -582,7 +586,7 @@ public class DB {
             descripcion = rs.getString("mascota.mascota_descripcion");
             edad = rs.getString("mascota.mascota_edad");
             fotopath = rs.getString("mascota.mascota_foto");
-            File foto = new File(fotopath);
+            File foto = new File("fotopath");
             Post post = new Post(nombre, descripcion, verificacion, edad, tamanio, animal,foto);
             return post;
 
@@ -590,7 +594,7 @@ public class DB {
         return null;
     }
 
-    public static ArrayList<Post> filtrarPost (int refugioID) {
+    public static ArrayList<Post> allPostRefugio (int refugioID) {
         try {
             String query = "SELECT * FROM mascota INNER JOIN animal ON animal.animal_id = mascota.animal_id INNER JOIN habitacion ON habitacion.habitacion_id = mascota.habitacion_id INNER JOIN salud ON salud.salud_id = mascota.salud_id WHERE mascota.refugio_id = ?";
             PreparedStatement stat = con.prepareStatement(query);
@@ -620,11 +624,14 @@ public class DB {
                 descripcion = rs.getString("mascota.mascota_descripcion");
                 edad = rs.getString("mascota.mascota_edad");
                 fotopath = rs.getString("mascota.mascota_foto");
-                File foto = new File(fotopath);
+                File foto = new File("null");
 
                 post = new Post(postID, nombre, descripcion, verificacion, edad, tamanio, animal, foto);
+                System.out.println(post.toString());
                 result.add(post);
+                System.out.println("Adios");
             }
+            System.out.println("Hola");
 
             if (result.isEmpty()) return null;
             else return result;

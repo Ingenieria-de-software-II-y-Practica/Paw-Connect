@@ -32,6 +32,13 @@ public class Refugio extends Usuario{
         this.nombre = nombreRefugio;
         this.direccion=direccion2;
     }
+    public Refugio login(String username, String password){
+        if(this.nombre.equals(username) && this.contraseña.equals(password)){
+            return this;
+        }
+       System.out.println("Usuario y/o contraseña incorrecto.");
+       return null;
+    }
     /**
      * Metodo el cual asigna valores a los atributos y guarda el Refugio en la base de datos
      * @param nombre

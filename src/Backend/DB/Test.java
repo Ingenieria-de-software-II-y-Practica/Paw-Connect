@@ -57,7 +57,7 @@ public class Test {
     }
 
     public static void getByRefugioID() {
-        ArrayList<Post> posts = DB.filtrarPost(1);
+        ArrayList<Post> posts = DB.allPostRefugio(1);
         for (Post i : posts) System.out.println(i.getTitulo());
     }
     public static void eliminar() {

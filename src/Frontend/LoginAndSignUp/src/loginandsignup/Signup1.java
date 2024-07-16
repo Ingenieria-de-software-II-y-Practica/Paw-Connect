@@ -5,6 +5,7 @@
 package Frontend.LoginAndSignUp.src.loginandsignup;
 
 import Backend.Controller.Controller;
+import Backend.Models.Refugio;
 import Backend.Models.Usuario;
 
 /**
@@ -268,14 +269,14 @@ public class Signup1 extends javax.swing.JFrame {
         String user = (String) tipousr.getSelectedItem();
         if(user.equalsIgnoreCase("Refugio")){
             if(Controller.registrarRefugio(Nombre.getText(), Contra.getText(), Numero.getText(), Dire.getText()).equals("OK")){
-                Usuario usuario = Controller.loginUsuario(Nombre.getText(), Contra.getText());
-                MenuR MenuFrame = new MenuR(usuario);
+                Refugio refugio = Controller.loginRefugio(Nombre.getText(), Contra.getText());
+                MenuR MenuFrame = new MenuR(refugio);
                 MenuFrame.setVisible(true);
                 MenuFrame.pack();
                 MenuFrame.setLocationRelativeTo(null);
                 this.dispose();
             }
-        } else{
+        } else if(user.equalsIgnoreCase("Adoptante")){
             if(Controller.registrarUsuario(Nombre.getText(), Contra.getText(), Numero.getText()).equals("OK")){
                 Usuario usuario = Controller.loginUsuario(Nombre.getText(), Contra.getText());
                 MenuUsr MenuFrame = new MenuUsr(usuario);

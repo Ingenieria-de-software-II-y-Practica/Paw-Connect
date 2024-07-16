@@ -16,13 +16,21 @@ public class MenuUsr extends javax.swing.JFrame {
      * Creates new form MenuUsr
      */
     public MenuUsr() {
-        post = Controller.getAllPosts();
+        try{
+            post = Controller.getAllPosts();    
+        } catch(Exception e){
+
+        }
+        
         initComponents();
         
     }
     public MenuUsr(Usuario usuario) {
         this.usuario = new Usuario();
-        post = Controller.getAllPosts();
+        try{
+            post = Controller.getAllPosts();
+        } catch(Exception e){}
+        
         initComponents();
         model.addColumn("Nombre Mascota");
         model.addColumn("Refugio");
@@ -55,7 +63,7 @@ public class MenuUsr extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jTabbedPane1 = new javax.swing.JTabbedPane();jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -110,7 +118,7 @@ public class MenuUsr extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(247, 247, 247));
         jPanel1.setLayout(new AbsoluteLayout());
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen3.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagen3.png")); // NOI18N
         jPanel1.add(jLabel4, new AbsoluteConstraints(110, 30, 140, 150));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -119,7 +127,7 @@ public class MenuUsr extends javax.swing.JFrame {
         jLabel3.setText(usuario.getNombre());
         jPanel1.add(jLabel3, new AbsoluteConstraints(150, 180, -1, -1));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen2.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagenn2.png")); // NOI18N
         jPanel1.add(jLabel2, new AbsoluteConstraints(0, 0, 360, 270));
 
         SALIR.setBackground(new java.awt.Color(247, 247, 247));
@@ -138,7 +146,7 @@ public class MenuUsr extends javax.swing.JFrame {
         });
         SALIR.setLayout(new AbsoluteLayout());
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen6.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagen6.png")); // NOI18N
         SALIR.add(jLabel7, new AbsoluteConstraints(20, 30, 50, 50));
 
         jLabel8.setBackground(new java.awt.Color(102, 102, 102));
@@ -165,7 +173,7 @@ public class MenuUsr extends javax.swing.JFrame {
         });
         HOME.setLayout(new AbsoluteLayout());
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen4.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagen4.png")); // NOI18N
         HOME.add(jLabel5, new AbsoluteConstraints(20, 30, -1, 50));
 
         jLabel6.setBackground(new java.awt.Color(102, 102, 102));
@@ -192,7 +200,7 @@ public class MenuUsr extends javax.swing.JFrame {
         });
         BUSCAR.setLayout(new AbsoluteLayout());
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen5.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagen5.png")); // NOI18N
         BUSCAR.add(jLabel9, new AbsoluteConstraints(20, 30, -1, 50));
 
         jLabel10.setBackground(new java.awt.Color(102, 102, 102));
@@ -205,7 +213,7 @@ public class MenuUsr extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new AbsoluteConstraints(0, 0, -1, 780));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen2.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("\\icon\\Imagenn2.png")); // NOI18N
         getContentPane().add(jLabel1, new AbsoluteConstraints(320, 0, 1180, 80));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
@@ -237,7 +245,11 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
         jPanel21.setLayout(new AbsoluteLayout());
-        Img4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+post.get(3).getFoto().getPath())));
+        try{
+            Img4.setIcon(new javax.swing.ImageIcon(getClass().getResource(post.get(3).getFoto().getPath())));
+        } catch(Exception e){
+
+        }
         jPanel21.add(Img4, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel19.add(jPanel21, new AbsoluteConstraints(20, 20, 70, 70));
@@ -269,7 +281,11 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new AbsoluteLayout());
-        Img2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+post.get(1).getFoto().getPath())));
+        try{
+            Img2.setIcon(new javax.swing.ImageIcon(post.get(1).getFoto().getPath()));
+        } catch(Exception e){
+
+        }
         jPanel15.add(Img2, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel13.add(jPanel15, new AbsoluteConstraints(20, 20, 70, 70));
@@ -300,7 +316,10 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setLayout(new AbsoluteLayout());
-        Img3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+post.get(2).getFoto().getPath())));
+        try{Img3.setIcon(new javax.swing.ImageIcon(post.get(2).getFoto().getPath()));
+        }catch(Exception e){
+
+        }
         jPanel18.add(Img3, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel16.add(jPanel18, new AbsoluteConstraints(20, 20, 70, 70));
@@ -331,7 +350,10 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setLayout(new AbsoluteLayout());
-        Img1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/"+post.get(0).getFoto().getPath())));
+        try{Img1.setIcon(new javax.swing.ImageIcon(post.get(0).getFoto().getPath()));
+        }catch(Exception e){
+
+        }
         jPanel10.add(Img1, new AbsoluteConstraints(0, 0, 70, 70));
 
         jPanel4.add(jPanel10, new AbsoluteConstraints(20, 20, 70, 70));
@@ -349,11 +371,11 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel2.add(jPanel4, new AbsoluteConstraints(120, 170, 350, 200));
 
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
+        jLabel15.setIcon(new javax.swing.ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagen9.png")); // NOI18N
         jLabel15.setToolTipText("");
         jPanel2.add(jLabel15, new AbsoluteConstraints(-140, -140, -1, 710));
 
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagen9.png")); // NOI18N
         jLabel14.setToolTipText("");
         jPanel2.add(jLabel14, new AbsoluteConstraints(680, 80, 650, 720));
 
@@ -491,11 +513,11 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane2, new AbsoluteConstraints(130, 320, 790, 260));
 
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
+        jLabel26.setIcon(new javax.swing.ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagen9.png")); // NOI18N
         jLabel26.setToolTipText("");
         jPanel3.add(jLabel26, new AbsoluteConstraints(720, 110, 420, 720));
 
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
+        jLabel21.setIcon(new javax.swing.ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagen9.png")); // NOI18N
         jLabel21.setToolTipText("");
         jPanel3.add(jLabel21, new AbsoluteConstraints(-140, -140, -1, 710));
 
@@ -527,7 +549,9 @@ public class MenuUsr extends javax.swing.JFrame {
     }//GEN-LAST:event_HOMEMouseMoved
 
     private void HOMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HOMEMouseClicked
-        post = Controller.getAllPosts();
+        try{
+            post = Controller.getAllPosts();
+        }catch(Exception e){}
         jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_HOMEMouseClicked
 
@@ -564,7 +588,8 @@ public class MenuUsr extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {
-        ArrayList<Post> filtro = Controller.filtroPosts(jCheckBox5.isSelected(), jCheckBox4.isSelected(), jCheckBox1.isSelected(), jCheckBox3.isSelected(), (String) jComboBox1.getSelectedItem(), (String) jComboBox5.getSelectedItem());
+        try{
+            ArrayList<Post> filtro = Controller.filtroPosts(jCheckBox5.isSelected(), jCheckBox4.isSelected(), jCheckBox1.isSelected(), jCheckBox3.isSelected(), (String) jComboBox1.getSelectedItem(), (String) jComboBox5.getSelectedItem());
         for(Post post : filtro){
             Refugio ref = Controller.getRefugiobyPost(post.getId());
             String [] add = new String[4];
@@ -575,6 +600,7 @@ public class MenuUsr extends javax.swing.JFrame {
             model.addRow(add);
 
         }
+    }catch(Exception e){}
     }
 
 
