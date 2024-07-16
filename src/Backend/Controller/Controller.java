@@ -104,12 +104,12 @@ public class Controller {
      * @param foto
      * @return Post recientemente publicado
      */
-    public static Post publicarPost(String titulo, String raza, String descripcion, 
+    public static Post publicarPost(String titulo, String descripcion, 
     boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado,
     String edad, String tamaño, String tipoMascosta, File foto) {
         Post post = new Post();
         try{
-            return post.guardarPost(titulo, descripcion, raza, tamaño, new Opciones(vacunas, niños, otrasMascotas, desparacitado), edad, tipoMascosta, foto);
+            return post.guardarPost(titulo, descripcion, tamaño, new Opciones(vacunas, niños, otrasMascotas, desparacitado), edad, tipoMascosta, foto);
         } catch(Exception e){
             e.printStackTrace();
             return null;
@@ -122,13 +122,13 @@ public class Controller {
      */
     public static String eliminarPost(int idPost) {
        try {
-        if (DB.getPostId(idPost) != null) {
+        if (DB.getPost(idPost) != null) {
             // Si encuentra el post dentro de la BD
             return (DB.eliminarPost(idPost))? "OK" : "Error";
         }else{
             return "Error: Post no encontrado";
         }
-       } catch (SQLException e) {
+       } catch (Exception e) {
             e.printStackTrace();
             return "Error: "+e.getMessage();
        }
@@ -137,7 +137,6 @@ public class Controller {
      * Metodo para modificar un post de la BD
      * @param idPost
      * @param titulo
-     * @param raza
      * @param descripcion
      * @param vacunas
      * @param niños
@@ -149,19 +148,19 @@ public class Controller {
      * @param foto
      * @return OK o Error: => Mensaje
      */
-    public static String modificarPost(int idPost, String titulo, String raza, String descripcion, 
+    public static String modificarPost(int idPost, String titulo, String descripcion, 
     boolean vacunas, boolean niños, boolean otrasMascotas, boolean desparacitado,
     String edad, String tamaño, String tipoMascosta) {
         try {
-            if (DB.getPostId(idPost) != null) {
+            if (DB.getPost(idPost) != null) {
                 // Si el Post existe dentro de la base de datos
-                Post viejo = DB.getPostId(idPost);
-                Post nuevo = new Post(titulo, raza, descripcion, new Opciones(vacunas, niños, otrasMascotas, desparacitado), edad, tamaño, tipoMascosta);
+                Post viejo = DB.getPost(idPost);
+                Post nuevo = new Post(titulo, descripcion, new Opciones(vacunas, niños, otrasMascotas, desparacitado), edad, tamaño, tipoMascosta);
                 return (viejo.editarPost(nuevo));
             }else{
                 return "Error: No existe el post";
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return "Error: "+e.getMessage();
         }

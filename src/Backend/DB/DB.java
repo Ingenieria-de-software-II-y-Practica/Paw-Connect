@@ -1,11 +1,7 @@
 package Backend.DB;
 
-import Backend.DB.DB.UserField;
 import java.util.ArrayList;
 import Backend.Models.*;
-
-import java.io.File;
-import java.sql.*;
 
 import java.io.File;
 import java.sql.*;
@@ -587,7 +583,7 @@ public class DB {
             edad = rs.getString("mascota.mascota_edad");
             fotopath = rs.getString("mascota.mascota_foto");
             File foto = new File(fotopath);
-            Post post = new Post(nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal,foto);
+            Post post = new Post(nombre, descripcion, verificacion, edad, tamanio, animal,foto);
             return post;
 
         } catch (SQLException sqe) { System.out.println(sqe + " en getPost"); }
@@ -626,7 +622,7 @@ public class DB {
                 fotopath = rs.getString("mascota.mascota_foto");
                 File foto = new File(fotopath);
 
-                post = new Post(postID, nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal, foto);
+                post = new Post(postID, nombre, descripcion, verificacion, edad, tamanio, animal, foto);
                 result.add(post);
             }
 
@@ -656,7 +652,7 @@ public class DB {
 
             //Atributos de post.
             int postID;
-            String nombre, descripcion, edad;
+            String nombre, descripcion, edad, fotopath;
             File foto;
             Opciones verificacion;
             boolean isVacunado, isDesparacitado, isNinios, isOtrasMascotas;
@@ -675,9 +671,9 @@ public class DB {
                 fotopath = rs.getString("mascota.mascota_foto");
                 tamanio = rs.getString("animal.animal_tamanio");
                 animal = rs.getString("animal.animal_nombre");
-                File foto = new File(fotopath);
+                foto = new File(fotopath);
 
-                post = new Post(postID, nombre, "RAZA", descripcion, verificacion, edad, tamanio, animal, foto);
+                post = new Post(postID, nombre, descripcion, verificacion, edad, tamanio, animal, foto);
                 result.add(post);
             }
 

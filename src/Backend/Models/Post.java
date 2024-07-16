@@ -1,15 +1,13 @@
 package Backend.Models;
 
 import java.io.File;
-import java.nio.file.Path;
 import Backend.DB.DB;
-import Backend.DB.Exceptions.UserDoesNotExistException;
 public class Post {
     /*
      *  Atributos 
      */
     int id;
-    String titulo, raza, descripcion, tamaño, tipoMascota, edad;
+    String titulo, descripcion, tamaño, tipoMascota, edad;
     Opciones verificacion;
     File foto;
     
@@ -18,10 +16,9 @@ public class Post {
      */
     public Post(){
     }
-    public Post(String titulo, String raza, String descripcion, Opciones verificacion,
+    public Post(String titulo, String descripcion, Opciones verificacion,
                 String edad, String tamaño, String tipoMascota, File foto){
         this.titulo = titulo;
-        this.raza = raza;
         this.descripcion = descripcion;
         this.verificacion = verificacion;
         this.edad = edad;
@@ -29,11 +26,10 @@ public class Post {
         this.tipoMascota = tipoMascota;
         this.foto = foto;
     }
-    public Post(int id, String titulo, String raza, String descripcion, Opciones verificacion,
+    public Post(int id, String titulo, String descripcion, Opciones verificacion,
             String edad, String tamaño, String tipoMascota, File foto) {
         this.id = id;
         this.titulo = titulo;
-        this.raza = raza;
         this.descripcion = descripcion;
         this.verificacion = verificacion;
         this.edad = edad;
@@ -42,13 +38,12 @@ public class Post {
         this.foto = foto;
     }
     
-    public Post(String titulo2, String raza2, String descripcion2, Opciones opciones, String edad2, String tamaño2,
+    public Post(String titulo2, String descripcion2, Opciones opciones, String edad2, String tamaño2,
             String tipoMascosta) {
         //TODO Auto-generated constructor stub
     }
-    public void asignar(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota, File foto){
+    public void asignar(String titulo, String descripcion, String tamaño, Opciones verificacion, String edad, String tipoMascota, File foto){
         this.titulo = titulo;
-        this.raza = raza;
         this.descripcion = descripcion;
         this.verificacion = verificacion;
         this.edad = edad;
@@ -60,7 +55,6 @@ public class Post {
      * Metodo con el cual un Post se guardara en la base de datos
      * @param titulo
      * @param descripcion
-     * @param raza
      * @param tamaño
      * @param verificacion Clase en la que estaran atributos booleanos
      * @param edad
@@ -68,8 +62,8 @@ public class Post {
      * @param foto
      * @return Regresa el objeto si se publico exitosamente. Sino un null.
      */
-    public Post guardarPost(String titulo, String descripcion, String raza, String tamaño, Opciones verificacion, String edad, String tipoMascota, File foto) {
-        asignar(titulo, descripcion, raza, tamaño, verificacion, edad, tipoMascota, foto);
+    public Post guardarPost(String titulo, String descripcion, String tamaño, Opciones verificacion, String edad, String tipoMascota, File foto) {
+        asignar(titulo, descripcion, tamaño, verificacion, edad, tipoMascota, foto);
         return this;
     }
     /**
@@ -78,7 +72,7 @@ public class Post {
      * @return Post editar, caso no existir: null
      */
     public String editarPost(Post nuevo) {
-        asignar(nuevo.titulo, nuevo.descripcion, nuevo.raza, nuevo.tamaño, nuevo.verificacion, nuevo.edad, tipoMascota, foto);
+        asignar(nuevo.titulo, nuevo.descripcion, nuevo.tamaño, nuevo.verificacion, nuevo.edad, tipoMascota, foto);
         return (DB.updatePost(this)) ? "OK" : "Error";
     }
 
@@ -96,12 +90,6 @@ public class Post {
     }
     public void settitulo(String titulo) {
         this.titulo = titulo;
-    }
-    public String getRaza() {
-        return raza;
-    }
-    public void setRaza(String raza) {
-        this.raza = raza;
     }
     public String getDescripcion() {
         return descripcion;

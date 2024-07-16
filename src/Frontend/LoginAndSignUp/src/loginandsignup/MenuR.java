@@ -100,7 +100,6 @@ public class MenuR extends javax.swing.JFrame {
         textArea2 = new java.awt.TextArea();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
@@ -123,10 +122,8 @@ public class MenuR extends javax.swing.JFrame {
         textArea1 = new java.awt.TextArea();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -473,11 +470,6 @@ public class MenuR extends javax.swing.JFrame {
         jLabel39.setText("Edad ");
         jPanel5.add(jLabel39, new AbsoluteConstraints(80, 480, -1, -1));
 
-        jLabel40.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel40.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel40.setText("Raza");
-        jPanel5.add(jLabel40, new AbsoluteConstraints(80, 420, -1, -1));
-
         jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(51, 51, 51));
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -636,11 +628,6 @@ public class MenuR extends javax.swing.JFrame {
         jLabel19.setText("Edad ");
         jPanel3.add(jLabel19, new AbsoluteConstraints(430, 400, -1, -1));
 
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel20.setText("Raza");
-        jPanel3.add(jLabel20, new AbsoluteConstraints(80, 400, -1, -1));
-
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(51, 51, 51));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -658,15 +645,6 @@ public class MenuR extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField2, new AbsoluteConstraints(80, 360, 260, 30));
-
-        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jTextField3, new AbsoluteConstraints(80, 430, 260, 30));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(51, 51, 51));
@@ -830,10 +808,6 @@ public class MenuR extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
@@ -856,7 +830,7 @@ public class MenuR extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if((String) jComboBox2.getSelectedItem() != "Mostrar todos"){
-            if(Controller.modificarPost(post.getId(), jTextField2.getText(), jTextField3.getText(), textArea1.getText(), jCheckBox5.isSelected(),jCheckBox4.isSelected(),jCheckBox1.isSelected(), jCheckBox3.isSelected(), jTextField1.getText(), (String) jComboBox2.getSelectedItem(), post.getTipoMascota()).equals("OK")){
+            if(Controller.modificarPost(post.getId(), jTextField2.getText(), textArea1.getText(), jCheckBox5.isSelected(),jCheckBox4.isSelected(),jCheckBox1.isSelected(), jCheckBox3.isSelected(), jTextField1.getText(), (String) jComboBox2.getSelectedItem(), post.getTipoMascota()).equals("OK")){
                 MenuR MenuFrame = new MenuR();
                 MenuFrame.setVisible(true);
                 MenuFrame.pack();
@@ -868,29 +842,68 @@ public class MenuR extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        jTabbedPane1.setSelectedIndex(2);
-        textArea1.setText(publicaciones.get(0).getDescripcion());
-        jTextField2.setText(publicaciones.get(0).gettitulo());
-        jTextField3.setText(publicaciones.get(0).getRaza());
-        jTextField1.setText(publicaciones.get(0).getEdad());
-        jComboBox2.setSelectedItem(publicaciones.get(0).getTamaño());
-        jCheckBox5.setSelected(publicaciones.get(0).getVerificacion().isVacunas());
-        jCheckBox4.setSelected(publicaciones.get(0).getVerificacion().isNiños());
-        jCheckBox3.setSelected(publicaciones.get(0).getVerificacion().isDesparacitado());
-        jCheckBox1.setSelected(publicaciones.get(0).getVerificacion().isOtrasMascotas());
-        post = publicaciones.get(0);
+        try{
+            textArea1.setText(publicaciones.get(0).getDescripcion());
+            jTextField2.setText(publicaciones.get(0).gettitulo());
+            jTextField1.setText(publicaciones.get(0).getEdad());
+            jComboBox2.setSelectedItem(publicaciones.get(0).getTamaño());
+            jCheckBox5.setSelected(publicaciones.get(0).getVerificacion().isVacunas());
+            jCheckBox4.setSelected(publicaciones.get(0).getVerificacion().isNiños());
+            jCheckBox3.setSelected(publicaciones.get(0).getVerificacion().isDesparacitado());
+            jCheckBox1.setSelected(publicaciones.get(0).getVerificacion().isOtrasMascotas());
+            post = publicaciones.get(0);
+            jTabbedPane1.setSelectedIndex(2);
+        } catch(Exception e){
+        }
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        jTabbedPane1.setSelectedIndex(2);
+        try{
+            textArea1.setText(publicaciones.get(1).getDescripcion());
+            jTextField2.setText(publicaciones.get(1).gettitulo());
+            jTextField1.setText(publicaciones.get(1).getEdad());
+            jComboBox2.setSelectedItem(publicaciones.get(1).getTamaño());
+            jCheckBox5.setSelected(publicaciones.get(1).getVerificacion().isVacunas());
+            jCheckBox4.setSelected(publicaciones.get(1).getVerificacion().isNiños());
+            jCheckBox3.setSelected(publicaciones.get(1).getVerificacion().isDesparacitado());
+            jCheckBox1.setSelected(publicaciones.get(1).getVerificacion().isOtrasMascotas());
+            post = publicaciones.get(1);
+            jTabbedPane1.setSelectedIndex(2);
+        } catch(Exception e){
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        jTabbedPane1.setSelectedIndex(2);
+        try{
+            textArea1.setText(publicaciones.get(2).getDescripcion());
+            jTextField2.setText(publicaciones.get(2).gettitulo());
+            jTextField1.setText(publicaciones.get(2).getEdad());
+            jComboBox2.setSelectedItem(publicaciones.get(2).getTamaño());
+            jCheckBox5.setSelected(publicaciones.get(2).getVerificacion().isVacunas());
+            jCheckBox4.setSelected(publicaciones.get(2).getVerificacion().isNiños());
+            jCheckBox3.setSelected(publicaciones.get(2).getVerificacion().isDesparacitado());
+            jCheckBox1.setSelected(publicaciones.get(2).getVerificacion().isOtrasMascotas());
+            post = publicaciones.get(2);
+            jTabbedPane1.setSelectedIndex(2);
+        } catch(Exception e){
+        }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        jTabbedPane1.setSelectedIndex(2);
+        try{
+            textArea1.setText(publicaciones.get(3).getDescripcion());
+            jTextField2.setText(publicaciones.get(3).gettitulo());
+            jTextField1.setText(publicaciones.get(3).getEdad());
+            jComboBox2.setSelectedItem(publicaciones.get(3).getTamaño());
+            jCheckBox5.setSelected(publicaciones.get(3).getVerificacion().isVacunas());
+            jCheckBox4.setSelected(publicaciones.get(3).getVerificacion().isNiños());
+            jCheckBox3.setSelected(publicaciones.get(3).getVerificacion().isDesparacitado());
+            jCheckBox1.setSelected(publicaciones.get(3).getVerificacion().isOtrasMascotas());
+            post = publicaciones.get(3);
+            jTabbedPane1.setSelectedIndex(2);
+        } catch(Exception e){
+        }
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void EligeImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EligeImgActionPerformed
@@ -1002,7 +1015,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -1015,7 +1027,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
@@ -1046,7 +1057,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
