@@ -9,27 +9,18 @@ import Backend.Models.Post;
 import Backend.Models.Refugio;
 import Backend.Models.Usuario;
 public class MenuUsr extends javax.swing.JFrame {
-    ArrayList<Post> post;
+    ArrayList<Post> post = new ArrayList<>();
     DefaultTableModel model = new DefaultTableModel();
     Usuario usuario = new Usuario();
     /**
      * Creates new form MenuUsr
      */
-    public MenuUsr() {
-        try{
-            post = Controller.getAllPosts();    
-        } catch(Exception e){
 
-        }
-        
-        initComponents();
-        
-    }
     public MenuUsr(Usuario usuario) {
         this.usuario = new Usuario();
-        try{
+        if(Controller.getAllPosts() != null){
             post = Controller.getAllPosts();
-        } catch(Exception e){}
+        }   
         
         initComponents();
         model.addColumn("Nombre Mascota");
@@ -129,7 +120,26 @@ public class MenuUsr extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon("src\\Frontend\\LoginAndSignUp\\src\\icon\\Imagenn2.png")); // NOI18N
         jPanel1.add(jLabel2, new AbsoluteConstraints(0, 0, 360, 270));
-
+        if(post.size() >= 1){
+            Descrip1.setText(post.get(0).getTitulo()+"\n "+post.get(0).getDescripcion());
+        }else{
+                Descrip1.setText("");
+        }
+        if(post.size() >= 2){
+            Descrip2.setText(post.get(1).getTitulo()+"\n "+post.get(1).getDescripcion());
+        }else{
+                Descrip2.setText("");
+        }
+        if(post.size() >= 3){
+            Descrip3.setText(post.get(2).getTitulo()+"\n "+post.get(2).getDescripcion());
+        }else{
+                Descrip3.setText("");
+        }
+        if(post.size() >= 4){
+            Descrip4.setText(post.get(3).getTitulo()+"\n "+post.get(3).getDescripcion());
+        }else{
+                Descrip4.setText("");
+        }
         SALIR.setBackground(new java.awt.Color(247, 247, 247));
         SALIR.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
@@ -549,9 +559,11 @@ public class MenuUsr extends javax.swing.JFrame {
     }//GEN-LAST:event_HOMEMouseMoved
 
     private void HOMEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HOMEMouseClicked
-        try{
-            post = Controller.getAllPosts();
-        }catch(Exception e){}
+        MenuUsr MenuFrame = new MenuUsr(usuario);
+        MenuFrame.setVisible(true);
+        MenuFrame.pack();
+        MenuFrame.setLocationRelativeTo(null);
+        this.dispose();
         jTabbedPane1.setSelectedIndex(0);
     }//GEN-LAST:event_HOMEMouseClicked
 
@@ -588,9 +600,13 @@ public class MenuUsr extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {
-        try{
-            ArrayList<Post> filtro = Controller.filtroPosts(jCheckBox5.isSelected(), jCheckBox4.isSelected(), jCheckBox1.isSelected(), jCheckBox3.isSelected(), (String) jComboBox1.getSelectedItem(), (String) jComboBox5.getSelectedItem());
+        ArrayList<Post> filtro = new ArrayList<>();
+        System.out.println(jCheckBox5.isSelected());
+        if(Controller.filtroPosts(jCheckBox5.isSelected(), jCheckBox4.isSelected(), jCheckBox1.isSelected(), jCheckBox3.isSelected(), (String) jComboBox1.getSelectedItem(), (String) jComboBox5.getSelectedItem()) != null){
+            filtro = Controller.filtroPosts(jCheckBox5.isSelected(), jCheckBox4.isSelected(), jCheckBox1.isSelected(), jCheckBox3.isSelected(), (String) jComboBox1.getSelectedItem(), (String) jComboBox5.getSelectedItem());
+        }
         for(Post post : filtro){
+            System.out.println(post.toString());
             Refugio ref = Controller.getRefugiobyPost(post.getId());
             String [] add = new String[4];
             add[0] = post.getTitulo();
@@ -598,9 +614,7 @@ public class MenuUsr extends javax.swing.JFrame {
             add[2] = ref.getDireccion();
             add[3] = ref.getNumero_contacto();
             model.addRow(add);
-
         }
-    }catch(Exception e){}
     }
 
 

@@ -670,7 +670,7 @@ public class DB {
                 fotopath = rs.getString("mascota.mascota_foto");
                 tamanio = rs.getString("animal.animal_tamanio");
                 animal = rs.getString("animal.animal_nombre");
-                File foto = new File(fotopath);
+                File foto = new File("fotopath");
 
                 post = new Post(postID, nombre, descripcion, verificacion, edad, tamanio, animal, foto);
                 result.add(post);
@@ -696,7 +696,6 @@ public class DB {
             ResultSet rs = stat.executeQuery();
 
             ArrayList<Post> result = new ArrayList<Post>();
-            Post post;
 
             //Atributos de post.
             int postID;
@@ -716,12 +715,11 @@ public class DB {
                 nombre = rs.getString("mascota.mascota_nombre");
                 descripcion = rs.getString("mascota.mascota_descripcion");
                 edad = rs.getString("mascota.mascota_edad");
-                fotopath = rs.getString("mascota.mascota_foto");
                 tamanio = rs.getString("animal.animal_tamanio");
                 animal = rs.getString("animal.animal_nombre");
-                foto = new File(fotopath);
+                foto = new File("fotopath");
 
-                post = new Post(postID, nombre, descripcion, verificacion, edad, tamanio, animal, foto);
+                Post post = new Post(postID, nombre, descripcion, verificacion, edad, tamanio, animal, foto);
                 result.add(post);
             }
 
