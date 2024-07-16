@@ -7,6 +7,7 @@ package Frontend.LoginAndSignUp.src.loginandsignup;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.io.File;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -102,7 +103,6 @@ public class MenuR extends javax.swing.JFrame {
         jLabel39 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel42 = new javax.swing.JLabel();
@@ -487,15 +487,6 @@ public class MenuR extends javax.swing.JFrame {
             }
         });
         jPanel5.add(jTextField5, new AbsoluteConstraints(80, 380, 260, 30));
-
-        jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(51, 51, 51));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jTextField6, new AbsoluteConstraints(80, 440, 260, 30));
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(51, 51, 51));
@@ -906,7 +897,7 @@ public class MenuR extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void EligeImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EligeImgActionPerformed
+    private String EligeImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EligeImgActionPerformed
         String Ruta = "";
         JFileChooser jFileChooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("JGP & PNG","jpg","png");
@@ -921,6 +912,7 @@ public class MenuR extends javax.swing.JFrame {
             ImageIcon mIcono = new ImageIcon(mImage.getScaledInstance(Imagen.getWidth(), Imagen.getHeight() , Image.SCALE_SMOOTH));
             Imagen.setIcon(mIcono);
         }
+        return Ruta;
     }//GEN-LAST:event_EligeImgActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -955,17 +947,14 @@ public class MenuR extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox8ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+        Controller.publicarPost(jTextField5.getText(), textArea2.getText(), jCheckBox8.isSelected(), jCheckBox7.isSelected(), jCheckBox2.isSelected(), jCheckBox6.isSelected(), jTextField4.getText(), (String) jComboBox4.getSelectedItem(), (String) jComboBox3.getSelectedItem(), new File(EligeImgActionPerformed(evt)));daw
         MenuR MenuFrame = new MenuR();
         MenuFrame.setVisible(true);
         MenuFrame.pack();
         MenuFrame.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }
 
   
 
@@ -1059,7 +1048,6 @@ public class MenuR extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private java.awt.TextArea textArea1;
     private java.awt.TextArea textArea2;
     // End of variables declaration//GEN-END:variables

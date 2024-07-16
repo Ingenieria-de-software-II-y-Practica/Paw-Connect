@@ -1,15 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package loginandsignup;
-
+package Frontend.LoginAndSignUp.src.loginandsignup;
 import java.awt.Color;
-
-/**
- *
- * @author audre
- */
 public class MenuUsr extends javax.swing.JFrame {
 
     /**
@@ -93,22 +83,22 @@ public class MenuUsr extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(247, 247, 247));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new AbsoluteLayout());
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen3.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 140, 150));
+        jPanel1.add(jLabel4, new AbsoluteConstraints(110, 30, 140, 150));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("PEPE");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, -1, -1));
+        jPanel1.add(jLabel3, new AbsoluteConstraints(150, 180, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen2.jpg"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 360, 270));
+        jPanel1.add(jLabel2, new AbsoluteConstraints(0, 0, 360, 270));
 
         SALIR.setBackground(new java.awt.Color(247, 247, 247));
         SALIR.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -124,18 +114,18 @@ public class MenuUsr extends javax.swing.JFrame {
                 SALIRMouseExited(evt);
             }
         });
-        SALIR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        SALIR.setLayout(new AbsoluteLayout());
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen6.png"))); // NOI18N
-        SALIR.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 50, 50));
+        SALIR.add(jLabel7, new AbsoluteConstraints(20, 30, 50, 50));
 
         jLabel8.setBackground(new java.awt.Color(102, 102, 102));
         jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("SALIR");
-        SALIR.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 50, 70, 20));
+        SALIR.add(jLabel8, new AbsoluteConstraints(86, 50, 70, 20));
 
-        jPanel1.add(SALIR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 360, 110));
+        jPanel1.add(SALIR, new AbsoluteConstraints(0, 490, 360, 110));
 
         HOME.setBackground(new java.awt.Color(247, 247, 247));
         HOME.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -151,18 +141,18 @@ public class MenuUsr extends javax.swing.JFrame {
                 HOMEMouseExited(evt);
             }
         });
-        HOME.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        HOME.setLayout(new AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen4.png"))); // NOI18N
-        HOME.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 50));
+        HOME.add(jLabel5, new AbsoluteConstraints(20, 30, -1, 50));
 
         jLabel6.setBackground(new java.awt.Color(102, 102, 102));
         jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("HOME");
-        HOME.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 70, 20));
+        HOME.add(jLabel6, new AbsoluteConstraints(90, 50, 70, 20));
 
-        jPanel1.add(HOME, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 270, 360, 110));
+        jPanel1.add(HOME, new AbsoluteConstraints(0, 270, 360, 110));
 
         BUSCAR.setBackground(new java.awt.Color(247, 247, 247));
         BUSCAR.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -178,170 +168,170 @@ public class MenuUsr extends javax.swing.JFrame {
                 BUSCARMouseExited(evt);
             }
         });
-        BUSCAR.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        BUSCAR.setLayout(new AbsoluteLayout());
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen5.png"))); // NOI18N
-        BUSCAR.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, 50));
+        BUSCAR.add(jLabel9, new AbsoluteConstraints(20, 30, -1, 50));
 
         jLabel10.setBackground(new java.awt.Color(102, 102, 102));
         jLabel10.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 102, 102));
         jLabel10.setText("BUSCA A UN AMIGO/A");
-        BUSCAR.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(86, 50, 230, 20));
+        BUSCAR.add(jLabel10, new AbsoluteConstraints(86, 50, 230, 20));
 
-        jPanel1.add(BUSCAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 360, 110));
+        jPanel1.add(BUSCAR, new AbsoluteConstraints(0, 380, 360, 110));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 780));
+        getContentPane().add(jPanel1, new AbsoluteConstraints(0, 0, -1, 780));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen2.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 1180, 80));
+        getContentPane().add(jLabel1, new AbsoluteConstraints(320, 0, 1180, 80));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(new AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Segoe UI Black", 0, 36)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 153, 153));
         jLabel11.setText("BIENVENIDOS A PAW CONNECT");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, -1, -1));
+        jPanel2.add(jLabel11, new AbsoluteConstraints(230, 40, -1, -1));
 
         jLabel13.setBackground(new java.awt.Color(102, 102, 102));
         jLabel13.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
         jLabel13.setText("Recomendaciones que podrian enamorarte");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
+        jPanel2.add(jLabel13, new AbsoluteConstraints(260, 110, -1, -1));
 
         jPanel19.setBackground(new java.awt.Color(255, 236, 236));
         jPanel19.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel19.setLayout(new AbsoluteLayout());
 
         jPanel20.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel20.add(Descrip4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
-        jPanel20.add(NombreR4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
+        jPanel20.setLayout(new AbsoluteLayout());
+        jPanel20.add(Descrip4, new AbsoluteConstraints(0, 30, 220, 130));
+        jPanel20.add(NombreR4, new AbsoluteConstraints(0, 0, 220, 30));
 
-        jPanel19.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
+        jPanel19.add(jPanel20, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel21.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel21.add(Img4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
+        jPanel21.setLayout(new AbsoluteLayout());
+        jPanel21.add(Img4, new AbsoluteConstraints(0, 0, 70, 70));
 
-        jPanel19.add(jPanel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+        jPanel19.add(jPanel21, new AbsoluteConstraints(20, 20, 70, 70));
 
         jLabel19.setForeground(new java.awt.Color(51, 51, 51));
         jLabel19.setText("Numero de Tel:");
         jLabel19.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel19.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 80));
+        jPanel19.add(jLabel19, new AbsoluteConstraints(10, 100, 90, 80));
 
-        jPanel2.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 390, 350, 200));
+        jPanel2.add(jPanel19, new AbsoluteConstraints(540, 390, 350, 200));
 
         jPanel13.setBackground(new java.awt.Color(255, 236, 236));
         jPanel13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel13.setLayout(new AbsoluteLayout());
 
         jPanel14.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel14.add(Descrip2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
-        jPanel14.add(NombreR2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
+        jPanel14.setLayout(new AbsoluteLayout());
+        jPanel14.add(Descrip2, new AbsoluteConstraints(0, 30, 220, 130));
+        jPanel14.add(NombreR2, new AbsoluteConstraints(0, 0, 220, 30));
 
-        jPanel13.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
+        jPanel13.add(jPanel14, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel15.add(Img2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
+        jPanel15.setLayout(new AbsoluteLayout());
+        jPanel15.add(Img2, new AbsoluteConstraints(0, 0, 70, 70));
 
-        jPanel13.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+        jPanel13.add(jPanel15, new AbsoluteConstraints(20, 20, 70, 70));
 
         jLabel17.setForeground(new java.awt.Color(51, 51, 51));
         jLabel17.setText("Numero de Tel:");
         jLabel17.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel13.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 80));
+        jPanel13.add(jLabel17, new AbsoluteConstraints(10, 100, 90, 80));
 
-        jPanel2.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 350, 200));
+        jPanel2.add(jPanel13, new AbsoluteConstraints(540, 170, 350, 200));
 
         jPanel16.setBackground(new java.awt.Color(255, 236, 236));
         jPanel16.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel16.setLayout(new AbsoluteLayout());
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel17.add(Descrip3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
-        jPanel17.add(NombreR3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
+        jPanel17.setLayout(new AbsoluteLayout());
+        jPanel17.add(Descrip3, new AbsoluteConstraints(0, 30, 220, 130));
+        jPanel17.add(NombreR3, new AbsoluteConstraints(0, 0, 220, 30));
 
-        jPanel16.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
+        jPanel16.add(jPanel17, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel18.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel18.add(Img3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
+        jPanel18.setLayout(new AbsoluteLayout());
+        jPanel18.add(Img3, new AbsoluteConstraints(0, 0, 70, 70));
 
-        jPanel16.add(jPanel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+        jPanel16.add(jPanel18, new AbsoluteConstraints(20, 20, 70, 70));
 
         jLabel18.setForeground(new java.awt.Color(51, 51, 51));
         jLabel18.setText("Numero de Tel:");
         jLabel18.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel16.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 80));
+        jPanel16.add(jLabel18, new AbsoluteConstraints(10, 100, 90, 80));
 
-        jPanel2.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 350, 200));
+        jPanel2.add(jPanel16, new AbsoluteConstraints(120, 390, 350, 200));
 
         jPanel4.setBackground(new java.awt.Color(255, 236, 236));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.setLayout(new AbsoluteLayout());
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel7.add(Descrip1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 220, 130));
-        jPanel7.add(NombreR1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 220, 30));
+        jPanel7.setLayout(new AbsoluteLayout());
+        jPanel7.add(Descrip1, new AbsoluteConstraints(0, 30, 220, 130));
+        jPanel7.add(NombreR1, new AbsoluteConstraints(0, 0, 220, 30));
 
-        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, 220, 160));
+        jPanel4.add(jPanel7, new AbsoluteConstraints(110, 20, 220, 160));
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel10.add(Img1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 70));
+        jPanel10.setLayout(new AbsoluteLayout());
+        jPanel10.add(Img1, new AbsoluteConstraints(0, 0, 70, 70));
 
-        jPanel4.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 70));
+        jPanel4.add(jPanel10, new AbsoluteConstraints(20, 20, 70, 70));
 
         jLabel12.setForeground(new java.awt.Color(51, 51, 51));
         jLabel12.setText("Numero de Tel:");
         jLabel12.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 80));
+        jPanel4.add(jLabel12, new AbsoluteConstraints(10, 100, 90, 80));
 
-        jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 350, 200));
+        jPanel2.add(jPanel4, new AbsoluteConstraints(120, 170, 350, 200));
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel15.setToolTipText("");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(-140, -140, -1, 710));
+        jPanel2.add(jLabel15, new AbsoluteConstraints(-140, -140, -1, 710));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel14.setToolTipText("");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 80, 650, 720));
+        jPanel2.add(jLabel14, new AbsoluteConstraints(680, 80, 650, 720));
 
         jTabbedPane1.addTab("tab1", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setLayout(new AbsoluteLayout());
 
         jLabel16.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 153, 153));
         jLabel16.setText("ENCUENTRA A TU MEJOR AMIGO/A");
         jLabel16.setToolTipText("");
-        jPanel3.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, -1, -1));
+        jPanel3.add(jLabel16, new AbsoluteConstraints(330, 40, -1, -1));
 
         jPanel6.setBackground(new java.awt.Color(255, 236, 236));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Buscar por:", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 0, 20), new java.awt.Color(51, 51, 51))); // NOI18N
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel6.setLayout(new AbsoluteLayout());
 
         jComboBox1.setBackground(new java.awt.Color(255, 246, 246));
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de mascota", "Perro", "Gato" }));
-        jPanel6.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 173, -1));
+        jPanel6.add(jComboBox1, new AbsoluteConstraints(170, 50, 173, -1));
 
         jComboBox5.setBackground(new java.awt.Color(255, 246, 246));
         jComboBox5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jComboBox5.setForeground(new java.awt.Color(51, 51, 51));
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tamaño", "Chico", "Mediano", "Grande" }));
-        jPanel6.add(jComboBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, 173, -1));
+        jPanel6.add(jComboBox5, new AbsoluteConstraints(410, 50, 173, -1));
 
         jCheckBox1.setBackground(new java.awt.Color(255, 246, 246));
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -353,7 +343,7 @@ public class MenuUsr extends javax.swing.JFrame {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jPanel6.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 220, 30));
+        jPanel6.add(jCheckBox1, new AbsoluteConstraints(530, 90, 220, 30));
 
         jCheckBox3.setBackground(new java.awt.Color(255, 246, 246));
         jCheckBox3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -365,7 +355,7 @@ public class MenuUsr extends javax.swing.JFrame {
                 jCheckBox3ActionPerformed(evt);
             }
         });
-        jPanel6.add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 140, 30));
+        jPanel6.add(jCheckBox3, new AbsoluteConstraints(160, 90, 140, 30));
 
         jCheckBox4.setBackground(new java.awt.Color(255, 246, 246));
         jCheckBox4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -377,7 +367,7 @@ public class MenuUsr extends javax.swing.JFrame {
                 jCheckBox4ActionPerformed(evt);
             }
         });
-        jPanel6.add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 170, 30));
+        jPanel6.add(jCheckBox4, new AbsoluteConstraints(330, 90, 170, 30));
 
         jCheckBox5.setBackground(new java.awt.Color(255, 246, 246));
         jCheckBox5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -389,7 +379,7 @@ public class MenuUsr extends javax.swing.JFrame {
                 jCheckBox5ActionPerformed(evt);
             }
         });
-        jPanel6.add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 100, 30));
+        jPanel6.add(jCheckBox5, new AbsoluteConstraints(20, 90, 100, 30));
 
         ButtonBuscar.setBackground(new java.awt.Color(255, 246, 246));
         ButtonBuscar.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -400,9 +390,9 @@ public class MenuUsr extends javax.swing.JFrame {
                 ButtonBuscarActionPerformed(evt);
             }
         });
-        jPanel6.add(ButtonBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 130, 140, 30));
+        jPanel6.add(ButtonBuscar, new AbsoluteConstraints(330, 130, 140, 30));
 
-        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 110, 790, 190));
+        jPanel3.add(jPanel6, new AbsoluteConstraints(130, 110, 790, 190));
 
         jScrollPane2.setBackground(new java.awt.Color(255, 236, 236));
 
@@ -448,19 +438,19 @@ public class MenuUsr extends javax.swing.JFrame {
         Tablaa.setOpaque(false);
         jScrollPane2.setViewportView(Tablaa);
 
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 790, 260));
+        jPanel3.add(jScrollPane2, new AbsoluteConstraints(130, 320, 790, 260));
 
         jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel26.setToolTipText("");
-        jPanel3.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 110, 420, 720));
+        jPanel3.add(jLabel26, new AbsoluteConstraints(720, 110, 420, 720));
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen9.png"))); // NOI18N
         jLabel21.setToolTipText("");
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(-140, -140, -1, 710));
+        jPanel3.add(jLabel21, new AbsoluteConstraints(-140, -140, -1, 710));
 
         jTabbedPane1.addTab("tab2", jPanel3);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 40, 1160, 730));
+        getContentPane().add(jTabbedPane1, new AbsoluteConstraints(340, 40, 1160, 730));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

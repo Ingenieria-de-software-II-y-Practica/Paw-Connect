@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package loginandsignup;
+package Frontend.LoginAndSignUp.src.loginandsignup;
+
+import Backend.Controller.Controller;
 
 /**
  *
@@ -150,7 +152,6 @@ public class Signup1 extends javax.swing.JFrame {
                 DireActionPerformed(evt);
             }
         });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -230,18 +231,19 @@ public class Signup1 extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setMinimumSize(new java.awt.Dimension(400, 500));
         jPanel4.setPreferredSize(new java.awt.Dimension(420, 500));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.setLayout(new AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Imagen1.jpg"))); // NOI18N
-        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        jPanel4.add(jLabel1, new AbsoluteConstraints(70, 50, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 153, 153));
         jLabel2.setText("PAW CONNECT");
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+        jPanel4.add(jLabel2, new AbsoluteConstraints(60, 270, -1, -1));
 
         jPanel1.add(jPanel4);
         jPanel4.setBounds(390, -10, 410, 510);
+        
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -262,7 +264,24 @@ public class Signup1 extends javax.swing.JFrame {
     }//GEN-LAST:event_NumeroActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        String user = (String) tipousr.getSelectedItem();
+        if(user.equalsIgnoreCase("Refugio")){
+            if(Controller.registrarRefugio(Nombre.getText(), Contra.getText(), Numero.getText(), Dire.getText()).equals("OK")){
+                MenuR MenuFrame = new MenuR();
+                MenuFrame.setVisible(true);
+                MenuFrame.pack();
+                MenuFrame.setLocationRelativeTo(null);
+                this.dispose();
+            }
+        } else{
+            if(Controller.registrarUsuario(Nombre.getText(), Contra.getText(), Numero.getText()).equals("OK")){
+                MenuUsr MenuFrame = new MenuUsr();
+                MenuFrame.setVisible(true);
+                MenuFrame.pack();
+                MenuFrame.setLocationRelativeTo(null);
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -278,7 +297,12 @@ public class Signup1 extends javax.swing.JFrame {
     }//GEN-LAST:event_NombreActionPerformed
 
     private void tipousrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipousrActionPerformed
-
+        String chosen = (String) tipousr.getSelectedItem();
+        if(chosen.equalsIgnoreCase("Refugio")){
+            Dire.setEnabled(true);
+        } else{
+            Dire.setEnabled(false);
+        }
     }//GEN-LAST:event_tipousrActionPerformed
 
     private void ContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ContraActionPerformed
